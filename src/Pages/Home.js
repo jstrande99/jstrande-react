@@ -4,7 +4,9 @@ import '../App.css';
 function Home() { 
     return (
         <>
-            <h1>HELLO</h1>
+            <div className='bodies'> 
+                <h3>I am <b>JORDAN STRANDE</b></h3>
+            </div>
         </>
     )
 }

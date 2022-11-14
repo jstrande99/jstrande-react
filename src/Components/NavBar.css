@@ -1,5 +1,5 @@
 .navbar {
-    background: transparent;
+    background: rgb(50, 50, 50);
     height: 80px;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
     position: sticky;
     top: 0;
     z-index: 999;
-    color: black;
+    color: lightgray;
   }
   
   .navbar-container {
@@ -20,7 +20,7 @@
   }
   
   .navbar-logo {
-    color: #000;
+    color: lightgray;
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
@@ -51,7 +51,7 @@
   }
   
   .nav-links {
-    color: #000;
+    color: lightgray;
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -60,12 +60,12 @@
   }
   
   .nav-links:hover {
-    border-bottom: 4px solid #000;
+    border-bottom: 4px solid white;
     transition: all 0.2s ease-out;
   }
   
   .fa-bars {
-    color: #000;
+    color: lightgray;
   }
   
   .nav-links-mobile {
@@ -82,33 +82,33 @@
     }
   
     .nav-menu {
-      display: flex;
-      flex-direction: column;
+      display:block;
+      /* flex-direction: column; */
       width: 100%;
-      height: 350%;
+      /* height: 350%; */
       position: absolute;
-      top: 100px;
+      top: 5rem;
       left: -100%;
       opacity: 1;
       transition: all 0.5s ease;
       padding: 20px;
       overflow: hidden;
-    }
-
-    .nav-item {
-      border: 2px solid black;
-      /* background: rgb(157, 157, 157); */
-      top: 10px;
+      margin-bottom: 10rem;
     }
 
     .nav-menu.active {
-      /* background: rgb(168, 168, 168); */
       left: 0;
       opacity: 1;
       transition: all 0.5s ease;
-      z-index: 1;
+      z-index: 10;
+      background-color: rgb(50, 50, 50);
+      height: 90.8vh;
+      position:absolute;
     }
-  
+    .nav-item {
+        border: 2px solid white;
+        margin: 10px;
+      }
     .nav-links {
       text-align: center;
       padding: 1.5rem;
@@ -134,7 +134,7 @@
     }
   
     .fa-times {
-      color: #000;
+      color: lightgray;
       font-size: 2rem;
     }
   
@@ -147,7 +147,7 @@
       text-decoration: none;
       font-size: 1.5rem;
       background-color: transparent;
-      color: #000;
+      color: lightgray;
       padding: 14px 20px;
       border: 1px solid #fff;
       transition: all 0.3s ease-out;

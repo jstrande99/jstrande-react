@@ -16,8 +16,13 @@
   font-size: 3rem;
 }
 
+.bodies{ 
+  background-color: rgb(50, 50, 50);
+  height: 90.8vh;
+  color: lightgray;
+}
+
 .work {
-  /* background-image: url('/images/img-2.jpg'); */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -26,7 +31,6 @@
 }
 
 .studies {
-  /* background-image: url('/images/img-1.jpg'); */
   background-position: center;
   background-size: fill;
   background-repeat: no-repeat;
