@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
+import { AwesomeButton } from 'react-awesome-button';
 
 
 export function Navbar() { 
@@ -21,21 +22,29 @@ export function Navbar() {
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'}></i>
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}> 
-                        <li className='nav-item'>
-                            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                                Home
-                            </Link>
-                        </li>
+                        <AwesomeButton type="secondary"size="medium" >
+                            <li className='nav-item'>
+                            
+                                <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                                    Home
+                                </Link>
+                            
+                            </li>
+                        </AwesomeButton>
+                        <AwesomeButton type="secondary"size="medium" >
                         <li className='nav-item'>
                             <Link to='/work' className='nav-links' onClick={closeMobileMenu}>
                                 Work
                             </Link>
                         </li>
+                        </AwesomeButton>
+                        <AwesomeButton type="secondary"size="medium" >
                         <li className='nav-item'>
                             <Link to='/studies' className='nav-links' onClick={closeMobileMenu}>
                                 Studies
                             </Link>
                         </li>
+                        </AwesomeButton>
                     </ul>
                 </div>
             </nav>
