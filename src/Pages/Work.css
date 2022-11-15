@@ -1,0 +1,75 @@
+/* WORK CSS */
+.workLinks{
+    /* height: 100%; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    align-items: center;
+}
+.underline1{
+    position: absolute;
+    width: 25%;
+    height: 5px;
+    background-color: rgb(127, 108, 0);
+}
+.clickEm{
+    position:absolute;
+    transform: rotate(270deg);
+    left: 20%;
+    top: 30%;
+}
+.popup-overlay{
+    background: transparent;
+}
+.workTitle{
+    position:absolute;
+    z-index: 10;
+    padding: 5vh;
+    background: transparent;
+}
+.timeline{
+    height: 50vh;
+    width: 2%;
+    background-color: rgb(127, 108, 0);
+    position: absolute;
+    z-index: 0;
+    top: 20%;
+}
+.innerWork{
+    border: 2px solid white;
+    background-color: rgb(50, 50, 50);
+    padding: 3%;
+    width: 40%;
+    font-size: 100%;
+    margin-bottom: 2vh;
+    z-index: 10;
+}
+.popDiv{
+    text-align: center;
+    padding: 5%;
+}
+.popDescription{
+    padding: 5%;
+    font-size: 125%;
+}
+
+@media screen and (max-width: 960px) {
+    .underline1{
+        width: 15%;
+    }
+    .workLinks{
+        padding-top: 10vh;
+    }
+    .timeline{
+        margin-top: 20vh;
+        top: 0%;
+    }
+    .innerWork{
+        margin: 2vh;
+    }
+    .clickEm{
+        left: -2.5%;
+        top: 30%;
+    }
+}

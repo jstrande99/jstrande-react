@@ -1,53 +1,129 @@
+.welcomeScreen { 
+    padding: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    top: 0rem;
+}
+.welcomeText{
+    background-color: rgb(50, 50, 50);
+    z-index: 10;
+}
+.homeImg{
+    position: absolute;
+    z-index: 0;
+    object-fit: fill;
+    top: 15%;
+    left: -2.5rem;
+    width: 120%;
+}
+.timeOfDay{
+    font-size: 25px;
+    padding: 5px;
+    /* color: rgb(175, 175, 175); */
+    position: relative;
+    top: -10rem;
+}
+.Jordan{
+    font-size: 35px;
+    padding: 5px;
+    position: relative;
+    top: -9rem;
+}
+.engineer{
+    font-size: 25px;
+    padding: 5px;
+    position: relative;
+    top: -8rem;
+    color: rgb(175, 175, 175);
+}
+.whoIam{
+   font-size: 15px;
+   position: relative;
+   top: -7rem;
+   color: rgb(175, 175, 175);
+   padding: 5px;
+}
+.myName{
+    position: relative;
+    top: -8.5rem;
+    padding: 5px;
+    color: rgb(175, 175, 175);
+}
+/* WORK CSS */
+/* .workLinks{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    align-items: center;
+}
+.clickEm{
+    position:absolute;
+    transform: rotate(270deg);
+    left: 20%;
+    top: 30%;
+}
+.popup-overlay{
+    background: transparent;
+}
+.workTitle{
+    position:absolute;
+    z-index: 10;
+    padding: 10%;
+    background: transparent;
+}
+.timeline{
+    height: 70%;
+    width: 2%;
+    background-color: lightgray;
+    position: absolute;
+    z-index: 0;
+    top: 20%;
+}
+.innerWork{
+    border: 2px solid white;
+    background-color: rgb(50, 50, 50);
+    padding: 3%;
+    width: 40%;
+    font-size: 100%;
+    margin-bottom: 5%;
+    z-index: 10;
+}
+.popDiv{
+    text-align: center;
+    padding: 5%;
+}
+.popDescription{
+    padding: 5%;
+    font-size: 125%;
+} */
+
 @media screen and (max-width: 960px) {
-    .welcomeScreen { 
-        padding: 1.5rem;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        overflow: hidden;
-        position: relative;
-        height: 100%;
-        top: 0rem;
-    }
     .homeImg{
         position: absolute;
         z-index: 0;
         object-fit: fill;
-        top: 22rem;
+        top: 45%;
         left: -2.5rem;
         width: 120%;
     }
-    .timeOfDay{
-        font-size: 25px;
-        padding: 5px;
-        color: rgb(175, 175, 175);
-        position: relative;
-        top: -10rem;
+    /* .workLinks{
+        padding-top: 25%;
     }
-    .Jordan{
-        font-size: 35px;
-        padding: 5px;
-        position: relative;
-        top: -9rem;
+    .timeline{
+        margin-top: 35%;
+        top: 0%;
     }
-    .engineer{
-        font-size: 25px;
-        padding: 5px;
-        position: relative;
-        top: -8rem;
-        color: rgb(175, 175, 175);
+    .innerWork{
+        margin: 10%;
     }
-    .whoIam{
-       font-size: 15px;
-       position: relative;
-       top: -7rem;
-       color: rgb(175, 175, 175);
-       padding: 5px;
-    }
-    .myName{
-        position: relative;
-        top: -8.5rem;
-        padding: 5px;
-        color: rgb(175, 175, 175);
-    }
+    .clickEm{
+        left: -5%;
+        top: 30%;
+    } */
 }

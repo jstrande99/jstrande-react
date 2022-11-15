@@ -1,0 +1,68 @@
+.LanguagesTitle{
+    width: 100%;
+    padding: 5%;
+}
+.underline{
+    width: 10%;
+    height: 5px;
+    background-color: rgb(127, 108, 0);
+    position: absolute;
+}
+.SkillBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.skill{
+    text-align: center;
+    width: 20%;
+    padding: 10px;
+    border: 1px solid rgb(150, 150, 150);
+    background-color: rgb(60, 60, 60);
+}
+h3{
+    background-color: transparent;
+}
+.completion{
+    margin-top: 5px;
+    position: relative;
+    width: 100%;
+    height: 5px;
+    background-color: rgb(150, 150, 150);
+}
+.overline{
+    position: relative;
+    height: 5px;
+    background-color: rgb(127, 108, 0);
+}
+.js{
+    width: 85%;
+}
+.cc{
+    width: 75%;
+}
+.py{
+    width: 75%;
+}
+.sq{
+    width: 50%;
+}
+.lc{
+    width: 80%;
+}
+@media screen and (max-width: 960px) {
+    .LanguagesTitle{
+        padding: 5rem;
+    }
+    .lefts{
+        position: relative;
+        left: -20%;
+    }
+    .rights{
+        position: relative;
+        left: 20%;
+    }
+    .skill{
+        width: 40%;
+    }
+}

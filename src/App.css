@@ -4,6 +4,8 @@
   padding: 0;
   font-family: 'Georgia', serif;
   /* overflow: hidden; */
+  background-color: rgb(50, 50, 50);
+  color: lightgrey;
 }
 
 .home,
@@ -18,10 +20,13 @@
 }
 
 .bodies{ 
-  background-color: rgb(50, 50, 50);
-  height: 100vh;
-  color: lightgray;
+  /* background-color: rgb(50, 50, 50); */
+  height: 93vh;
+  /* color: lightgray; */
   position: relative;
+}
+.smallBody{
+  height: 85vh;
 }
 
 .work {
@@ -38,4 +43,10 @@
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
+}
+
+@media screen and (max-width: 960px) {
+  /* .smallBody{
+    height: 75vh;
+  } */
 }

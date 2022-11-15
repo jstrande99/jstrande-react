@@ -1,7 +1,11 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
 import '../App.css';
 import './Home.css';
-import worlds from './world-connected.png';
+import worlds from './images/world-connected.png';
+// import Popup from 'reactjs-popup';
+import Work from './Work.js';
+import Languages from './Languages.js';
 function Home() { 
     let timeOfday = GetTimeOfDay();
     
@@ -9,17 +13,19 @@ function Home() {
         <>
             <div className='bodies' id='Home'>
                 <div className='welcomeScreen'>
-                    <h2 className='timeOfDay'>Good {timeOfday},</h2> 
-                    <h3 className='myName'>My name is</h3>
-                    <h2 className='Jordan'>Jordan Strande</h2>
-                    <h2 className='engineer'>Software Engineer / Full Stack Developer</h2>
-                    {/* <p className='whoIam'>With a passion for designing, implementing and deploying advanced algorithmic applications.</p> */}
+                    <h2 className='timeOfDay welcomeText'>Good {timeOfday},</h2> 
+                    <h3 className='myName welcomeText'>My name is</h3>
+                    <h2 className='Jordan welcomeText'>Jordan Strande</h2>
+                    <h2 className='engineer welcomeText'>Software Engineer / Full Stack Developer</h2>
                     <img src={worlds} alt='worlds' className='homeImg'/>
                 </div>
             </div>
-            {/* <div id='Work' className='bodies'>
-                    
-            </div> */}
+            <div id='Languages' className='smallBody'>
+                <Languages />
+            </div>
+            <div id='Work' className='bodies'>
+                <Work />
+            </div>
         </>
     )
 }
