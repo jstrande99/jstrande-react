@@ -1,0 +1,53 @@
+@media screen and (max-width: 960px) {
+    .welcomeScreen { 
+        padding: 1.5rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        height: 100%;
+        top: 0rem;
+    }
+    .homeImg{
+        position: absolute;
+        z-index: 0;
+        object-fit: fill;
+        top: 22rem;
+        left: -2.5rem;
+        width: 120%;
+    }
+    .timeOfDay{
+        font-size: 25px;
+        padding: 5px;
+        color: rgb(175, 175, 175);
+        position: relative;
+        top: -10rem;
+    }
+    .Jordan{
+        font-size: 35px;
+        padding: 5px;
+        position: relative;
+        top: -9rem;
+    }
+    .engineer{
+        font-size: 25px;
+        padding: 5px;
+        position: relative;
+        top: -8rem;
+        color: rgb(175, 175, 175);
+    }
+    .whoIam{
+       font-size: 15px;
+       position: relative;
+       top: -7rem;
+       color: rgb(175, 175, 175);
+       padding: 5px;
+    }
+    .myName{
+        position: relative;
+        top: -8.5rem;
+        padding: 5px;
+        color: rgb(175, 175, 175);
+    }
+}

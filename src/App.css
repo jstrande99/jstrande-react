@@ -2,7 +2,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Georgia', serif;
+  /* overflow: hidden; */
 }
 
 .home,
@@ -18,8 +19,9 @@
 
 .bodies{ 
   background-color: rgb(50, 50, 50);
-  height: 90.8vh;
+  height: 100vh;
   color: lightgray;
+  position: relative;
 }
 
 .work {
