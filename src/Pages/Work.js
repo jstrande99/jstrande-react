@@ -1,6 +1,6 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
-import './Work.css';
+import './Style/Work.css';
 export default function Work(){
 
     return (

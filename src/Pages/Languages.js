@@ -1,4 +1,4 @@
-import './Languages.css';
+import './Style/Languages.css';
 
 export default function Languages(){
     return(

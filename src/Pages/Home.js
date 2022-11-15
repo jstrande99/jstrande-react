@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 import '../App.css';
-import './Home.css';
+import './Style/Home.css';
 import worlds from './images/world-connected.png';
 // import Popup from 'reactjs-popup';
 import Work from './Work.js';
