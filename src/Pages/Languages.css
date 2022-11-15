@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 5vh;
 }
 .skill{
     text-align: center;
@@ -19,6 +20,7 @@
     padding: 10px;
     border: 1px solid rgb(150, 150, 150);
     background-color: rgb(60, 60, 60);
+    border-radius: 10vh;
 }
 h3{
     background-color: transparent;
@@ -50,17 +52,17 @@ h3{
 .lc{
     width: 80%;
 }
+.lefts{
+    position: relative;
+    left: -20%;
+}
+.rights{
+    position: relative;
+    left: 20%;
+}
 @media screen and (max-width: 960px) {
     .LanguagesTitle{
-        padding: 5rem;
-    }
-    .lefts{
-        position: relative;
-        left: -20%;
-    }
-    .rights{
-        position: relative;
-        left: 20%;
+        padding: 2rem;
     }
     .skill{
         width: 40%;
