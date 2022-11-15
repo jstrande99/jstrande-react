@@ -1,75 +1,75 @@
 /* WORK CSS */
 .workLinks{
-    /* height: 100%; */
-    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 5%;
+    padding: 5vh;
     align-items: center;
 }
 .underline1{
     position: absolute;
-    width: 25%;
-    height: 5px;
+    width: 12vw;
+    height: .8vh;
     background-color: rgb(127, 108, 0);
 }
 .clickEm{
     position:absolute;
     transform: rotate(270deg);
-    left: 20%;
-    top: 30%;
+    left: 15vw;
+    top: 30vh;
 }
 .popup-overlay{
     background: transparent;
 }
 .workTitle{
-    position:absolute;
+    position:relative;
     z-index: 10;
     padding: 5vh;
     background: transparent;
 }
 .timeline{
     height: 50vh;
-    width: 2%;
+    width: 1vw;
     background-color: rgb(127, 108, 0);
     position: absolute;
     z-index: 0;
-    top: 20%;
+    top: 30vh;
 }
 .innerWork{
     border: 2px solid white;
     background-color: rgb(50, 50, 50);
-    padding: 3%;
-    width: 40%;
-    font-size: 100%;
-    margin-bottom: 2vh;
+    padding: 5px;
+    width: 45vw;
+    height: 13vh;
+    font-size: 18px;
+    margin-bottom: 3vh;
     z-index: 10;
 }
 .popDiv{
     text-align: center;
-    padding: 5%;
+    padding: 20px;
 }
 .popDescription{
-    padding: 5%;
-    font-size: 125%;
+    padding: 20px;
+    font-size: 130%;
+}
+.ttl{
+    text-decoration-line: underline;
+    color: white;
+    /* color: rgb(127, 108, 0); */
 }
 
 @media screen and (max-width: 960px) {
     .underline1{
-        width: 15%;
+        width: 40vw;
     }
     .workLinks{
-        padding-top: 10vh;
-    }
-    .timeline{
-        margin-top: 20vh;
-        top: 0%;
-    }
+        padding-top: 3vh;
+    } 
     .innerWork{
         margin: 2vh;
     }
     .clickEm{
-        left: -2.5%;
-        top: 30%;
+        left: 0vw;
+        top: 30vh;
     }
 }
