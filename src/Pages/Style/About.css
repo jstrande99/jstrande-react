@@ -1,15 +1,18 @@
 .About{
-    padding: 10vh;
+    padding: 8vh;
     display: flex;
     flex-direction: row;
-    padding-left: 25vw;
+    height: 50vh;
 }
 .paraDiv{
     width: 50vw;
+    margin-left: 10vw;
+}
+.para{
+    margin-top: 5vh;
 }
 .imgContainer{
     width: 50vw;
-    /* background-color: red; */
 }
 .headShot{
     transform: scalex(-1);
@@ -26,9 +29,9 @@
     margin-bottom: 10vh;
 }
 .quoteContainer{
-    width: 50vw;
+    width: 60vw;
     position: relative;
-    left: 25vw;
+    left: 20vw;
 }
 .Computer{
     height: 20vh;
