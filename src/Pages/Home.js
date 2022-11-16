@@ -6,6 +6,7 @@ import worlds from './images/world-connected.png';
 // import Popup from 'reactjs-popup';
 import Work from './Work.js';
 import Languages from './Languages.js';
+import About from './About.js';
 function Home() { 
     let timeOfday = GetTimeOfDay();
     
@@ -20,9 +21,21 @@ function Home() {
                     <img src={worlds} alt='worlds' className='homeImg'/>
                 </div>
             </div>
+            <div className='line2'></div>
+            <div className='line1'></div>
+            <h1 className='title'>About Me</h1>
+            <div id='Languages' className='smallBody'>
+                <About />
+            </div>
+            <div className='line2'></div>
+            <div className='line1'></div>
+            <h1 className='title'>Expirience</h1>
             <div id='Languages' className='smallBody'>
                 <Languages />
             </div>
+            <div className='line2'></div>
+            <div className='line1'></div>
+            <h1 className='title'>Work</h1>
             <div id='Work' className='bodies'>
                 <Work />
             </div>

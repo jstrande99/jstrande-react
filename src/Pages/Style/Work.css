@@ -11,21 +11,6 @@
     height: .8vh;
     background-color: rgb(127, 108, 0);
 }
-.clickEm{
-    position:absolute;
-    transform: rotate(270deg);
-    left: 15vw;
-    top: 30vh;
-    z-index: 2;
-}
-.arrow{
-    position:absolute;
-    z-index: 1;
-    height: 10vh;
-    left: 21.5vw;
-    top: 14vh;
-    transform: scalex(-1) rotate(-80deg);
-}
 .popup-overlay{
     background: transparent;
 }
@@ -42,7 +27,7 @@
     background-color: rgb(127, 108, 0);
     position: absolute;
     z-index: 0;
-    top: 30vh;
+    top: 15vh;
 }
 .innerWork{
     border: 2px solid white;
@@ -54,20 +39,33 @@
     margin-bottom: 3vh;
     z-index: 10;
 }
+.innerWork:hover{
+    background-color: rgb(127, 108, 0);
+}
 .popDiv{
     text-align: center;
     padding: 20px;
+    background-color: rgb(70, 70, 70);
+}
+.popDiv h2 {
+    background-color: transparent;
 }
 .popDescription{
     padding: 20px;
     font-size: 130%;
+    background: transparent;
 }
 .ttl{
     text-decoration-line: underline;
     color: white;
-    /* color: rgb(127, 108, 0); */
+    background-color: transparent;
 }
-
+.arrow{
+    display: none;
+}
+.clickEm{
+    display: none;
+}
 @media screen and (max-width: 960px) {
     .underline1{
         width: 40vw;
@@ -79,10 +77,15 @@
         margin: 2vh;
     }
     .clickEm{
-        left: 0vw;
-        top: 30vh;
+        position:relative;
+        transform: rotate(270deg);
+        z-index: 2;
+        left: -35vw;
+        top: 26vh;
     }
     .arrow{
+        position:absolute;
+        z-index: 1;
         height: 5vh;
         left: 18vw;
         top: 17vh;

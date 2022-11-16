@@ -7,13 +7,13 @@ export default function Work(){
 
     return (
     <>
-        <div className='workTitle'>
-            <h1 className='pastTitle'>Past Work</h1>
-            <div className='underline1'></div>
-        </div>
+        {/* <div className='workTitle'> */}
+            {/* <h1 className='pastTitle'>Past Work</h1> */}
+            {/* <div className='underline1'></div> */}
+        {/* </div> */}
         <div className='workLinks'>
-            <p className='clickEm'>Click to learn more</p>
-            <img src={Arrow} alt='arrow' className='arrow'/>
+                <p className='clickEm'>Click to learn more</p>
+                <img src={Arrow} alt='arrow' className='arrow'/>
             <Popup 
                 contentStyle={
                     {background: "rgb(50, 50, 50)", 

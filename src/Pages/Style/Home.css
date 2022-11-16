@@ -3,10 +3,30 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    overflow: hidden;
     position: relative;
     height: 100%;
     top: 0rem;
+}
+.line1{
+    width: 80vw;
+    height: .2vh;
+    background-color: goldenrod;
+    position: relative;
+    left: 20vw;
+    margin-top: 1vh;
+}
+.line2{
+    width: 80vw;
+    height: .2vh;
+    background-color: goldenrod;
+    position: relative;
+}
+.title{
+    position: relative;
+    top: 1vh;
+    left: 5vw;
+    width: 50vw;
+    color: goldenrod;
 }
 .welcomeText{
     background-color: rgb(50, 50, 50);
@@ -19,6 +39,8 @@
     top: 5vh;
     left: -2.5rem;
     width: 120vw;
+    overflow: hidden;
+
 }
 .timeOfDay{
     font-size: 25px;
