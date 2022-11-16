@@ -99,7 +99,7 @@
       /* height: 350%; */
       position: absolute;
       top: 5rem;
-      left: -100%;
+      left: -100vw;
       opacity: 1;
       transition: all 0.5s ease;
       padding: 20px;
