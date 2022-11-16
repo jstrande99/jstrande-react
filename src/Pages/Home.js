@@ -5,6 +5,8 @@ import worlds from './images/world-connected.png';
 import Github from './images/GitHub.png';
 import Insta from './images/instagram.png';
 import LinkedIn from './images/linkedin.png';
+import Resume from './images/resume.png';
+import pdfResume from './PDF/JordanStrande.pdf';
 import Work from './Work.js';
 import Languages from './Languages.js';
 import About from './About.js';
@@ -24,6 +26,7 @@ function Home() {
                         <a href='https://github.com/jstrande99' target="_blank" rel="noopener noreferrer"><img src={Github} alt='Github' className='iconLink gt'/></a>
                         <a href='https://www.instagram.com/jstrande/' target="_blank" rel="noopener noreferrer"><img src={Insta} alt='Instagram' className='iconLink ins'/></a>
                         <a href='https://www.linkedin.com/in/jordan-strande/' target="_blank" rel="noopener noreferrer"><img src={LinkedIn} alt='LinkedIn' className='iconLink lnk'/></a>
+                        <a href={pdfResume} target="_blank" rel="noopener noreferrer"><img src={Resume} alt='Resume' className='iconLink lnk'/></a>
                     </div>
                 </div>
             </div>

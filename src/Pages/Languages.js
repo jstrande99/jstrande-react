@@ -3,8 +3,6 @@ import './Style/Languages.css';
 export default function Languages(){
     return(
         <>
-            <div className="LanguagesTitle">
-            </div>
             <div className='SkillBody'>
                 <div className='Javascript skill rights'>
                     <h3>JavaScript</h3>

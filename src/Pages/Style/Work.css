@@ -2,9 +2,8 @@
 .workLinks{
     display: flex;
     flex-direction: column;
-    padding: 5vh;
+    /* padding: 5vh; */
     align-items: center;
-    background-color: transparent;
 }
 .underline1{
     position: absolute;
@@ -28,7 +27,7 @@
     background-color: rgb(127, 108, 0);
     position: absolute;
     z-index: 0;
-    top: 15vh;
+    top: 10vh;
 }
 .innerWork{
     border: 2px solid white;
@@ -92,7 +91,7 @@
         width: 40vw;
     }
     .workLinks{
-        padding-top: 3vh;
+        padding-top: 0vh;
     } 
     .innerWork{
         margin: 2vh;
