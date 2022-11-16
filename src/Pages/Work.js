@@ -60,7 +60,7 @@ export default function Work(){
                         
                 }
             >
-                <div className='popDiv last'>
+                <div className='popDiv'>
                     <h2>Pool Manager</h2>
                     <p className='popDescription'>
                         Oversaw and coordinated over 20 staff members to ensure that the facility is being ran efficiently. Working with the General Manager, and the owners to make decisions that benefit the club the best. From budgeting to organizing events for members to enjoy. Attended high level meetings among all of the managers and the owners. Preformed semi-annual trainings to ensure that the staff is up to date on all first aid techniques.
