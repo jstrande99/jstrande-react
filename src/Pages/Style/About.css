@@ -1,8 +1,10 @@
 .About{
-    padding: 8vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    padding-bottom: 10vh;
     display: flex;
     flex-direction: row;
-    height: 50vh;
+    height: auto;
 }
 .paraDiv{
     width: 50vw;
