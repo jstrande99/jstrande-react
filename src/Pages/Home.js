@@ -3,9 +3,6 @@ import React from 'react';
 import '../App.css';
 import './Style/Home.css';
 import worlds from './images/world-connected.png';
-import Github from './images/GitHub.png';
-import Insta from './images/instagram.png';
-import LinkedIn from './images/linkedin.png';
 // import Popup from 'reactjs-popup';
 import Work from './Work.js';
 import Languages from './Languages.js';
@@ -22,11 +19,6 @@ function Home() {
                     <h2 className='Jordan welcomeText'>Jordan Strande</h2>
                     <h2 className='engineer welcomeText'>Software Engineer / Full Stack Developer</h2>
                     <img src={worlds} alt='worlds' className='homeImg'/>
-                    <div className='icons'>
-                        <a href='https://github.com/jstrande99' target="_blank" rel="noopener noreferrer"><img src={Github} alt='Github' className='iconLink gt'/></a>
-                        <a href='https://www.instagram.com/jstrande/' target="_blank" rel="noopener noreferrer"><img src={Insta} alt='Instagram' className='iconLink ins'/></a>
-                        <a href='https://www.linkedin.com/in/jordan-strande/' target="_blank" rel="noopener noreferrer"><img src={LinkedIn} alt='LinkedIn' className='iconLink lnk'/></a>
-                    </div>
                 </div>
             </div>
             <div className='line2'></div>
@@ -44,7 +36,7 @@ function Home() {
             <div className='line2'></div>
             <div className='line1'></div>
             <h1 className='title'>Work</h1>
-            <div id='Work' className='bodies'>
+            <div id='Work' className='smallBody'>
                 <Work />
             </div>
         </>

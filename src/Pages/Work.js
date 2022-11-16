@@ -7,19 +7,10 @@ export default function Work(){
 
     return (
     <>
-        {/* <div className='workTitle'> */}
-            {/* <h1 className='pastTitle'>Past Work</h1> */}
-            {/* <div className='underline1'></div> */}
-        {/* </div> */}
         <div className='workLinks'>
                 <p className='clickEm'>Click to learn more</p>
                 <img src={Arrow} alt='arrow' className='arrow'/>
             <Popup 
-                contentStyle={
-                    {background: "rgb(50, 50, 50)", 
-                    border: "2px solid white", 
-                    height:"auto",
-                    width: "80vw"}} 
                     trigger={
                         <button className='innerWork'>
                             <b className='ttl'>Ski Coach</b><br/><br/>Winter Park Ski Resort
@@ -33,12 +24,7 @@ export default function Work(){
                 </p>
             </div>
             </Popup>
-            <Popup 
-                contentStyle={
-                    {background: "rgb(50, 50, 50)", 
-                    border: "2px solid white", 
-                    height:"auto",
-                    width: "80vw"}} 
+            <Popup  
                     trigger={
                         <button className='innerWork'>
                             <b className='ttl'>Boat Captain</b><br/><br/>Buckhorn Ridge Outfitters
@@ -53,11 +39,6 @@ export default function Work(){
             </div>
             </Popup>
             <Popup 
-                contentStyle={
-                    {background: "rgb(50, 50, 50)", 
-                    border: "2px solid white", 
-                    height:"auto",
-                    width: "80vw"}} 
                     trigger={
                         <button className='innerWork'>
                             <b className='ttl'>Track Marshall</b><br/><br/>Urban Air
@@ -71,12 +52,7 @@ export default function Work(){
                     </p>
                 </div>
             </Popup>
-            <Popup 
-                contentStyle={
-                    {background: "rgb(50, 50, 50)", 
-                    border: "2px solid white", 
-                    height:"auto",
-                    width: "80vw"}} 
+            <Popup
                     trigger={
                         <button className='innerWork'>
                             <b className='ttl'>Pool Manager</b><br/><br/>Hiwan Country Club
@@ -84,7 +60,7 @@ export default function Work(){
                         
                 }
             >
-                <div className='popDiv'>
+                <div className='popDiv last'>
                     <h2>Pool Manager</h2>
                     <p className='popDescription'>
                         Oversaw and coordinated over 20 staff members to ensure that the facility is being ran efficiently. Working with the General Manager, and the owners to make decisions that benefit the club the best. From budgeting to organizing events for members to enjoy. Attended high level meetings among all of the managers and the owners. Preformed semi-annual trainings to ensure that the staff is up to date on all first aid techniques.
