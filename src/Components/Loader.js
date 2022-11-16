@@ -9,16 +9,18 @@ export function Loader(){
         setLoading("true")
         setTimeout(() => {
         setLoading("false");
-        }, 4500);
+        }, 3000);
     }, [setLoading]); 
 
 
     return(
         <div className={`fullscreen-${Loading}`}>
             <div className='innerSpin'>
-                <h1 className='loadwords'>&lt; welcome /&gt;</h1>
+                <h1 className='loadwords'>WELCOME</h1>
                 <img src={Floating} alt='Astronat' className='loadImg'/>
-                <h1 className='loadwords smallFont'>&lt; made with react /&gt;</h1>
+                <h1 className='loadwords'>
+                    CREATED WITH REACT
+                </h1>
                 <img src={Hole} alt='Blackhole' className='loadBackImg'/>
             </div>
         </div>
