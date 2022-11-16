@@ -1,6 +1,8 @@
 .LanguagesTitle{
-    width: 100%;
-    padding: 5%;
+    position:relative;
+    z-index: 10;
+    padding: 5vh;
+    background: transparent;
 }
 .underline{
     width: 10%;
@@ -18,15 +20,15 @@
     text-align: center;
     width: 20%;
     padding: 10px;
-    border: 1px solid rgb(150, 150, 150);
-    background-color: rgb(60, 60, 60);
-    border-radius: 10vh;
+    /* border: 1px solid rgb(150, 150, 150); */
+    background-color: transparent;
+    /* border-radius: 10vh; */
 }
 h3{
     background-color: transparent;
 }
 .completion{
-    margin-top: 5px;
+    margin-top: 10px;
     position: relative;
     width: 100%;
     height: 5px;

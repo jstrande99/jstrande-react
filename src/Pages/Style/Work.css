@@ -16,6 +16,15 @@
     transform: rotate(270deg);
     left: 15vw;
     top: 30vh;
+    z-index: 2;
+}
+.arrow{
+    position:absolute;
+    z-index: 1;
+    height: 10vh;
+    left: 21.5vw;
+    top: 14vh;
+    transform: scalex(-1) rotate(-80deg);
 }
 .popup-overlay{
     background: transparent;
@@ -27,6 +36,7 @@
     background: transparent;
 }
 .timeline{
+    z-index: 3;
     height: 50vh;
     width: 1vw;
     background-color: rgb(127, 108, 0);
@@ -71,5 +81,11 @@
     .clickEm{
         left: 0vw;
         top: 30vh;
+    }
+    .arrow{
+        height: 5vh;
+        left: 18vw;
+        top: 17vh;
+        transform: scalex(-1) rotate(-80deg);
     }
 }

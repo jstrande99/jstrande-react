@@ -40,6 +40,22 @@ export default function Languages(){
                     <h3>LC-3</h3>
                     <div className='completion'><div className='lc overline'></div></div>
                 </div>
+                <div className='Javascript skill rights'>
+                    <h3>GitHub</h3>
+                    <div className='completion'><div className='js overline'></div></div>
+                </div>
+                <div className='Javascript skill lefts'>
+                    <h3>Mac OS</h3>
+                    <div className='completion'><div className='js overline'></div></div>
+                </div>
+                <div className='Javascript skill rights'>
+                    <h3>Linux OS</h3>
+                    <div className='completion'><div className='js overline'></div></div>
+                </div>
+                <div className='Javascript skill lefts'>
+                    <h3>Windows OS</h3>
+                    <div className='completion'><div className='js overline'></div></div>
+                </div>
             </div>
         </>
     )
