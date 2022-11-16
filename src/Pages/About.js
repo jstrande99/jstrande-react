@@ -1,19 +1,25 @@
 import React from 'react';
 import './Style/About.css';
 import HeadShot from './images/headShot.png';
+import Computer from './images/computer.png';
 
 export default function About(){
     return (
         <>
             <div className='About'>
                 <div className='paraDiv'>
-                    <p className='para'>  Jordan was born in Denver, Colorado. He started is in his last semester at Colorado State University. Jordan will be graduating with a Bachelor's degree in Natural Sciences, majoring in Applied Computer Science.
-                        <br/><br/>Jordan grew up skiing competitively on the Winter Park ski team, and represented the United States in Junior Worlds held in Italy. He now hopes to give back to the community that made him the person he is today, by coaching the team that he was once a part of.
-                        <br/><br/>Jordan developed a love for computers when he was a junior in high school, and since then has expanded greatly on his skills and improved upon his software engineering
+                    <p className='para'>  I am a software engineer / full stack developer, and I am in my last semester at Colorado State University. I will graduating with a Bachelor's degree in Natural Sciences, majoring in Applied Computer Science.
+                        <br/><br/>I have always had a strong passion for design and structure of algorithms, I am always looking for ways to expand and perfect pre-existing programs. 
                     </p>
                 </div>
                 <div className='imgContainer'>
                     <img src={HeadShot} alt='HeadShot' className='headShot'/>
+                </div>
+            </div>
+            <div className='quote'>
+                <div className='quoteContainer'>
+                    <img src={Computer} alt='Computer' className='Computer'/>
+                    <p className='quotes'>"Everything is designed. Few things are designed well." <br/>~Brian Reed</p>
                 </div>
             </div>
         </>

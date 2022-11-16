@@ -17,6 +17,23 @@
     position: absolute;
     left: 65vw;
 }
+.quote{
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10vh;
+}
+.quoteContainer{
+    width: 50vw;
+    position: relative;
+    left: 25vw;
+}
+.Computer{
+    height: 20vh;
+    margin-bottom: 5vh;
+}
 @media screen and (max-width: 960px) {
     .paraDiv{
         width: 100vw;
