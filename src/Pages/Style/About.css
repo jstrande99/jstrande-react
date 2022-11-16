@@ -1,0 +1,27 @@
+.About{
+    padding: 10vh;
+    display: flex;
+    flex-direction: row;
+    padding-left: 25vw;
+}
+.paraDiv{
+    width: 50vw;
+}
+.imgContainer{
+    width: 50vw;
+    /* background-color: red; */
+}
+.headShot{
+    transform: scalex(-1);
+    height: 30vh;
+    position: absolute;
+    left: 65vw;
+}
+@media screen and (max-width: 960px) {
+    .paraDiv{
+        width: 100vw;
+    }
+    .imgContainer{
+        display: none;
+    }
+}
