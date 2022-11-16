@@ -6,10 +6,11 @@
 }
 .paraDiv{
     width: 50vw;
-    margin-left: 10vw;
+    margin-left: 0vw;
 }
 .para{
     margin-top: 5vh;
+    text-align: center;
 }
 .imgContainer{
     width: 50vw;
