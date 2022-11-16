@@ -25,6 +25,7 @@
 }
 .smallBody{
   height: auto;
+  position: relative;
   overflow: hidden;
 }
 

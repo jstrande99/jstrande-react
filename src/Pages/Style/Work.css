@@ -43,10 +43,28 @@
 .innerWork:hover{
     background-color: rgb(127, 108, 0);
 }
+.popup-overlay{
+    background: transparent;
+}
+.popup-content{
+    background: red;
+    top: 0vh;
+    height: 0vh;
+    position: relative;
+    top: -30vh;
+}
 .popDiv{
     text-align: center;
     padding: 20px;
     background-color: rgb(70, 70, 70);
+    border: 2px solid white;
+    height: auto;
+    width: 80vw;
+    position: relative;
+    top: -40vh;
+}
+.last{
+    top: -65vh;
 }
 .popDiv h2 {
     background-color: transparent;

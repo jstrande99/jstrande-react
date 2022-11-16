@@ -1,12 +1,10 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import '../App.css';
 import './Style/Home.css';
 import worlds from './images/world-connected.png';
 import Github from './images/GitHub.png';
 import Insta from './images/instagram.png';
 import LinkedIn from './images/linkedin.png';
-// import Popup from 'reactjs-popup';
 import Work from './Work.js';
 import Languages from './Languages.js';
 import About from './About.js';
@@ -44,7 +42,7 @@ function Home() {
             <div className='line2'></div>
             <div className='line1'></div>
             <h1 className='title'>Work</h1>
-            <div id='Work' className='bodies'>
+            <div id='Work' className='smallBody'>
                 <Work />
             </div>
         </>

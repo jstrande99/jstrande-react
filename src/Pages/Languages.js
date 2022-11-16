@@ -4,8 +4,6 @@ export default function Languages(){
     return(
         <>
             <div className="LanguagesTitle">
-                {/* <h1>Expirience</h1> */}
-                {/* <div className='underline'></div> */}
             </div>
             <div className='SkillBody'>
                 <div className='Javascript skill rights'>
