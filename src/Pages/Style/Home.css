@@ -62,24 +62,27 @@
 
 }
 .timeOfDay{
-    font-size: 25px;
+    font-size: 5vh;
     padding: 5px;
     /* color: rgb(175, 175, 175); */
     position: relative;
     top: -10rem;
+    background: transparent;
 }
 .Jordan{
-    font-size: 35px;
+    font-size: 8vh;
     padding: 5px;
     position: relative;
     top: -9rem;
+    background: transparent;
 }
 .engineer{
-    font-size: 25px;
+    font-size: 5vh;
     padding: 5px;
     position: relative;
     top: -8rem;
     color: rgb(175, 175, 175);
+    background: transparent;
 }
 .whoIam{
    font-size: 15px;
@@ -87,12 +90,14 @@
    top: -7rem;
    color: rgb(175, 175, 175);
    padding: 5px;
+   background: transparent;
 }
 .myName{
     position: relative;
     top: -8.5rem;
     padding: 5px;
     color: rgb(175, 175, 175);
+    background: transparent;
 }
 
 
@@ -105,5 +110,14 @@
     .icons{
         left: 2.5vw;
         top: 68vh;
+    }
+    .timeOfDay{
+        font-size: 3vh;
+    }
+    .Jordan{
+        font-size: 4vh;
+    }
+    .engineer{
+        font-size: 3vh;
     }
 }

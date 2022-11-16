@@ -46,7 +46,6 @@
     grid-gap: 10px;
     list-style: none;
     text-align: center;
-    width: 60vw;
     justify-content: end;
     margin-right: 2rem;
     background: transparent;
@@ -95,7 +94,8 @@
     .nav-menu {
       display:block;
       /* flex-direction: column; */
-      width: 100%;
+      width: 100vw;
+      height: auto;
       /* height: 350%; */
       position: absolute;
       top: 5rem;
@@ -105,16 +105,18 @@
       padding: 20px;
       overflow: hidden;
       margin-bottom: 10rem;
+      background-color: rgb(50, 50, 50);
     }
 
     .nav-menu.active {
-      left: 0;
+      left: -5vw;
       opacity: 1;
       transition: all 0.5s ease;
       z-index: 10;
-      background-color: rgb(50, 50, 50);
-      height: 90.8vh;
+      /* height: 90.8vh; */
       position:absolute;
+      border: 2px solid white;
+      border-radius: 5vh;
     }
     .nav-item {
         border: 2px solid white;

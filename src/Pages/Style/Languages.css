@@ -32,7 +32,7 @@ h3{
 .overline{
     position: relative;
     height: 5px;
-    background-color: rgb(127, 108, 0);
+    background-color: goldenrod;
 }
 .js{
     width: 85%;
