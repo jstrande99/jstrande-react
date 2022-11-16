@@ -18,7 +18,7 @@ function Home() {
             <div className='bodies' id='Home'>
                 <div className='welcomeScreen'>
                     <h2 className='timeOfDay welcomeText'>Good {timeOfday},</h2> 
-                    <h3 className='myName welcomeText'>My name is</h3>
+                    <h3 className='myName welcomeText'>I am</h3>
                     <h2 className='Jordan welcomeText'>Jordan Strande</h2>
                     <h2 className='engineer welcomeText'>Software Engineer / Full Stack Developer</h2>
                     <img src={worlds} alt='worlds' className='homeImg'/>
