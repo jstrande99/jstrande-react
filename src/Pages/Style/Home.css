@@ -109,7 +109,10 @@
     }
     .icons{
         left: 2.5vw;
-        top: 68vh;
+        top: 65vh;
+    }
+    .iconLink{
+        height: 3.5vh;
     }
     .timeOfDay{
         font-size: 3vh;
