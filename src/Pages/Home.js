@@ -38,7 +38,7 @@ function Home() {
             </div>
             <div className='line2'></div>
             <div className='line1'></div>
-            <h1 className='title'>Expirience</h1>
+            <h1 className='title'>Experience</h1>
             <div id='Languages' className='smallBody'>
                 <Languages />
             </div>
