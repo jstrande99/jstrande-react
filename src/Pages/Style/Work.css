@@ -4,6 +4,7 @@
     flex-direction: column;
     padding: 5vh;
     align-items: center;
+    background-color: transparent;
 }
 .underline1{
     position: absolute;
@@ -61,10 +62,12 @@
     background-color: transparent;
 }
 .arrow{
-    display: none;
+    position: absolute;
+    left: -100vw;
 }
 .clickEm{
-    display: none;
+    position: absolute;
+    left: -100vw;
 }
 @media screen and (max-width: 960px) {
     .underline1{
@@ -78,7 +81,7 @@
     }
     .clickEm{
         position:relative;
-        transform: rotate(270deg);
+        transform: rotate(270deg); 
         z-index: 2;
         left: -35vw;
         top: 26vh;
