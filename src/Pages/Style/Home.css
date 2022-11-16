@@ -7,6 +7,24 @@
     height: 100%;
     top: 0rem;
 }
+.icons{
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    background: transparent;
+    position: fixed;
+    left: 90vw;
+    top: 20vh;
+}
+.icons a{
+    background: transparent;
+    padding-bottom: 1vh;
+}
+.iconLink{
+    height: 5vh;
+    left: 60vw;
+    background: transparent;
+}
 .line1{
     width: 80vw;
     height: .2vh;
@@ -36,9 +54,9 @@
     position: absolute;
     z-index: 0;
     object-fit: fill;
-    top: 5vh;
-    left: -2.5rem;
-    width: 120vw;
+    top: 40vh;
+    left: 1rem;
+    width: 100vw;
     overflow: hidden;
 
 }
@@ -79,6 +97,12 @@
 
 @media screen and (max-width: 960px) {
     .homeImg{
-        top: 35vh;
+        width: 150vw;
+        top: 50vh;
+        left: -20vw;
+    }
+    .icons{
+        left: 85vw;
+        top: 15vh;
     }
 }
