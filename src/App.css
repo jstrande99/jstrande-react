@@ -20,9 +20,7 @@
 }
 
 .bodies{ 
-  /* background-color: rgb(50, 50, 50); */
   height: 90vh;
-  /* color: lightgray; */
   position: relative;
 }
 .smallBody{
