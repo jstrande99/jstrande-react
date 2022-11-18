@@ -93,13 +93,11 @@
     }
     .nav-menu {
       display:block;
-      /* flex-direction: column; */
       width: 100vw;
       height: auto;
-      /* height: 350%; */
       position: absolute;
       top: 5rem;
-      left: -150vw;
+      left: -200vw;
       opacity: 1;
       transition: all 0.5s ease;
       padding: 20px;
@@ -113,7 +111,6 @@
       opacity: 1;
       transition: all 0.5s ease;
       z-index: 10;
-      /* height: 90.8vh; */
       position:absolute;
       border: 2px solid white;
       border-radius: 5vh;
