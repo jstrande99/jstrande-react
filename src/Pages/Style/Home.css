@@ -45,7 +45,6 @@
     left: 5vw;
     width: 50vw;
     color: goldenrod;
-    margin-bottom: 5vh;
 }
 .welcomeText{
     background-color: rgb(50, 50, 50);
@@ -100,7 +99,10 @@
     background: transparent;
 }
 
-
+.sectionOne{
+    height: 15vh;
+    background: rgb(50, 50, 50);
+}
 @media screen and (max-width: 960px) {
     .homeImg{
         width: 150vw;

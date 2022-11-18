@@ -5,8 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import{ Loader } from './Components/Loader'
 
-function App() {
-  
+export default function App() {
   return (
     <>
      <Loader />
@@ -19,5 +18,3 @@ function App() {
     </>
   );
 }
-
-export default App;

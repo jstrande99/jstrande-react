@@ -1,4 +1,3 @@
-
 .underline{
     width: 10%;
     height: 5px;
@@ -9,15 +8,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 5vh;
+    padding-bottom: 5vh;
 }
 .skill{
     text-align: center;
     width: 20%;
     padding: 10px;
-    /* border: 1px solid rgb(150, 150, 150); */
     background-color: transparent;
-    /* border-radius: 10vh; */
 }
 h3{
     background-color: transparent;

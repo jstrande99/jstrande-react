@@ -1,3 +1,6 @@
+/* .aboutContainer{
+
+} */
 .About{
     padding-left: 5vh;
     padding-right: 5vh;
@@ -11,7 +14,6 @@
     margin-left: 0vw;
 }
 .para{
-    margin-top: 5vh;
     text-align: center;
 }
 .imgContainer{
@@ -29,7 +31,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10vh;
+    padding-bottom: 5vh;
 }
 .quoteContainer{
     width: 60vw;

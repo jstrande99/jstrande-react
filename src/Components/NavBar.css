@@ -9,7 +9,8 @@
     top: 0;
     z-index: 999;
     color: lightgray;
-    background: transparent;
+    /* background: transparent; */
+    background-color: rgb(50, 50, 50);
   }
   
   .navbar-container {
@@ -18,8 +19,8 @@
     align-items: center;
     height: 80px;
     max-width: 1500px;
-    border-radius: 15vh;
-    background-color: rgb(50, 50, 50);
+    /* border-radius: 15vh;
+    background-color: rgb(50, 50, 50); */
     padding-left: 3vw;
   }
   

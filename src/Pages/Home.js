@@ -14,7 +14,7 @@ function Home() {
     let timeOfday = GetTimeOfDay();
     
     return (
-        <>
+        <>  
             <div className='bodies' id='Home'>
                 <div className='welcomeScreen'>
                     <h2 className='timeOfDay welcomeText'>Good {timeOfday},</h2> 
@@ -30,21 +30,27 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className='line2'></div>
-            <div className='line1'></div>
-            <h1 className='title'>About Me</h1>
+            <div className='sectionOne'>
+                <div className='line2'></div>
+                <div className='line1'></div>
+                <h1 className='title'>About Me</h1>
+            </div>
             <div id='Languages' className='smallBody'>
                 <About />
             </div>
-            <div className='line2'></div>
-            <div className='line1'></div>
-            <h1 className='title'>Experience</h1>
+            <div className='sectionOne'>
+                <div className='line2'></div>
+                <div className='line1'></div>
+                <h1 className='title'>Experience</h1>
+            </div>
             <div id='Languages' className='smallBody'>
                 <Languages />
             </div>
-            <div className='line2'></div>
-            <div className='line1'></div>
-            <h1 className='title'>Work</h1>
+            <div className='sectionOne'>
+                <div className='line2'></div>
+                <div className='line1'></div>
+                <h1 className='title'>Work</h1>
+            </div>
             <div id='Work' className='smallBody'>
                 <Work />
             </div>
