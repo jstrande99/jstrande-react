@@ -8,7 +8,7 @@ export default function About(){
         <>
             <div className='About'>
                 <div className='paraDiv'>
-                    <p className='para'>  I am a software engineer / full stack developer, and I am in my last semester at Colorado State University. I will graduating with a Bachelor's degree in Natural Sciences, majoring in Applied Computer Science.
+                    <p className='para'>  I am a soon to be graduate from Colorado State University with a focus in software engineer / full stack developer. I will graduating with a Bachelor's degree in Natural Sciences, majoring in Applied Computer Science.
                         <br/><br/>I have always had a strong passion for design and structure of algorithms, I am always looking for ways to expand and perfect pre-existing programs. 
                     </p>
                 </div>
