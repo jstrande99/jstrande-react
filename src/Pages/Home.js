@@ -10,9 +10,10 @@ import pdfResume from './PDF/JordanStrande.pdf';
 import Work from './Work.js';
 import Languages from './Languages.js';
 import About from './About.js';
-function Home() { 
+
+export default function Home(props) { 
     let timeOfday = GetTimeOfDay();
-    
+    console.log(props.offSetY);
     return (
         <>  
             <div className='bodies' id='Home'>
@@ -73,4 +74,3 @@ function GetTimeOfDay(){
     }
     return timeQuote; 
 }
-export default Home;
