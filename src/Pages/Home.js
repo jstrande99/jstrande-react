@@ -10,6 +10,9 @@ import pdfResume from './PDF/JordanStrande.pdf';
 import Work from './Work.js';
 import Languages from './Languages.js';
 import About from './About.js';
+import Studies from './Studies.js';
+
+
 function Home() { 
     let timeOfday = GetTimeOfDay();
     
@@ -45,6 +48,14 @@ function Home() {
             </div>
             <div id='Languages' className='smallBody'>
                 <Languages />
+            </div>
+            <div className='sectionOne'>
+                <div className='line2'></div>
+                <div className='line1'></div>
+                <h1 className='title'>Academics</h1>
+            </div>
+            <div id='Languages' className='smallBody'>
+                <Studies />
             </div>
             <div className='sectionOne'>
                 <div className='line2'></div>

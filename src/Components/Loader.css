@@ -1,7 +1,7 @@
 .fullscreen-true{
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(to top right, rgb(135, 103, 20), black);;
+    background: linear-gradient(to top right, rgb(135, 103, 20), black);
     position: fixed;
     top: 0;
     z-index: 1000;
