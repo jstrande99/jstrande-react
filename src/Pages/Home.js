@@ -16,7 +16,7 @@ import Studies from './Studies.js';
 
 export default function Home(props) { 
     let timeOfday = GetTimeOfDay();
-    console.log(props.offSetY);
+    // console.log(props.offSetY);
     return (
         <>  
             <div className='bodies' id='Home'>
