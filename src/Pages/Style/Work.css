@@ -30,7 +30,8 @@
 }
 .innerWork{
     border: 2px solid goldenrod;
-    background-color: rgb(50, 50, 50);
+    border-radius: 15vh;
+    background-color: black;
     padding: 5px;
     width: 45vw;
     height: 13vh;
@@ -54,7 +55,7 @@
 .popDiv{
     text-align: center;
     padding: 20px;
-    background-color: rgb(70, 70, 70);
+    background-color: black;
     border: 2px solid white;
     height: auto;
     width: 80vw;

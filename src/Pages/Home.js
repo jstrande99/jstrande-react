@@ -13,9 +13,10 @@ import About from './About.js';
 import Studies from './Studies.js';
 
 
-function Home() { 
+
+export default function Home(props) { 
     let timeOfday = GetTimeOfDay();
-    
+    // console.log(props.offSetY);
     return (
         <>  
             <div className='bodies' id='Home'>
@@ -84,4 +85,3 @@ function GetTimeOfDay(){
     }
     return timeQuote; 
 }
-export default Home;
