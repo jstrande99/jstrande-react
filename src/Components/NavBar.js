@@ -13,9 +13,9 @@ export function Navbar() {
         <>
             <nav className='navbar'>
                 <div className='navbar-container'>
-                    <Link to="/#Home" className="navbar-logo" onClick={closeMobileMenu}>
+                    {/* <Link to="/#Home" className="navbar-logo" onClick={closeMobileMenu}>
                        JS <i className='fab fab-typo3' />
-                    </Link>
+                    </Link> */}
                     <div className='menu-icon' onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'}></i>
                     </div>
@@ -30,11 +30,11 @@ export function Navbar() {
                                 Work
                             </Link>
                         </li>
-                        <li className='nav-item'>
+                        {/* <li className='nav-item'>
                             <Link to='/studies' className='nav-links' onClick={closeMobileMenu}>
                                 Studies
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </nav>

@@ -10,11 +10,12 @@
     height: auto;
 }
 .paraDiv{
-    width: 50vw;
-    margin-left: 0vw;
+    width: 40vw;
+    margin-left: 2.5vw;
 }
 .para{
     text-align: center;
+    font-size: 18px;
 }
 .imgContainer{
     width: 50vw;
