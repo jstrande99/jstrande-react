@@ -11,6 +11,7 @@ import Work from './Work.js';
 import Languages from './Languages.js';
 import About from './About.js';
 import Studies from './Studies.js';
+import Contact from './Contact.js';
 
 
 
@@ -65,6 +66,13 @@ export default function Home(props) {
             </div>
             <div id='Work' className='smallBody'>
                 <Work />
+            </div>
+            <div>
+                <div className='line2'></div>
+                <div className='line1'></div>
+            </div>
+            <div id='Contact' className='smallBody'>
+                <Contact />
             </div>
         </>
     )
