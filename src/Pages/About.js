@@ -9,8 +9,7 @@ export default function About(){
             <div className='aboutContainer'>
                 <div className='About'>
                     <div className='paraDiv'>
-                        <p className='para'>  I am a soon to be graduate from Colorado State University with a focus in software engineer / full stack developer. I will graduating with a Bachelor's degree in Natural Sciences, majoring in Applied Computer Science.
-                            <br/><br/>I have always had a strong passion for design and structure of algorithms, I am always looking for ways to expand and perfect pre-existing programs. 
+                        <p className='para'> I can look back on my time in school with a sense of accomplishment and pride. I have learned a wide range of technical skills, from low-level programming languages like C and assembly to high-level languages like Java and Python. I have also gained a deep understanding of computer science concepts such as advanced algorithms, data structures, and software design. In addition to these technical skills, I have also developed important soft skills such as problem-solving, collaboration, and communication. Overall, I feel well-prepared to enter the workforce and make a positive impact as a software engineer.
                         </p>
                     </div>
                     <div className='imgContainer'>
