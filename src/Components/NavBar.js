@@ -30,11 +30,11 @@ export function Navbar() {
                                 Work
                             </Link>
                         </li>
-                        {/* <li className='nav-item'>
-                            <Link to='/studies' className='nav-links' onClick={closeMobileMenu}>
-                                Studies
+                        <li className='nav-item'>
+                            <Link to='/Calculator' className='nav-links' onClick={closeMobileMenu}>
+                                My-Calc
                             </Link>
-                        </li> */}
+                        </li>
                     </ul>
                 </div>
             </nav>

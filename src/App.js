@@ -2,8 +2,10 @@ import './App.css';
 import { Navbar } from './Components/NavBar'; 
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
-import{ Loader } from './Components/Loader'
+import{ Loader } from './Components/Loader';
+import  Calculator  from './Components/Extras/Calculator';
 
 export default function App() {
   const [offSetY, setOffSetY] = useState(0);
@@ -20,10 +22,11 @@ export default function App() {
      <Loader />
     <Router>
       <Navbar />
-      <Home setOffSetY={setOffSetY} offSetY={offSetY}/>
-      {/* <Routes> */}
-        {/* <Route path='/' element={<Home/>}/> */}
-      {/* </Routes> */}
+      {/* <Home setOffSetY={setOffSetY} offSetY={offSetY}/> */}
+      <Routes>
+        <Route path='/' element={<Home setOffSetY={setOffSetY} offSetY={offSetY}/>}/>
+        <Route path='/Calculator' element={<Calculator />}/>
+      </Routes>
     </Router>
     </>
   );

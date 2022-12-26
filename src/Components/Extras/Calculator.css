@@ -1,0 +1,37 @@
+.calcContainer{
+    /* background-color: red; */
+    width: 100vw;
+    height: 90vh;
+}
+.calcInnerContainer{
+    width: 90vw;
+    height: 80vh;
+    /* background-color: purple; */
+    position: relative;
+    left: 5vw;
+    top: 5vh;
+    padding-left: 5vw;
+    padding-top: 5vh;
+}
+.calcInput{
+    height: 8vh;
+    width: 80vw;
+    margin-bottom: 2vh;
+    color: white;
+    font-size: 5vh;
+    text-align: center;
+}
+.calcButtons{
+    height: auto;
+    width: 80vw;
+}
+
+
+/* Buttons */
+.btn{
+    margin: 1vw;
+    width: 18vw;
+    height: 10vh;
+    font-size: 5vw;
+    text-align: center;
+}
