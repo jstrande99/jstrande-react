@@ -4,13 +4,13 @@ import './Style/Home.css';
 import Github from './images/GitHub.png';
 import Insta from './images/instagram.png';
 import LinkedIn from './images/linkedin.png';
+import Email from './images/email.png';
 import Resume from './images/resume.png';
 import pdfResume from './PDF/JordanStrande.pdf';
 import Work from './Work.js';
 import Languages from './Languages.js';
 import About from './About.js';
 import Studies from './Studies.js';
-import Contact from './Contact.js';
 
 
 
@@ -29,6 +29,7 @@ export default function Home(props) {
                         <a href='https://github.com/jstrande99' target="_blank" rel="noopener noreferrer"><img src={Github} alt='Github' className='iconLink gt'/></a>
                         <a href='https://www.instagram.com/jstrande/' target="_blank" rel="noopener noreferrer"><img src={Insta} alt='Instagram' className='iconLink ins'/></a>
                         <a href='https://www.linkedin.com/in/jordan-strande/' target="_blank" rel="noopener noreferrer"><img src={LinkedIn} alt='LinkedIn' className='iconLink lnk'/></a>
+                        <a href='mailto:strandejordan@gmail.com' rel="noopener noreferrer"><img src={Email} alt='Email' className='iconLink lnk'/></a>
                         <a href={pdfResume} target="_blank" rel="noopener noreferrer"><img src={Resume} alt='Resume' className='iconLink lnk'/></a>
                     </div>
                 </div>
@@ -68,9 +69,6 @@ export default function Home(props) {
             <div>
                 <div className='line2'></div>
                 <div className='line1'></div>
-            </div>
-            <div id='Contact' className='smallBody'>
-                <Contact />
             </div>
         </>
     )
