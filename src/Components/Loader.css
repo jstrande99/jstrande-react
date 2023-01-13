@@ -1,7 +1,6 @@
 .fullscreen-true{
     width: 100vw;
     height: 100vh;
-    /* background: linear-gradient(to top right, rgb(135, 103, 20), black); */
     background-color: black;
     position: fixed;
     top: 0;
@@ -16,7 +15,6 @@
 }
 .innerSpin{
     background-color: transparent;
-    margin-top: 34vh;
 }
 .loadImg{
     background-color: transparent;
@@ -29,20 +27,11 @@
     background: transparent;
     font-style: italic;
     font-size: 3vh;
-    margin-top: 15vh;
-    margin-bottom: 15vh;
 }
 .re{
     background: transparent;
 }
-.loadBackImg{
-    background-color: transparent;
-    height: 32vh;
-    animation: loading 25s linear infinite;
-    position: relative;
-    top: -64vh;
-    z-index: -1;
-}
+
 @keyframes loading {
     0% {
         transform: rotate(0deg);
