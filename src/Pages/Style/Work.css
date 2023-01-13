@@ -75,14 +75,6 @@
     color: white;
     background-color: transparent;
 }
-.arrow{
-    position: absolute;
-    left: -100vw;
-}
-.clickEm{
-    position: absolute;
-    left: -100vw;
-}
 @media screen and (max-width: 960px) {
     .underline1{
         width: 40vw;
@@ -92,20 +84,5 @@
     } 
     .innerWork{
         margin: 2vh;
-    }
-    .clickEm{
-        position:relative;
-        transform: rotate(270deg); 
-        z-index: 2;
-        left: -35vw;
-        top: 26vh;
-    }
-    .arrow{
-        position:absolute;
-        z-index: 1;
-        height: 5vh;
-        left: 18vw;
-        top: 17vh;
-        transform: scalex(-1) rotate(-80deg);
     }
 }

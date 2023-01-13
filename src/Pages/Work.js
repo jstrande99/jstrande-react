@@ -1,15 +1,12 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 import './Style/Work.css';
-import Arrow from './images/arrow.png';
 
 export default function Work(){
 
     return (
     <>
         <div className='workLinks'>
-                <p className='clickEm'>Click to learn more</p>
-                <img src={Arrow} alt='arrow' className='arrow'/>
             <Popup 
                     trigger={
                         <button className='innerWork'>
