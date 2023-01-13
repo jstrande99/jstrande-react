@@ -99,6 +99,23 @@
     background: transparent;
 }
 
+.contactBtn{
+    background-color: transparent;
+    font-size: 2vh;
+    z-index: 5;
+    width: 100px;
+    border-radius: 5vh;
+    padding: 5px;
+    position: relative;
+    top: -13vh;
+    border-color: goldenrod;
+}
+
+.contactBtn:hover{
+    color: goldenrod;
+    width: 120px;
+}
+
 .sectionOne{
     height: 15vh;
     background: transparent;

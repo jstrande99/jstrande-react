@@ -25,7 +25,8 @@ export default function Home(props) {
                     <h2 className='timeOfDay welcomeText'>Good {timeOfday},</h2> 
                     <h3 className='myName welcomeText'>I am</h3>
                     <h2 className='Jordan welcomeText'>Jordan Strande</h2>
-                    <h2 className='engineer welcomeText'>Software Engineer / Full Stack Developer</h2>
+                    <h2 className='engineer welcomeText'>Software Developer</h2>
+                    <button className='contactBtn' onClick={() => window.location = 'mailto:strandjordan@gmail.com'}>Let's Talk</button>
                     <img src={worlds} alt='worlds' className='homeImg'/>
                     <div className='icons'>
                         <a href='https://github.com/jstrande99' target="_blank" rel="noopener noreferrer"><img src={Github} alt='Github' className='iconLink gt'/></a>
