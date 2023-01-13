@@ -12,14 +12,14 @@
 .products,
 .sign-up {
   display: flex;
-  height: 90vh;
+  /* height: 90vh; */
   align-items: center;
   justify-content: center;
   font-size: 3rem;
 }
 
 .bodies{ 
-  height: 90vh;
+  height: 85vh;
   position: relative;
   overflow: hidden;
 }

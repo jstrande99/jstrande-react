@@ -1,7 +1,6 @@
 import React from 'react';
 import './Style/About.css';
 import HeadShot from './images/headShot.png';
-import Computer from './images/computer.png';
 
 export default function About(){
     return (
@@ -14,12 +13,6 @@ export default function About(){
                     </div>
                     <div className='imgContainer'>
                         <img src={HeadShot} alt='HeadShot' className='headShot'/>
-                    </div>
-                </div>
-                <div className='quote'>
-                    <div className='quoteContainer'>
-                        <img src={Computer} alt='Computer' className='Computer'/>
-                        <p className='quotes'>"Everything is designed. Few things are designed well." <br/>~Brian Reed</p>
                     </div>
                 </div>
             </div>

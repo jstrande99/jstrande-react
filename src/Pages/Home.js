@@ -1,7 +1,6 @@
 import React from 'react';
 import '../App.css';
 import './Style/Home.css';
-import worlds from './images/world-connected.png';
 import Github from './images/GitHub.png';
 import Insta from './images/instagram.png';
 import LinkedIn from './images/linkedin.png';
@@ -15,19 +14,17 @@ import Contact from './Contact.js';
 
 
 
+
 export default function Home(props) { 
     let timeOfday = GetTimeOfDay();
-    // console.log(props.offSetY);
     return (
         <>  
             <div className='bodies' id='Home'>
                 <div className='welcomeScreen'>
                     <h2 className='timeOfDay welcomeText'>Good {timeOfday},</h2> 
-                    <h3 className='myName welcomeText'>I am</h3>
-                    <h2 className='Jordan welcomeText'>Jordan Strande</h2>
+                    <h2 className='Jordan welcomeText'>I'm Jordan Strande,</h2>
                     <h2 className='engineer welcomeText'>Software Developer</h2>
                     <button className='contactBtn' onClick={() => window.location = 'mailto:strandjordan@gmail.com'}>Let's Talk</button>
-                    <img src={worlds} alt='worlds' className='homeImg'/>
                     <div className='icons'>
                         <a href='https://github.com/jstrande99' target="_blank" rel="noopener noreferrer"><img src={Github} alt='Github' className='iconLink gt'/></a>
                         <a href='https://www.instagram.com/jstrande/' target="_blank" rel="noopener noreferrer"><img src={Insta} alt='Instagram' className='iconLink ins'/></a>

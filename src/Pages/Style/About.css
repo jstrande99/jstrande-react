@@ -1,6 +1,3 @@
-/* .aboutContainer{
-
-} */
 .About{
     padding-left: 5vh;
     padding-right: 5vh;
@@ -11,33 +8,21 @@
 }
 .paraDiv{
     width: 40vw;
-    margin-left: 2.5vw;
+    margin-left: 10vw;
 }
 .para{
     text-align: center;
     font-size: 18px;
 }
 .imgContainer{
-    width: 50vw;
+    width: 40vw;
 }
 .headShot{
     transform: scalex(-1);
     height: 30vh;
     position: absolute;
     left: 65vw;
-}
-.quote{
-    width: 100vw;
-    height: auto;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 5vh;
-}
-.quoteContainer{
-    width: 60vw;
-    position: relative;
-    left: 20vw;
+    top: 5vh;
 }
 .Computer{
     height: 20vh;
@@ -46,6 +31,7 @@
 @media screen and (max-width: 960px) {
     .paraDiv{
         width: 100vw;
+        margin-left: 3vw;
     }
     .imgContainer{
         display: none;
