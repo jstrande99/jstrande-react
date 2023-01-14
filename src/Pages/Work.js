@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
 import './Style/Work.css';
+import './Style/Studies.css';
+import { Collapse } from 'reactstrap';
 
 export default function Work(){
-
+    const [showWork, setShowWork] = useState(false);
     return (
     <>
         <div className='workLinks'>
+            <button className='innerOne' onClick={() => {setShowWork(!showWork)}}>
+                <h2 className='classTitle'>Ski Coach</h2>
+                <p className='locationTitle'>Winter Park Ski Resort</p>
+                <Collapse isOpen={showWork}>
+                    <p className='descriptClass'>
+                        Coaching is a chance for Jordan to give back to the community that he was raised in. Coaching teenagers to improve techniques and sharpen their skills, all while influencing moral development. Assist with seasonal decision making that may occur. While upholding the resorts main values; Integrity, Excellence and Team.
+                    </p>
+                </Collapse>
+            </button>
             <Popup 
                     trigger={
                         <button className='innerWork'>
@@ -64,8 +75,7 @@ export default function Work(){
                     </p>
                 </div>
             </Popup>
-            <div className='timeline'></div>
-            </div>
+        </div>
     </>
     )
 }
