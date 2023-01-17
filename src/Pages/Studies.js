@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import './Style/Studies.css';
 import { Collapse } from 'reactstrap';
-// import { Collapsable } from '../Components/Collapsable';
+import { Collapsable } from '../Components/Collapsable';
 
 //ALL DEFINITIONS WERE FOUND ON CSU'S COURSE CATALOG
 // FOUND HERE:: https://catalog.colostate.edu/general-catalog/courses-az/
 export default function Studies(){
+    const [showSEDetails, setShowSEDetails] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
     return(
         <div className='studyContainer'>
             <div className='studyOne'>
-                <button className=' innerOne'  onClick={() => { setShowDetails(!showDetails) }}>
-                    <h2 className='classTitle'>Software Engineering</h2>
-                    <Collapse isOpen={showDetails}>
-                        <p className='descriptClass'>Principles, concepts, and techniques associated with team-based development of large, complex software systems. Topics include teamwork, configuration management, project management, requirements engineering, and systematic testing techniques while using GitHub. Use software tools in the context of a Scrum-based Agile development project.</p>
-                    </Collapse>
-                </button> 
+            <Collapsable 
+                    shows={showSEDetails} 
+                    sets={setShowSEDetails}
+                    ttl='Software Engineering'
+                    description='Principles, concepts, and techniques associated with team-based development of large, complex software systems. Topics include teamwork, configuration management, project management, requirements engineering, and systematic testing techniques while using GitHub. Use software tools in the context of a Scrum-based Agile development project.'
+                />
                 <button className=' innerOne'  onClick={() => { setShowDetails(!showDetails) }}>
                     <h2 className='classTitle'>Web Application Design and Development</h2>
                     <Collapse isOpen={showDetails}>
