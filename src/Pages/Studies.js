@@ -10,7 +10,8 @@ export default function Studies(){
     const [showWebAppDetails, setShowWebAppDetails] = useState(false);
     const [showSecDetails, setShowSecDetails] = useState(false);
     const [showOSDetails, setShowOSDetails] = useState(false);
-    const [showDetails, setShowDetails] = useState(false);
+    const [showDBDetails, setShowDBDetails] = useState(false);
+    const [showAlgDetails, setShowAlgDetails] = useState(false);
     return(
         <div className='studyContainer'>
             <div className='studyOne'>
@@ -38,18 +39,18 @@ export default function Studies(){
                     ttl='Operating Systems'
                     description='Advanced look into memory organization, I/O control, multitasking, process control, coordination, and resource management of operating systems.'
                 />
-                <button className=' innerOne'  onClick={() => { setShowDetails(!showDetails) }}>
-                    <h2 className='classTitle'>Database Systems</h2>
-                    <Collapse isOpen={showDetails}>
-                        <p className='descriptClass'>The physical and logical design, implementation, and administration of databases.</p>
-                    </Collapse>
-                </button>
-                <button className=' innerOne'  onClick={() => { setShowDetails(!showDetails) }}>
-                    <h2 className='classTitle'>Algorithms (Theory and Practice)</h2>
-                    <Collapse isOpen={showDetails}>
-                        <p className='descriptClass'>Analysis, design, implementation and applications of algorithms.</p>
-                    </Collapse>
-                </button>
+            <Collapsable 
+                    shows={showDBDetails} 
+                    sets={setShowDBDetails}
+                    ttl='Database Systems'
+                    description='The physical and logical design, implementation, and administration of databases.'
+                />
+            <Collapsable 
+                    shows={showAlgDetails} 
+                    sets={setShowAlgDetails}
+                    ttl='Algorithms (Theory and Practice)'
+                    description='Analysis, design, implementation and applications of algorithms.'
+                />
             </div>
         </div>
     );
