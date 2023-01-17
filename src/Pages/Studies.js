@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './Style/Studies.css';
 import { Collapse } from 'reactstrap';
-//ALL DEFINITIONS WERE TAKEN FROM CSU'S COURSE CATALOG
+// import { Collapsable } from '../Components/Collapsable';
+
+//ALL DEFINITIONS WERE FOUND ON CSU'S COURSE CATALOG
 // FOUND HERE:: https://catalog.colostate.edu/general-catalog/courses-az/
 export default function Studies(){
     const [showDetails, setShowDetails] = useState(false);
