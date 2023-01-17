@@ -8,7 +8,7 @@ import { Collapsable } from '../Components/Collapsable';
 export default function Work(){
     const [showSkiWork, setShowSkiWork] = useState(false);
     const [showBoatWork, setShowBoatWork] = useState(false);
-    // const [showUrbanWork, setShowUrbanWork] = useState(false);
+    const [showUrbanWork, setShowUrbanWork] = useState(false);
     // const [showHiwanWork, setShowHiwanWork] = useState(false);
     return (
     <>
@@ -28,21 +28,14 @@ export default function Work(){
                     location='Buckhorn Ridge Outfitters'
                     description='Provided a fun and safe boating experience for clients from around the globe. As a captain, the correct decisions must be made quickly to assure the safety of the clients. Multitasking is a skill that becomes enhanced from dealing with clients and operating a vessel. Jordan worked his way from captioning to managing and coordinating other captains in his final year of working with Buckhorn Ridge Outfitters.'
                 />
+                <Collapsable 
+                    shows={showUrbanWork} 
+                    sets={setShowUrbanWork}
+                    ttl='Track Marshall'
+                    location='Urbain Air'
+                    description='Provided a fun and safe boating experience for clients from around tAssisted in the construction and grand opening activities of the Fort Collins location. Effectively managed and communicated with go-kart employees and guests. Maintained and serviced go-karts to ensure vehicles are up to quality standards. Providing a safe and fun environment for all guests.'
+                />
             </div>
-            <Popup 
-                    trigger={
-                        <button className='innerWork'>
-                            <b className='ttl'>Track Marshall</b><br/><br/>Urban Air
-                        </button>
-                }
-            >
-                <div className='popDiv'>
-                    <h2>Track Marshall / Shift Lead</h2>
-                    <p className='popDescription'>
-                        Assisted in the construction and grand opening activities of the Fort Collins location. Effectively managed and communicated with go-kart employees and guests. Maintained and serviced go-karts to ensure vehicles are up to quality standards. Providing a safe and fun environment for all guests.
-                    </p>
-                </div>
-            </Popup>
             <Popup
                     trigger={
                         <button className='innerWork'>
