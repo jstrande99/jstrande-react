@@ -7,7 +7,7 @@ import { Collapsable } from '../Components/Collapsable';
 
 export default function Work(){
     const [showSkiWork, setShowSkiWork] = useState(false);
-    // const [showBoatWork, setShowBoatWork] = useState(false);
+    const [showBoatWork, setShowBoatWork] = useState(false);
     // const [showUrbanWork, setShowUrbanWork] = useState(false);
     // const [showHiwanWork, setShowHiwanWork] = useState(false);
     return (
@@ -21,21 +21,14 @@ export default function Work(){
                     location='Winter Park Ski Resort'
                     description='Coaching is a chance for Jordan to give back to the community that he was raised in. Coaching teenagers to improve techniques and sharpen their skills, all while influencing moral development. Assist with seasonal decision making that may occur. While upholding the resorts main values; Integrity, Excellence and Team.'
                 />
+                <Collapsable 
+                    shows={showBoatWork} 
+                    sets={setShowBoatWork}
+                    ttl='Charter Captain'
+                    location='Buckhorn Ridge Outfitters'
+                    description='Provided a fun and safe boating experience for clients from around the globe. As a captain, the correct decisions must be made quickly to assure the safety of the clients. Multitasking is a skill that becomes enhanced from dealing with clients and operating a vessel. Jordan worked his way from captioning to managing and coordinating other captains in his final year of working with Buckhorn Ridge Outfitters.'
+                />
             </div>
-            <Popup  
-                    trigger={
-                        <button className='innerWork'>
-                            <b className='ttl'>Boat Captain</b><br/><br/>Buckhorn Ridge Outfitters
-                        </button>
-                }
-            >
-            <div className='popDiv'>
-                <h2>Charter Boat Captain</h2>
-                <p className='popDescription'>
-                    Provided a fun and safe boating experience for clients from around the globe. As a captain, the correct decisions must be made quickly to assure the safety of the clients. Multitasking is a skill that becomes enhanced from dealing with clients and operating a vessel. Jordan worked his way from captioning to managing and coordinating other captains in his final year of working with Buckhorn Ridge Outfitters.
-                </p>
-            </div>
-            </Popup>
             <Popup 
                     trigger={
                         <button className='innerWork'>
