@@ -8,6 +8,8 @@ import { Collapsable } from '../Components/Collapsable';
 export default function Studies(){
     const [showSEDetails, setShowSEDetails] = useState(false);
     const [showWebAppDetails, setShowWebAppDetails] = useState(false);
+    const [showSecDetails, setShowSecDetails] = useState(false);
+    const [showOSDetails, setShowOSDetails] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
     return(
         <div className='studyContainer'>
@@ -18,25 +20,24 @@ export default function Studies(){
                     ttl='Software Engineering'
                     description='Principles, concepts, and techniques associated with team-based development of large, complex software systems. Topics include teamwork, configuration management, project management, requirements engineering, and systematic testing techniques while using GitHub. Use software tools in the context of a Scrum-based Agile development project.'
                 />
-                <Collapsable 
+            <Collapsable 
                     shows={showWebAppDetails} 
                     sets={setShowWebAppDetails}
                     ttl='Web Application Design and Development'
                     description='Advanced application design and development of modern day web applications.'
                 />
-                <button className=' innerOne'  onClick={() => { setShowDetails(!showDetails) }}>
-                    <h2 className='classTitle'>Systems Security</h2>
-                    <Collapse isOpen={showDetails}>
-                        <p className='descriptClass'>Computer and system security, authentication, access control, malicious software, and software security.</p>
-                    </Collapse>
-                </button>
-               
-                <button className=' innerOne'  onClick={() => { setShowDetails(!showDetails) }}>
-                    <h2 className='classTitle'>Operating Systems</h2>
-                    <Collapse isOpen={showDetails}>
-                        <p className='descriptClass'>Advanced look into memory organization, I/O control, multitasking, process control, coordination, and resource management of operating systems</p>
-                    </Collapse>
-                </button>
+            <Collapsable 
+                    shows={showSecDetails} 
+                    sets={setShowSecDetails}
+                    ttl='Systems Security'
+                    description='Computer and system security, authentication, access control, malicious software, and software security.'
+                />
+            <Collapsable 
+                    shows={showOSDetails} 
+                    sets={setShowOSDetails}
+                    ttl='Operating Systems'
+                    description='Advanced look into memory organization, I/O control, multitasking, process control, coordination, and resource management of operating systems.'
+                />
                 <button className=' innerOne'  onClick={() => { setShowDetails(!showDetails) }}>
                     <h2 className='classTitle'>Database Systems</h2>
                     <Collapse isOpen={showDetails}>
