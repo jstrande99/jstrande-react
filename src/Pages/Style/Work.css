@@ -19,15 +19,6 @@
     padding: 5vh;
     background: transparent;
 }
-.timeline{
-    z-index: 3;
-    height: 50vh;
-    width: 1vw;
-    background-color: rgb(127, 108, 0);
-    position: absolute;
-    z-index: 0;
-    top: 10vh;
-}
 .innerWork{
     border: 2px solid goldenrod;
     border-radius: 15vh;
@@ -74,6 +65,12 @@
     text-decoration-line: underline;
     color: white;
     background-color: transparent;
+}
+.locationTitle{
+    background-color: transparent;
+    color: white;
+    font-size: medium;
+    padding-bottom: 5px;
 }
 @media screen and (max-width: 960px) {
     .underline1{
