@@ -7,6 +7,7 @@ import { Collapsable } from '../Components/Collapsable';
 // FOUND HERE:: https://catalog.colostate.edu/general-catalog/courses-az/
 export default function Studies(){
     const [showSEDetails, setShowSEDetails] = useState(false);
+    const [showWebAppDetails, setShowWebAppDetails] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
     return(
         <div className='studyContainer'>
@@ -17,12 +18,12 @@ export default function Studies(){
                     ttl='Software Engineering'
                     description='Principles, concepts, and techniques associated with team-based development of large, complex software systems. Topics include teamwork, configuration management, project management, requirements engineering, and systematic testing techniques while using GitHub. Use software tools in the context of a Scrum-based Agile development project.'
                 />
-                <button className=' innerOne'  onClick={() => { setShowDetails(!showDetails) }}>
-                    <h2 className='classTitle'>Web Application Design and Development</h2>
-                    <Collapse isOpen={showDetails}>
-                        <p className='descriptClass'>Advanced application design and development of modern day web applications.</p>
-                    </Collapse>
-                </button>
+                <Collapsable 
+                    shows={showWebAppDetails} 
+                    sets={setShowWebAppDetails}
+                    ttl='Web Application Design and Development'
+                    description='Advanced application design and development of modern day web applications.'
+                />
                 <button className=' innerOne'  onClick={() => { setShowDetails(!showDetails) }}>
                     <h2 className='classTitle'>Systems Security</h2>
                     <Collapse isOpen={showDetails}>
