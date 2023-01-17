@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-// import Popup from 'reactjs-popup';
 import './Style/Work.css';
-// import './Style/Studies.css';
-// import { Collapse } from 'reactstrap';
 import { Collapsable } from '../Components/Collapsable';
 
 export default function Work(){
