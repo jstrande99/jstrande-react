@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Popup from 'reactjs-popup';
+// import Popup from 'reactjs-popup';
 import './Style/Work.css';
 // import './Style/Studies.css';
 // import { Collapse } from 'reactstrap';
@@ -9,7 +9,7 @@ export default function Work(){
     const [showSkiWork, setShowSkiWork] = useState(false);
     const [showBoatWork, setShowBoatWork] = useState(false);
     const [showUrbanWork, setShowUrbanWork] = useState(false);
-    // const [showHiwanWork, setShowHiwanWork] = useState(false);
+    const [showHiwanWork, setShowHiwanWork] = useState(false);
     return (
     <>
         <div className='workLinks'>
@@ -33,24 +33,16 @@ export default function Work(){
                     sets={setShowUrbanWork}
                     ttl='Track Marshall'
                     location='Urbain Air'
-                    description='Provided a fun and safe boating experience for clients from around tAssisted in the construction and grand opening activities of the Fort Collins location. Effectively managed and communicated with go-kart employees and guests. Maintained and serviced go-karts to ensure vehicles are up to quality standards. Providing a safe and fun environment for all guests.'
+                    description='Assisted in the construction and grand opening activities of the Fort Collins location. Effectively managed and communicated with go-kart employees and guests. Maintained and serviced go-karts to ensure vehicles are up to quality standards. Providing a safe and fun environment for all guests.'
+                />
+                <Collapsable 
+                    shows={showHiwanWork} 
+                    sets={setShowHiwanWork}
+                    ttl='Pool Manager'
+                    location='Hiwan Country Club'
+                    description='Oversaw and coordinated over 20 staff members to ensure that the facility is being ran efficiently. Working with the General Manager, and the owners to make decisions that benefit the club the best. From budgeting to organizing events for members to enjoy. Attended high level meetings among all of the managers and the owners. Preformed semi-annual trainings to ensure that the staff is up to date on all first aid techniques.'
                 />
             </div>
-            <Popup
-                    trigger={
-                        <button className='innerWork'>
-                            <b className='ttl'>Pool Manager</b><br/><br/>Hiwan Country Club
-                            </button>
-                        
-                }
-            >
-                <div className='popDiv'>
-                    <h2>Pool Manager</h2>
-                    <p className='popDescription'>
-                        Oversaw and coordinated over 20 staff members to ensure that the facility is being ran efficiently. Working with the General Manager, and the owners to make decisions that benefit the club the best. From budgeting to organizing events for members to enjoy. Attended high level meetings among all of the managers and the owners. Preformed semi-annual trainings to ensure that the staff is up to date on all first aid techniques.
-                    </p>
-                </div>
-            </Popup>
         </div>
     </>
     )
