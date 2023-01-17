@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Style/Studies.css';
-import { Collapse } from 'reactstrap';
 import { Collapsable } from '../Components/Collapsable';
 
 //ALL DEFINITIONS WERE FOUND ON CSU'S COURSE CATALOG
