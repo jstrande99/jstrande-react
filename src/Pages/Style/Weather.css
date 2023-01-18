@@ -1,0 +1,12 @@
+.container{
+    text-align: center;
+    position: relative;
+    top: 10vh;
+    font-family: 'Georgia', serif;
+}
+.check{
+    padding-bottom: 5vh;
+}
+.inputZip{
+    padding-bottom: 3vh;
+}
