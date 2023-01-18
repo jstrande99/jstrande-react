@@ -1,6 +1,22 @@
+.Project-body{
+    text-align: center;
+    height: 80vh;
+    position: relative;
+}
 .ttl{
     position: relative;
-    text-align: center;
     text-decoration: none;
-    font-size: large;
+    font-size: 5vh;
+    padding: 5vh;
+    color: goldenrod;
+}
+.links{
+    text-decoration: none;
+    color: white;
+    position: relative;
+    top: 5vh;
+    font-size: 3vh;
+}
+.links:hover{
+    color: goldenrod;
 }

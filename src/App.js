@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import{ Loader } from './Components/Loader'
 import { Projects } from './Pages/Projects';
+import { Weather } from './Pages/Weather';
 
 export default function App() {
   const [offSetY, setOffSetY] = useState(0);
@@ -24,7 +25,8 @@ export default function App() {
       {/* <Home setOffSetY={setOffSetY} offSetY={offSetY}/> */}
       <Routes>
         <Route path='/' element={<Home setOffSetY={setOffSetY} offSetY={offSetY}/>}/>
-        <Route path='/Projects' element={<Projects/>}/>
+        <Route path='/Projects' element={<Projects />}/>
+        <Route path='/Weather' element={<Weather />}/>
       </Routes>
     </Router>
     </>
