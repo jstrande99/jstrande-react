@@ -15,7 +15,7 @@ export function Weather(){
         <div className="container">
             <h1 className="check">Get Your Weather</h1>
             <form className="inputZip">
-                <label>
+                <label className="zipLabel">
                     Zip Code:
                     <input className="inputBox" type="text" onChange={e => getWeather(e.target.value)} maxLength="5" autoFocus />
                 </label>
