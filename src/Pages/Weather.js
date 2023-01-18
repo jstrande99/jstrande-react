@@ -11,14 +11,13 @@ export function Weather(){
             setWeatherData(data);
         }
     }
-    console.log(weatherData)
     return (
         <div className="container">
-            <h1 className="check">Check Your Weather</h1>
+            <h1 className="check">Get Your Weather</h1>
             <form className="inputZip">
                 <label>
                     Zip Code:
-                    <input type="text" onChange={e => getWeather(e.target.value)} maxLength="5" autoFocus />
+                    <input className="inputBox" type="text" onChange={e => getWeather(e.target.value)} maxLength="5" autoFocus />
                 </label>
             </form>
             {weatherData.name && (

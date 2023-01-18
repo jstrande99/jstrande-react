@@ -7,6 +7,16 @@
 .check{
     padding-bottom: 5vh;
 }
-.inputZip{
+.inputZip, .locationName, p{
     padding-bottom: 3vh;
+}
+.inputBox{
+    background-color: rgba(71, 71, 71, 0.5);
+    text-align: center;
+    border: 1px solid goldenrod;
+    margin-left: 3vw;
+    height: 4vh;
+}
+p{
+    font-size: 2.5vh;
 }
