@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import './NavBar.css';
 
-
 export function Navbar() { 
     const [click, setClick] = useState(false);
 
@@ -43,7 +42,7 @@ export function Navbar() {
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/#Studies' className='nav-links' onClick={closeMobileMenu}>
+                            <Link to='/Projects' className='nav-links' onClick={closeMobileMenu}>
                                 Projects
                             </Link>
                         </li>
