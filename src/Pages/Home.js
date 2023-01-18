@@ -34,36 +34,36 @@ export default function Home(props) {
                     </div>
                 </div>
             </div>
-            <div className='sectionOne'>
+            <div className='sectionOne' id='About'>
                 <div className='line2'></div>
                 <div className='line1'></div>
                 <h1 className='title'>About Me</h1>
             </div>
-            <div id='Languages' className='smallBody'>
+            <div className='smallBody'>
                 <About />
             </div>
-            <div className='sectionOne'>
+            <div className='sectionOne' id='Languages'>
                 <div className='line2'></div>
                 <div className='line1'></div>
                 <h1 className='title'>Experience</h1>
             </div>
-            <div id='Languages' className='smallBody'>
+            <div className='smallBody'>
                 <Languages />
             </div>
-            <div className='sectionOne'>
+            <div className='sectionOne' id='Studies'>
                 <div className='line2'></div>
                 <div className='line1'></div>
                 <h1 className='title'>Academics</h1>
             </div>
-            <div id='Languages' className='smallBody'>
+            <div className='smallBody'>
                 <Studies />
             </div>
-            <div className='sectionOne'>
+            <div className='sectionOne' id='Work'>
                 <div className='line2'></div>
                 <div className='line1'></div>
                 <h1 className='title'>Work</h1>
             </div>
-            <div id='Work' className='smallBody'>
+            <div className='smallBody'>
                 <Work />
             </div>
             <div>
