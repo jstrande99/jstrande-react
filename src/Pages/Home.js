@@ -24,7 +24,7 @@ export default function Home(props) {
                     <h2 className='timeOfDay welcomeText'>Good {timeOfday},</h2> 
                     <h2 className='Jordan welcomeText'>I'm Jordan Strande,</h2>
                     <h2 className='engineer welcomeText'>Software Developer</h2>
-                    <button className='contactBtn' onClick={() => window.location = 'mailto:strandjordan@gmail.com'}>Let's Talk</button>
+                    <button className='contactBtn' onClick={() => window.location = 'mailto:strandejordan@gmail.com'}>Let's Talk</button>
                     <div className='icons'>
                         <a href='https://github.com/jstrande99' target="_blank" rel="noopener noreferrer"><img src={Github} alt='Github' className='iconLink gt'/></a>
                         <a href='https://www.instagram.com/jstrande/' target="_blank" rel="noopener noreferrer"><img src={Insta} alt='Instagram' className='iconLink ins'/></a>
