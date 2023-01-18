@@ -14,8 +14,10 @@
     text-decoration: none;
     color: white;
     position: relative;
-    top: 10vh;
+    display: block;
+    top: 0vh;
     font-size: 3vh;
+    padding: 5vh
 }
 .links:hover{
     color: goldenrod;
