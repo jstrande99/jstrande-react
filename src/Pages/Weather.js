@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import './Style/Weather.css';
 
-export function Weather(){
+export function Weather(process){
     const [weatherData, setWeatherData] = useState({});
 
     async function getWeather(zip) {
         if(zip.length === 5 && !isNaN(zip)){
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zip}&APPID=7c552ff3c0ccd6865ad13e3e88dd21cc&units=imperial`);
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zip}&APPID=${process.REACT_APP_API_KEY}&units=imperial`);
             const data = await response.json();
             setWeatherData(data);
         }

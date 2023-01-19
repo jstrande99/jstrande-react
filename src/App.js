@@ -26,7 +26,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home setOffSetY={setOffSetY} offSetY={offSetY}/>}/>
         <Route path='/Projects' element={<Projects />}/>
-        <Route path='/Weather' element={<Weather />}/>
+        <Route path='/Weather' element={<Weather  {...process.env}/>}/>
       </Routes>
     </Router>
     </>
