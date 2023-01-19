@@ -23,3 +23,9 @@
 p{
     font-size: 2.5vh;
 }
+.weatherIcon1{
+    background-color: transparent;
+    position: absolute;
+    left: 55%;
+    top: 18vh;
+}
