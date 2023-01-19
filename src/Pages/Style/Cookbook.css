@@ -11,6 +11,7 @@
     text-align: center;
     padding-top: 15px;
     padding-bottom: 15px;
+    align-items: center;
 }
 .recipeUl{
     display: grid;
@@ -28,9 +29,19 @@
     width: 40vw;
     text-align: center;
     border: 1px solid rgba(218, 165, 32, 0.7);
+    font-size: 20px;
 }
 p{
     padding: 1vh;
+}
+.horizontalLine{
+    width: 90%;
+    height: 2px;
+    background-color: white;
+    position: relative;
+    left: 5%;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 @media screen and (max-width: 960px){
     .recipeUl{
