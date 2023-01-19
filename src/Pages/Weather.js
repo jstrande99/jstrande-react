@@ -11,24 +11,41 @@ export function Weather(){
             setWeatherData(data);
         }
     }
-    return (
-        <div className="container">
-            <h1 className="check">Get Your Weather</h1>
-            <form className="inputZip">
-                <label className="zipLabel">
-                    Zip Code:
-                    <input className="inputBox" type="text" onChange={e => getWeather(e.target.value)} maxLength="5" autoFocus />
-                </label>
-            </form>
-            {weatherData.name && (
-            <div className="output">
-                <h2 className="locationName">{weatherData.name}'s weather</h2>
-                <p>{weatherData.main.temp}&#176;</p>
-                <p>{weatherData.main.humidity}% humidity</p>
-                <p>{weatherData.weather[0].description}</p>
-                <p>Wind Speeds: {weatherData.wind.speed} mph</p>
+    if(weatherData.cod === "404"){
+        return (
+            <div className="container">
+                <h1 className="check">Get Your Weather</h1>
+                <form className="inputZip">
+                    <label className="zipLabel">
+                        Zip Code:
+                        <input className="inputBox" type="text" onChange={e => getWeather(e.target.value)} maxLength="5"/>
+                    </label>
+                </form>
+                <div className="output">
+                    <h2 className="locationName">Invalid Zip Code</h2>
+                </div>
             </div>
-            )}
-        </div>
-    );
+        );
+    }else{
+        return (
+            <div className="container">
+                <h1 className="check">Get Your Weather</h1>
+                <form className="inputZip">
+                    <label className="zipLabel">
+                        Zip Code:
+                        <input className="inputBox" type="text" onChange={e => getWeather(e.target.value)} maxLength="5"/>
+                    </label>
+                </form>
+                {weatherData.name && (
+                <div className="output">
+                    <h2 className="locationName">{weatherData.name}'s weather</h2>
+                    <p>{weatherData.main.temp}&#176;</p>
+                    <p>{weatherData.main.humidity}% humidity</p>
+                    <p>{weatherData.weather[0].description}</p>
+                    <p>Wind is {weatherData.wind.speed} mph</p>
+                </div>
+                )}
+            </div>
+        );
+    }
 }
