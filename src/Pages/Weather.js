@@ -15,6 +15,7 @@ export function Weather(process){
     if(weatherData.cod === "404"){
         return (
             <div className="container">
+                <meta name="viewport" content="width=device-width, user-scalable=no"/>
                 <h1 className="check">Get Your Weather</h1>
                 <form className="inputZip">
                     <label className="zipLabel">
