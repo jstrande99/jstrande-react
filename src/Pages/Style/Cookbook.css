@@ -1,0 +1,42 @@
+.container{
+    align-items: center;
+    top: 0vh;
+}
+.container input::placeholder {
+    color: rgb(212, 212, 212);
+}
+.recipeContainer{
+    border: 2px solid goldenrod;
+    margin: 10px;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.recipeUl{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    text-align: center;
+    padding: 10px
+}
+.recipeContainer::marker{
+    color: transparent;
+}
+.search{
+    margin: 10px;
+    height: 5vh;
+    width: 40vw;
+    text-align: center;
+    border: 1px solid rgba(218, 165, 32, 0.7);
+}
+p{
+    padding: 1vh;
+}
+@media screen and (max-width: 960px){
+    .recipeUl{
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        text-align: center;
+    }
+}
