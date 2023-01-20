@@ -6,6 +6,7 @@ import Home from './Pages/Home';
 import{ Loader } from './Components/Loader'
 import { Projects } from './Pages/Projects';
 import { Weather } from './Pages/Weather';
+import { Cookbook } from './Pages/Cookbook';
 
 export default function App() {
   const [offSetY, setOffSetY] = useState(0);
@@ -27,6 +28,7 @@ export default function App() {
         <Route path='/' element={<Home setOffSetY={setOffSetY} offSetY={offSetY}/>}/>
         <Route path='/Projects' element={<Projects />}/>
         <Route path='/Weather' element={<Weather  {...process.env}/>}/>
+        <Route path='/Cookbook' element={<Cookbook />}/>
       </Routes>
     </Router>
     </>
