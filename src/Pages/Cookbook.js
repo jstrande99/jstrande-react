@@ -27,7 +27,7 @@ const recipes = [
         instructions: ['In a stand mixer add warm water, sugar and yeast. Allow to foam, then add flour, salt, oil, and cinnamon', 'Mix on low until dough comes together', 'Transfer dough to greased bowl, cover and let rise for 2 hours or until doubled in size', 'Place dough on cold surface and divide into 12 equal pieces (3-4 ounces each)', 'Form balls and place on cooking sheet', 'Let rest for 15 minutes. Bring water to a boil (can add honey if wanted) and preheat oven to 425 degrees', 'After rested poke holes in middles and boil dough for 1-2 minutes per side', 'Allow to dry', 'Whisk egg white and water together and brush on top of dough', 'Sprinkle sugar/cinnamon on top', 'Bake in oven for 20 minutes or until golden brown']
     },
 ];
-console.log(recipes)
+
 export function Cookbook() {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedFood, setSelectedFood] = useState(null);
