@@ -31,10 +31,12 @@ export function News(process) {
             <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search the news..." className="search"/>
             <div className='articleContainer'>
             {news && news.length > 0 && news.map((topic, index) => (
-                <a href={topic.url} className="contentContainer" target="_blank" rel="noopener noreferrer">
+                <a href={topic.url} className="contentContainer" target="_blank" rel="noopener noreferrer" key={index}>
                     <div key={index} className='articles'>
                         <h2 className="content">{topic.title}</h2>
+                        <img src={topic.urlToImage} alt={topic.title} width="250" height="150"/>
                         <p className="content">{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(new Date(topic.publishedAt))}</p>
+                        <p className="content">Written by: {topic.author}</p>
                     </div>
                 </a>
             ))}
