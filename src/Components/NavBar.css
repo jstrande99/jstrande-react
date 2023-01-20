@@ -61,6 +61,10 @@
   .menu-icon {
     display: none;
   }
+
+  .dropdownOption::marker{
+    color: transparent;
+  }
   
   @media screen and (max-width: 960px) {
     .NavbarItems {

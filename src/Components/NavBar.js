@@ -1,12 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import './NavBar.css';
 
 export function Navbar() { 
     const [click, setClick] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [screenSize, setScreenSize] = useState(window.innerWidth)
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+    function handleDropdown(){
+        setClick(false);
+        setDropdownOpen(!dropdownOpen); 
+    }
+
+    useEffect(() => {
+        function handleScreenSize(){
+            setScreenSize(window.innerWidth);
+        }
+        window.addEventListener('resize', handleScreenSize);
+        return () => window.removeEventListener('resize', handleScreenSize);
+    }, []);
 
     return (
         <>
@@ -42,9 +56,31 @@ export function Navbar() {
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/Projects' className='nav-links' onClick={closeMobileMenu}>
-                                Projects
-                            </Link>
+                            {screenSize > 960 ? (
+                                <>
+                                    <p onClick={() => setDropdownOpen(!dropdownOpen)} className="nav-links">
+                                        Projects
+                                    </p>
+                                    {dropdownOpen && (
+                                        <ul>
+                                            <li className='dropdownOption'>
+                                                <Link to='/Weather' onClick={handleDropdown} className="nav-links">
+                                                    My Weather App
+                                                </Link>
+                                            </li>
+                                            <li className='dropdownOption'>
+                                                <Link to='/Cookbook' onClick={handleDropdown} className="nav-links">
+                                                    My Cookbook App
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    )}
+                                </>
+                            ) : (
+                                <Link to='/Projects' className='nav-links' onClick={closeMobileMenu}>
+                                    Projects
+                                </Link>
+                            )}
                         </li>
                     </ul>
                 </div>
