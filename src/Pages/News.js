@@ -1,30 +1,38 @@
 import React, { useState, useEffect } from "react";
 import './Style/News.css';
 
+let apiIndex = 0;
+
 export function News(process) {
     const [news, setNews] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         async function fetchData() {
+            const API_KEYS = [process.REACT_APP_NEWS_API_KEY, process.REACT_APP_NEWS_API_KEY_TWO];
+            let response = '';
             if(searchTerm === ""){
-                const response = await fetch(
-                    `https://newsapi.org/v2/top-headlines?language=en&sortBy=publishedAt&country=us&apiKey=${process.REACT_APP_NEWS_API_KEY}`
+                response = await fetch(
+                    `https://newsapi.org/v2/top-headlines?language=en&sortBy=publishedAt&country=us&apiKey=${API_KEYS[apiIndex]}`
                 );
                 const result = await response.json();
                 setNews(result.articles);
             }else{
-                const response = await fetch(
-                    `https://newsapi.org/v2/everything?q=${searchTerm}&sortBy=publishedAt&apiKey=${process.REACT_APP_NEWS_API_KEY}`
+                response = await fetch(
+                    `https://newsapi.org/v2/everything?q=${searchTerm}&sortBy=publishedAt&apiKey=${API_KEYS[apiIndex]}`
                 );
                 const result = await response.json();
                 setNews(result.articles);
             }
+            if(response.status === 429){
+                apiIndex = (apiIndex + 1) % API_KEYS.length; 
+                console.log(apiIndex)
+                fetchData();
+                return;
+            }
         }
         fetchData();
-    }, [searchTerm, process.REACT_APP_NEWS_API_KEY]);
-
-    console.log(news)
+    }, [searchTerm, process.REACT_APP_NEWS_API_KEY, process.REACT_APP_NEWS_API_KEY_TWO]);
 
     return (
         <div className='container'>
