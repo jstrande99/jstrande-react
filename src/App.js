@@ -7,6 +7,7 @@ import{ Loader } from './Components/Loader'
 import { Projects } from './Pages/Projects';
 import { Weather } from './Pages/Weather';
 import { Cookbook } from './Pages/Cookbook';
+import { News } from './Pages/News';
 
 export default function App() {
   const [offSetY, setOffSetY] = useState(0);
@@ -29,6 +30,7 @@ export default function App() {
         <Route path='/Projects' element={<Projects />}/>
         <Route path='/Weather' element={<Weather  {...process.env}/>}/>
         <Route path='/Cookbook' element={<Cookbook />}/>
+        <Route path='/News' element={<News  {...process.env}/>}/>
       </Routes>
     </Router>
     </>
