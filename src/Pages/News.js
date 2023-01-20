@@ -29,7 +29,7 @@ export function News(process) {
                 const result = await response.json();
                 setNews(result.articles);
             }
-            if(response.status === 429){
+            if(response.status === 429 || response.status === 426){
                 apiIndex = (apiIndex + 1) % API_KEYS.length; 
                 fetchData();
                 return;
