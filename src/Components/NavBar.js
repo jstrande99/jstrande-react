@@ -73,6 +73,11 @@ export function Navbar() {
                                                     My Cookbook App
                                                 </Link>
                                             </li>
+                                            <li className='dropdownOption'>
+                                                <Link to='/News' onClick={handleDropdown} className="nav-links">
+                                                    Check the News
+                                                </Link>
+                                            </li>
                                         </ul>
                                     )}
                                 </>

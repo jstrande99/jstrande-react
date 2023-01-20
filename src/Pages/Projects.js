@@ -7,7 +7,8 @@ export function Projects(){
         <div className="Project-body">
             <h1 className="ttl">Personal Projects</h1>
             <Link to='/Weather' className="links">Check the Weather</Link>
-            <Link to='/Cookbook' className="links">Cookbook</Link>
+            <Link to='/Cookbook' className="links">My Cookbook</Link>
+            <Link to='/News' className="links">Get the News</Link>
         </div>
     );
 }
