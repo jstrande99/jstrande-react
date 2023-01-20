@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './Style/News.css';
 
+// NEWS API = https://newsapi.org/
 let apiIndex = 0;
 
 export function News(process) {
@@ -9,7 +10,11 @@ export function News(process) {
 
     useEffect(() => {
         async function fetchData() {
-            const API_KEYS = [process.REACT_APP_NEWS_API_KEY, process.REACT_APP_NEWS_API_KEY_TWO];
+            const API_KEYS = [
+                process.REACT_APP_NEWS_API_KEY, 
+                process.REACT_APP_NEWS_API_KEY_TWO, 
+                process.REACT_APP_NEWS_API_KEY_THREE
+            ];
             let response = '';
             if(searchTerm === ""){
                 response = await fetch(
@@ -31,7 +36,7 @@ export function News(process) {
             }
         }
         fetchData();
-    }, [searchTerm, process.REACT_APP_NEWS_API_KEY, process.REACT_APP_NEWS_API_KEY_TWO]);
+    }, [searchTerm, process.REACT_APP_NEWS_API_KEY, process.REACT_APP_NEWS_API_KEY_TWO, process.REACT_APP_NEWS_API_KEY_THREE]);
 
     return (
         <div className='container'>
