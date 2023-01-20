@@ -26,7 +26,6 @@ export function News(process) {
             }
             if(response.status === 429){
                 apiIndex = (apiIndex + 1) % API_KEYS.length; 
-                console.log(apiIndex)
                 fetchData();
                 return;
             }
