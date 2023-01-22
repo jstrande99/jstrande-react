@@ -74,7 +74,7 @@ export function Navbar() {
                                                 </Link>
                                             </li>
                                             <li className='dropdownOption'>
-                                                <Link to='/News' onClick={handleDropdown} className="nav-links">
+                                                <Link to='/Maintenance' onClick={handleDropdown} className="nav-links">
                                                     Check the News
                                                 </Link>
                                             </li>
