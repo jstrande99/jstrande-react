@@ -8,6 +8,7 @@ import { Projects } from './Pages/Projects';
 import { Weather } from './Pages/Weather';
 import { Cookbook } from './Pages/Cookbook';
 import { News } from './Pages/News';
+import Maintenance from './Pages/Maintenance';
 
 export default function App() {
   const [offSetY, setOffSetY] = useState(0);
@@ -31,6 +32,7 @@ export default function App() {
         <Route path='/Weather' element={<Weather  {...process.env}/>}/>
         <Route path='/Cookbook' element={<Cookbook />}/>
         <Route path='/News' element={<News  {...process.env}/>}/>
+        <Route path='/Maintenance' element={ <Maintenance/> }/>
       </Routes>
     </Router>
     </>
