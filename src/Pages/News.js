@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './Style/News.css';
 
-// NEWS API = https://newsapi.org/
-let apiIndex = 0;
 
 export function News(process) {
     const [news, setNews] = useState([]);
@@ -10,37 +8,27 @@ export function News(process) {
 
     useEffect(() => {
         async function fetchData() {
-            const API_KEYS = [
-                process.REACT_APP_NEWS_API_KEY, 
-                process.REACT_APP_NEWS_API_KEY_TWO, 
-                process.REACT_APP_NEWS_API_KEY_THREE
-            ];
             let response = '';
             if(searchTerm === ""){
                 response = await fetch(
-                    `https://newsapi.org/v2/top-headlines?language=en&sortBy=publishedAt&country=us&apiKey=${API_KEYS[apiIndex]}`
+                    `https://newsapi.org/v2/top-headlines?language=en&sortBy=publishedAt&country=us&apiKey=${process.REACT_APP_NEWS_API_KEY}`
                 );
                 const result = await response.json();
                 setNews(result.articles);
             }else{
                 response = await fetch(
-                    `https://newsapi.org/v2/everything?q=${searchTerm}&sortBy=publishedAt&apiKey=${API_KEYS[apiIndex]}`
+                    `https://newsapi.org/v2/everything?q=${searchTerm}&sortBy=publishedAt&apiKey=${process.REACT_APP_NEWS_API_KEY}`
                 );
                 const result = await response.json();
                 setNews(result.articles);
             }
-            if(response.status === 429){
-                apiIndex = (apiIndex + 1) % API_KEYS.length; 
-                fetchData();
-                return;
-            }
         }
         fetchData();
-    }, [searchTerm, process.REACT_APP_NEWS_API_KEY, process.REACT_APP_NEWS_API_KEY_TWO, process.REACT_APP_NEWS_API_KEY_THREE]);
+    }, [searchTerm, process.REACT_APP_NEWS_API_KEY]);
 
     return (
-        <div className='container'>
-            <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search the news..." className="search"/>
+        <div className='containerNews'>
+            <div className="searchDiv"><input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search the news..." className="search"/></div>
             <div className='articleContainer'>
             {news && news.length > 0 && news.map((topic, index) => (
                 <a href={topic.url} className="contentContainer" target="_blank" rel="noopener noreferrer" key={index}>
