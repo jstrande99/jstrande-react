@@ -1,3 +1,4 @@
+
 .articleContainer{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -20,10 +21,27 @@
     background-color: rgb(104, 83, 0);
     padding: 25px;
 }
+.searchDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .content{
     background-color: transparent;
 }
 @media screen and (max-width: 960px){
+    .search{
+        align-items: center;
+        height: 5vh;
+        width: 90vw;
+        text-align: center;
+        border: 1px solid rgba(218, 165, 32, 0.7);
+        font-size: 20px;
+        margin-left: 5vw;
+    }
+    .containerNews{
+        overflow: hidden;
+    }
     .articleContainer{
         display: grid;
         grid-template-columns: 1fr;
@@ -31,9 +49,6 @@
         text-align: center;
     }
     .articles{
-        padding-left: 5rem;
-        padding-right: 5rem;
-        margin-left: 5rem;
-        margin-right: 5rem;
+        overflow: hidden;
     }
 }
