@@ -26,6 +26,12 @@ const recipes = [
         image: 'https://github.com/jstrande99/jstrande-react/blob/main/src/Pages/images/bagel.png?raw=true',
         instructions: ['In a stand mixer add warm water, sugar and yeast. Allow to foam, then add flour, salt, oil, and cinnamon', 'Mix on low until dough comes together', 'Transfer dough to greased bowl, cover and let rise for 2 hours or until doubled in size', 'Place dough on cold surface and divide into 12 equal pieces (3-4 ounces each)', 'Form balls and place on cooking sheet', 'Let rest for 15 minutes. Bring water to a boil (can add honey if wanted) and preheat oven to 425 degrees', 'After rested poke holes in middles and boil dough for 1-2 minutes per side', 'Allow to dry', 'Whisk egg white and water together and brush on top of dough', 'Sprinkle sugar/cinnamon on top', 'Bake in oven for 20 minutes or until golden brown']
     },
+    { 
+        name: 'Meat Loaf', 
+        ingredients: ['Egg -1', 'Bread Slices -3', 'Milk -2/3 cups', 'Onion -1/2 cup finely diced', 'Salt -1 tsp', 'Pepper -1/4 tsp', 'Ground Beef -1 1/2 pounds', 'Brown Sugar -1/4 cup', 'Ketchup -1/4 cup', 'Mustard -1 tbsp'], 
+        image: 'https://github.com/jstrande99/jstrande-react/blob/main/src/Pages/images/loaf.png?raw=true',
+        instructions: ['Heat oven to 350 degrees', 'Blend bread into bread crumbs', 'In a big bowl stir egg, milk, onion, salt, pepper and bread crumbs', 'Add beef into bowl and lightly mix thoroughly', 'Place contents into a littly greased 9x5 inch bread pan', 'In another bowl, mix brown sugar, ketchup and mustard', 'Brush glaze on top of loaf', 'Place in oven and allow to bake for 60-65 minutes or until interal temperature reaches 160 degrees', 'Remove from oven and allow loaf to rest for 10 minutes']
+    },
 ];
 
 export function Cookbook() {
