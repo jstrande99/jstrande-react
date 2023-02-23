@@ -1,54 +1,74 @@
-
-.articleContainer{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
+.body {
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .welcoming{
     text-align: center;
-    margin: 15px
-}
-.contentContainer{
-    text-decoration: none;
-}
-.articles{
+    font-size: 15px;
+    margin-bottom: 5%;
+  }
+  .textBox {
+    font-size: 16px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .textBox::placeholder{
+    text-align: center;
+  }
+  
+  .submit {
+    background-color: rgba(218, 165, 32, 0.75);
+    color: black;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 25%;
+    position: relative;
+    left: 75%;
+  }
+  
+  .submit:hover {
+    background-color: #006F8C;
+  }
+  .posts{
+    border-radius: 10px;
     border: 2px solid goldenrod;
-    background-color: rgba(63, 63, 63, 0.7);
-    margin: 10px;
-    text-align: center;
-    padding: 15px;
-    align-items: center;
-}
-.articles:hover{
-    background-color: rgb(104, 83, 0);
-    padding: 25px;
-}
-.searchDiv{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 25px;
+  }
+  .likes{
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-.content{
-    background-color: transparent;
-}
-@media screen and (max-width: 960px){
-    .search{
-        align-items: center;
-        height: 5vh;
-        width: 90vw;
-        text-align: center;
-        border: 1px solid rgba(218, 165, 32, 0.7);
-        font-size: 20px;
-        margin-left: 5vw;
-    }
-    .containerNews{
-        overflow: hidden;
-    }
-    .articleContainer{
-        display: grid;
-        grid-template-columns: 1fr;
-        align-items: center;
-        text-align: center;
-    }
-    .articles{
-        overflow: hidden;
-    }
-}
+    margin-top: auto;
+    height: 100%;
+  }
+  .btn{
+    font-family: Arial, sans-serif;
+    border: none;
+    height: 5vh;
+    padding: 10px;
+  }
+  .btn:hover{
+    background-color: goldenrod;
+    color: black;
+    border-radius: 10px;
+  }
