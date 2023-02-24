@@ -4,6 +4,7 @@ import "firebase/compat/firestore";
 import "firebase/compat/storage";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import './Style/Social.css';
+import Floating from '../Pages/images/floatin1.png';
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -64,13 +65,16 @@ export function Social() {
 	};
   
 	if (loading) {
-		return <div>Loading...</div>;
+		return <div className={`fullscreen-${loading}`}>
+					<div className='innerSpin'>
+						<img src={Floating} alt='Astronat' className='loadImg'/>
+					</div>
+				</div>
 	}
 
 	if (error) {
 		return <div>Error: {error.message}</div>;
 	}
-
 	return (
 		<div className="body">
 			<p className="welcoming">Welcome to my social media application.<br/>New Features Coming Soon!</p>
