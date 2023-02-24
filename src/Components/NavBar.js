@@ -74,6 +74,11 @@ export function Navbar() {
                                                 </Link>
                                             </li>
                                             <li className='dropdownOption'>
+                                                <Link to='/Social' onClick={handleDropdown} className="nav-links">
+                                                    My Social Media App
+                                                </Link>
+                                            </li>
+                                            <li className='dropdownOption'>
                                                 <Link to='/Maintenance' onClick={handleDropdown} className="nav-links">
                                                     Check the News
                                                 </Link>
