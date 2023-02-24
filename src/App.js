@@ -7,7 +7,7 @@ import{ Loader } from './Components/Loader'
 import { Projects } from './Pages/Projects';
 import { Weather } from './Pages/Weather';
 import { Cookbook } from './Pages/Cookbook';
-import { News } from './Pages/News';
+import { Social } from './Pages/Social';
 import Maintenance from './Pages/Maintenance';
 
 export default function App() {
@@ -31,7 +31,7 @@ export default function App() {
         <Route path='/Projects' element={<Projects />}/>
         <Route path='/Weather' element={<Weather  {...process.env}/>}/>
         <Route path='/Cookbook' element={<Cookbook />}/>
-        <Route path='/News' element={<News  {...process.env}/>}/>
+        <Route path='/Social' element={<Social  {...process.env}/>}/>
         <Route path='/Maintenance' element={ <Maintenance/> }/>
       </Routes>
     </Router>

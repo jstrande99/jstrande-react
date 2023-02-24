@@ -3,7 +3,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/storage";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import './Style/News.css';
+import './Style/Social.css';
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -20,7 +20,7 @@ firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
 const storage = firebase.storage();
 
-export function News() {
+export function Social() {
 	const [text, setText] = useState("");
 	const [posts, loading, error] = useCollectionData(
 		firestore.collection("posts").orderBy("createdAt", "desc")
