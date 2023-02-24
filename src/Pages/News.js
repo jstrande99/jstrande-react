@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+import "firebase/compat/storage";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import './Style/News.css';
 
@@ -17,6 +18,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
+const storage = firebase.storage();
 
 export function News() {
 	const [text, setText] = useState("");
@@ -30,10 +32,17 @@ export function News() {
 		});
 	}, []);
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
+		const imageFile = event.target.elements.imageFile.files[0];
+		const storageRef = storage.ref().child(`images/${imageFile.name}`);
+		await storageRef.put(imageFile);
+
+		const imageUrl = await storageRef.getDownloadURL();
+
 		firestore.collection("posts").add({
 			text,
+			imageUrl,
 			createdAt: firebase.firestore.FieldValue.serverTimestamp(),
 			likes: 0,
 		}).then((docRef) => {
@@ -73,10 +82,14 @@ export function News() {
 				onChange={(e) => setText(e.target.value)}
 				placeholder="Post Something!"
 				/>
+				<input type="file" name="imageFile" accept="image/*"/>
 				<button className="submit" type="submit">Post</button>
 			</form>
 			{posts.map((post, index) => (
 				<div key={index} className="posts">
+					{post.imageUrl && (
+						<img src={post.imageUrl} alt="Uploaded by user" style={{ maxWidth: "70%", maxHeight: "300px", objectFit:"contain", marginLeft:"15%" }}/>
+					)}
 					<p>{post.text}</p>
 					<div className="likes">
 						<button onClick={() => handleLike(post)} className="btn"> {post.likes} Likes</button>
