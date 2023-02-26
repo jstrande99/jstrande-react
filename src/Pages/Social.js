@@ -34,7 +34,7 @@ export function Social() {
 		window.scrollTo(0, 0); //document.body.scrollHeight
 		});
 		const fetchIpAddress = async () => {
-			const response = await fetch('http://ip-api.com/json/');
+			const response = await fetch('https://ip-api.com/json/');
 			const data = await response.json();
 			setClientData(data);
 		  };
