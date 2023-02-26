@@ -27,16 +27,20 @@ export function Social() {
 		firestore.collection("posts").orderBy("createdAt", "desc")
 	);
 	const [imageFile, setImageFile] = useState(null);
+	const [clientData, setClientData] = useState("");
 
 	useEffect(() => {
-		firestore.collection("posts").onSnapshot(() => {
-		window.scrollTo(0, document.body.scrollHeight);
+		firestore.collection("posts.text").onSnapshot(() => {
+		window.scrollTo(0, 0); //document.body.scrollHeight
 		});
+		const fetchIpAddress = async () => {
+			const response = await fetch('http://ip-api.com/json/');
+			const data = await response.json();
+			setClientData(data);
+		  };
+		  fetchIpAddress();
 	}, []);
 
-	useEffect(() => {
-		window.scrollTo(0,0);
-	},[posts]);
 	
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -65,8 +69,12 @@ export function Social() {
 		const postRef = firestore.collection("posts").doc(post.id);
 		const doc = await postRef.get();
 		if (doc.exists) {
+			if(post.clientLike && post.clientLike.includes(clientData.query)){
+				return;
+			}
 			postRef.update({
-				likes: post.likes + 1 
+				likes: post.likes + 1,
+				clientLike: firebase.firestore.FieldValue.arrayUnion(clientData.query) 
 			});
 		} else {
 			console.log("Document does not exist!");
@@ -74,11 +82,13 @@ export function Social() {
 	};
   
 	if (loading) {
-		return <div className={`fullscreen-${loading}`}>
-					<div className='innerSpin'>
-						<img src={Floating} alt='Astronat' className='loadImg'/>
-					</div>
+		return (
+			<div className={`fullscreen-${loading}`}>
+				<div className='innerSpin'>
+					<img src={Floating} alt='Astronat' className='loadImg'/>
 				</div>
+			</div>
+		)
 	}
 
 	if (error) {
