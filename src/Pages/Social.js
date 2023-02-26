@@ -26,6 +26,7 @@ export function Social() {
 	const [posts, loading, error] = useCollectionData(
 		firestore.collection("posts").orderBy("createdAt", "desc")
 	);
+	const [imageFile, setImageFile] = useState(null);
 
 	useEffect(() => {
 		firestore.collection("posts").onSnapshot(() => {
@@ -33,13 +34,20 @@ export function Social() {
 		});
 	}, []);
 
+	useEffect(() => {
+		window.scrollTo(0,0);
+	},[posts]);
+	
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const imageFile = event.target.elements.imageFile.files[0];
-		const storageRef = storage.ref().child(`images/${imageFile.name}`);
-		await storageRef.put(imageFile);
+		let imageUrl = null; 
+		if(imageFile){
+			const imageFile = event.target.elements.imageFile.files[0];
+			const storageRef = storage.ref().child(`images/${imageFile.name}`);
+			await storageRef.put(imageFile);
 
-		const imageUrl = await storageRef.getDownloadURL();
+			imageUrl = await storageRef.getDownloadURL();
+		}
 
 		firestore.collection("posts").add({
 			text,
@@ -50,6 +58,7 @@ export function Social() {
 			docRef.set({ id: docRef.id }, { merge: true });
 		});
 		setText("");
+		setImageFile(null);
 	};
 
 	const handleLike = async (post) => {
@@ -86,11 +95,11 @@ export function Social() {
 				onChange={(e) => setText(e.target.value)}
 				placeholder="Post Something!"
 				/>
-				<input type="file" name="imageFile" accept="image/*"/>
+				<input type="file" name="imageFile" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])} />
 				<button className="submit" type="submit">Post</button>
 			</form>
 			{posts.map((post, index) => (
-				<div key={index} className="posts">
+				<div key={index} className="posts postText" data-date={post.createdAt ? post.createdAt.toDate().toLocaleDateString() : ''}>
 					{post.imageUrl && (
 						<img src={post.imageUrl} alt="Uploaded by user" style={{ maxWidth: "70%", maxHeight: "300px", objectFit:"contain", marginLeft:"15%" }}/>
 					)}
