@@ -34,13 +34,12 @@ export function Social() {
 		window.scrollTo(0, 0); //document.body.scrollHeight
 		});
 		const fetchIpAddress = async () => {
-			const response = await fetch('https://ip-api.com/json/');
+			const response = await fetch('https://freeipapi.com/api/json');
 			const data = await response.json();
 			setClientData(data);
 		  };
 		  fetchIpAddress();
 	}, []);
-
 	
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -69,12 +68,12 @@ export function Social() {
 		const postRef = firestore.collection("posts").doc(post.id);
 		const doc = await postRef.get();
 		if (doc.exists) {
-			if(post.clientLike && post.clientLike.includes(clientData.query)){
+			if(post.clientLike && post.clientLike.includes(clientData.ipAddress)){
 				return;
 			}
 			postRef.update({
 				likes: post.likes + 1,
-				clientLike: firebase.firestore.FieldValue.arrayUnion(clientData.query) 
+				clientLike: firebase.firestore.FieldValue.arrayUnion(clientData.ipAddress) 
 			});
 		} else {
 			console.log("Document does not exist!");
