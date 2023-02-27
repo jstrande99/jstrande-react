@@ -1,6 +1,21 @@
 import React, { useState } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
+const firebaseConfig = {
+	apiKey: process.env.REACT_APP_FIREBASE_KEY,
+	authDomain: "socialmediatest-b40f5.firebaseapp.com",
+	databaseURL: "https://socialmediatest-b40f5-default-rtdb.firebaseio.com",
+	projectId: "socialmediatest-b40f5",
+	storageBucket: "socialmediatest-b40f5.appspot.com",
+	messagingSenderId: "1076319129324",
+	appId: "1:1076319129324:web:eac004f961259c9fe85fc9",
+	measurementId: "G-VB3BG79C9K"
+};
+
+firebase.initializeApp(firebaseConfig);
+const userFirestore = firebase.firestore();
 
 export default function Login(){
     const [email, setEmail] = useState("");
@@ -37,14 +52,23 @@ export default function Login(){
                 if (password !== confirmPassword) {
                     throw new Error("Passwords do not match.");
                 }
+                const userRef = userFirestore.collection("users").doc(userName);
+                const userDoc = await userRef.get();
+                if (userDoc.exists) {
+                    throw new Error("Username already taken.");
+                }
                 await firebase.auth().createUserWithEmailAndPassword(email, password);
                 const currentUser = firebase.auth().currentUser;
                 await currentUser.updateProfile({
                     displayName: userName
                 });
+                userFirestore.collection("users").doc(userName).set({
+                    email: email,
+                    userName: userName,
+                });
             } catch (error) {
                 console.log("Error Code: " + error);
-                setErrorLog("Passwords do not match. Please try again");
+                setErrorLog(error.message);
             }
         } else {
             try {
@@ -78,6 +102,7 @@ export default function Login(){
                             <label htmlFor="username">Username</label>
                             <input type="text" className="form-control" id="username" value={userName} onChange={handleUserNameChange} placeholder="Enter Username" required/>
                         </div>
+                        <p className="errors">{errorLog}</p>
                     </>
                 )}
                 <p className="errors">{isSignUp ? "" : errorLog}</p>

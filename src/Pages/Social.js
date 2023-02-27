@@ -30,7 +30,7 @@ export function Social() {
 		firestore.collection("posts").orderBy("createdAt", "desc")
 	);
 	const [imageFile, setImageFile] = useState(null);
-	const [clientData, setClientData] = useState("");
+	// const [clientData, setClientData] = useState("");
 	const [user, setUser] = useState(null);
 	let activeUser = "";
 	if(firebase.auth().currentUser?.displayName){
@@ -40,12 +40,12 @@ export function Social() {
 		firestore.collection("posts.text").onSnapshot(() => {
 		window.scrollTo(0, 0); //document.body.scrollHeight
 		});
-		const fetchIpAddress = async () => {
-			const response = await fetch('https://freeipapi.com/api/json');
-			const data = await response.json();
-			setClientData(data);
-		  };
-		fetchIpAddress();
+		// const fetchIpAddress = async () => {
+		// 	const response = await fetch('https://freeipapi.com/api/json');
+		// 	const data = await response.json();
+		// 	setClientData(data);
+		//   };
+		// fetchIpAddress();
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			setUser(user);
 		  });
@@ -80,6 +80,7 @@ export function Social() {
 			imageUrl,
 			createdAt: firebase.firestore.FieldValue.serverTimestamp(),
 			likes: 0,
+			creator: activeUser,
 		}).then((docRef) => {
 			docRef.set({ id: docRef.id }, { merge: true });
 		});
@@ -91,12 +92,15 @@ export function Social() {
 		const postRef = firestore.collection("posts").doc(post.id);
 		const doc = await postRef.get();
 		if (doc.exists) {
-			if(post.clientLike && post.clientLike.includes(clientData.ipAddress)){
+			if(post.clientLike && post.clientLike.includes(activeUser)){
+				return;
+			}
+			if(post.clientLike &&  post.creator === activeUser){
 				return;
 			}
 			postRef.update({
 				likes: post.likes + 1,
-				clientLike: firebase.firestore.FieldValue.arrayUnion(clientData.ipAddress) 
+				clientLike: firebase.firestore.FieldValue.arrayUnion(activeUser) 
 			});
 		} else {
 			console.log("Document does not exist!");
@@ -133,6 +137,7 @@ export function Social() {
 			</form>
 			{posts.map((post, index) => (
 				<div key={index} className="posts postText" data-date={post.createdAt ? post.createdAt.toDate().toLocaleDateString() : ''}>
+					<p className="creator">{post.creator}</p>
 					{post.imageUrl && (
 						<img src={post.imageUrl} alt="Uploaded by user" style={{ maxWidth: "70%", maxHeight: "300px", objectFit:"contain", marginLeft:"15%" }}/>
 					)}

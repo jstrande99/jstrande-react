@@ -48,6 +48,9 @@ form {
     position: relative;
     margin-bottom: 25px;
 }
+.creator{
+    font-size: 12px;
+}
 .likes{
     position: absolute;
     bottom: 0px;
