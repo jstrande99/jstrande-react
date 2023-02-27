@@ -102,10 +102,9 @@ export default function Login(){
                             <label htmlFor="username">Username</label>
                             <input type="text" className="form-control" id="username" value={userName} onChange={handleUserNameChange} placeholder="Enter Username" required/>
                         </div>
-                        <p className="errors">{errorLog}</p>
                     </>
                 )}
-                <p className="errors">{isSignUp ? "" : errorLog}</p>
+                <p className="errors">{errorLog}</p>
                 <button type="submit" className="btn">{isSignUp ? "Sign Up" : "Login"}</button>
             </form>
             <p className="signupOrLogin">
