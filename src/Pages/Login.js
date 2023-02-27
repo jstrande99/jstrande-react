@@ -8,6 +8,7 @@ export default function Login(){
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isSignUp, setIsSignUp] = useState(false);
     const [errorLog, setErrorLog] = useState("");
+    const [userName, setUserName] = useState("");
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -25,14 +26,22 @@ export default function Login(){
         setIsSignUp(!isSignUp);
     };
 
+    const handleUserNameChange = (event) => {
+        setUserName(event.target.value);
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (isSignUp) {
             try {
                 if (password !== confirmPassword) {
-                throw new Error("Passwords do not match.");
+                    throw new Error("Passwords do not match.");
                 }
                 await firebase.auth().createUserWithEmailAndPassword(email, password);
+                const currentUser = firebase.auth().currentUser;
+                await currentUser.updateProfile({
+                    displayName: userName
+                });
             } catch (error) {
                 console.log("Error Code: " + error);
                 setErrorLog("Passwords do not match. Please try again");
@@ -60,10 +69,16 @@ export default function Login(){
                     <input type="password" className="form-control" id="password" value={password} onChange={handlePasswordChange} placeholder="Enter Password" required/>
                 </div>
                 {isSignUp && (
-                    <div className="form-group">
-                        <label htmlFor="confirm-password">Confirm Password</label>
-                        <input type="password" className="form-control" id="confirm-password" value={confirmPassword} onChange={handleConfirmPasswordChange} required/>
-                    </div>
+                    <>
+                        <div className="form-group">
+                            <label htmlFor="confirm-password">Confirm Password</label>
+                            <input type="password" className="form-control" id="confirm-password" value={confirmPassword} onChange={handleConfirmPasswordChange} placeholder="Confirm Password" required/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="username">Username</label>
+                            <input type="text" className="form-control" id="username" value={userName} onChange={handleUserNameChange} placeholder="Enter Username" required/>
+                        </div>
+                    </>
                 )}
                 <p className="errors">{isSignUp ? "" : errorLog}</p>
                 <button type="submit" className="btn">{isSignUp ? "Sign Up" : "Login"}</button>
