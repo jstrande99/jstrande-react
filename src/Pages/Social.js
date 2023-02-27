@@ -30,7 +30,6 @@ export function Social() {
 		firestore.collection("posts").orderBy("createdAt", "desc")
 	);
 	const [imageFile, setImageFile] = useState(null);
-	// const [clientData, setClientData] = useState("");
 	const [user, setUser] = useState(null);
 	let activeUser = "";
 	if(firebase.auth().currentUser?.displayName){
@@ -40,12 +39,6 @@ export function Social() {
 		firestore.collection("posts.text").onSnapshot(() => {
 		window.scrollTo(0, 0); //document.body.scrollHeight
 		});
-		// const fetchIpAddress = async () => {
-		// 	const response = await fetch('https://freeipapi.com/api/json');
-		// 	const data = await response.json();
-		// 	setClientData(data);
-		//   };
-		// fetchIpAddress();
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			setUser(user);
 		  });
