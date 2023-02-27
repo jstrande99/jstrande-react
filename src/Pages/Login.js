@@ -35,11 +35,12 @@ export default function Login(){
                 await firebase.auth().createUserWithEmailAndPassword(email, password);
             } catch (error) {
                 console.log(error);
+                setErrorLog("Passwords do not match. Please try again");
             }
         } else {
             try {
                 await firebase.auth().signInWithEmailAndPassword(email, password);
-                setErrorLog("Success");
+                setErrorLog("");
             } catch (error) {
                 console.log(error);
                 setErrorLog("User not found. Please sign up");
