@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import "./Style/Login.css";
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -82,10 +83,10 @@ export default function Login(){
 
     return (
         <div className="login body">
-            <h2>{isSignUp ? "Sign Up" : "Login"}</h2>
+            <h2 className="loginTTL">{isSignUp ? "Sign Up" : "Login"}</h2>
             <form onSubmit={handleSubmit} className="inputs">
                 <div className="form-group">
-                    <label htmlFor="email">Email: </label>
+                    <label htmlFor="email" className="emailPad">Email: </label>
                     <input type="email" className="form-control" id="email" aria-describedby="emailHelp" value={email} onChange={handleEmailChange} placeholder="Enter Email" required/>
                 </div>
                 <div className="form-group">
@@ -95,22 +96,19 @@ export default function Login(){
                 {isSignUp && (
                     <>
                         <div className="form-group">
-                            <label htmlFor="confirm-password">Confirm Password</label>
+                            <label htmlFor="confirm-password" className="confirmPass">Confirm: </label>
                             <input type="password" className="form-control" id="confirm-password" value={confirmPassword} onChange={handleConfirmPasswordChange} placeholder="Confirm Password" required/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="username">Username</label>
+                            <label htmlFor="username">Username:</label>
                             <input type="text" className="form-control" id="username" value={userName} onChange={handleUserNameChange} placeholder="Enter Username" required/>
                         </div>
                     </>
                 )}
                 <p className="errors">{errorLog}</p>
                 <button type="submit" className="btn">{isSignUp ? "Sign Up" : "Login"}</button>
-            </form>
-            <p className="signupOrLogin">
-                {isSignUp ? "I have an account" : "I don't have an account"}
                 <button className="btn" onClick={handleToggleSignUp}>{isSignUp ? "Login" : "Sign Up"} </button>
-            </p>
+            </form>
         </div>
     );
 };
