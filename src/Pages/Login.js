@@ -34,22 +34,21 @@ export default function Login(){
                 }
                 await firebase.auth().createUserWithEmailAndPassword(email, password);
             } catch (error) {
-                console.log(error);
+                console.log("Error Code: " + error);
                 setErrorLog("Passwords do not match. Please try again");
             }
         } else {
             try {
                 await firebase.auth().signInWithEmailAndPassword(email, password);
-                setErrorLog("");
             } catch (error) {
-                console.log(error);
+                console.log("Error Code: " + error);
                 setErrorLog("User not found. Please sign up");
             }
         }
     };
 
     return (
-        <div className="login">
+        <div className="login body">
             <h2>{isSignUp ? "Sign Up" : "Login"}</h2>
             <form onSubmit={handleSubmit} className="inputs">
                 <div className="form-group">
@@ -66,12 +65,12 @@ export default function Login(){
                         <input type="password" className="form-control" id="confirm-password" value={confirmPassword} onChange={handleConfirmPasswordChange} required/>
                     </div>
                 )}
-                <button type="submit" className="btn btn-primary">{isSignUp ? "Sign Up" : "Login"}</button>
+                <p className="errors">{isSignUp ? "" : errorLog}</p>
+                <button type="submit" className="btn">{isSignUp ? "Sign Up" : "Login"}</button>
             </form>
-            <p className="errors">{isSignUp ? "" : errorLog}</p>
             <p className="signupOrLogin">
                 {isSignUp ? "I have an account" : "I don't have an account"}
-                <button className="btn btn-link" onClick={handleToggleSignUp}>{isSignUp ? "Login" : "Sign Up"} </button>
+                <button className="btn" onClick={handleToggleSignUp}>{isSignUp ? "Login" : "Sign Up"} </button>
             </p>
         </div>
     );
