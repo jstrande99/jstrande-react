@@ -3,31 +3,28 @@
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-  }
-  
-  form {
+}
+form {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
-  }
-  .welcoming{
+}
+.welcoming{
     text-align: center;
     font-size: 15px;
     margin-bottom: 5%;
-  }
-  .textBox {
+}
+.textBox {
     font-size: 16px;
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 10px;
     margin-bottom: 10px;
-  }
-  
-  .textBox::placeholder{
+}
+.textBox::placeholder{
     text-align: center;
-  }
-  
-  .submit {
+}
+.submit {
     background-color: rgba(218, 165, 32, 0.75);
     color: black;
     font-size: 16px;
@@ -38,12 +35,11 @@
     width: 25%;
     position: relative;
     left: 75%;
-  }
-  
-  .submit:hover {
+}
+.submit:hover {
     background-color: #006F8C;
-  }
-  .posts{
+}
+.posts{
     border-radius: 10px;
     border: 2px solid goldenrod;
     padding: 10px;
@@ -51,29 +47,28 @@
     flex-direction: column;
     position: relative;
     margin-bottom: 25px;
-  }
-  .likes{
+}
+.likes{
     position: absolute;
     bottom: 0px;
     right: 5px;
     display: flex;
     align-items: center;
     margin-top: auto;
-    /* height: 100%; */
     bottom: 10px;
-  }
-  .btn{
+}
+.btn{
     font-family: Arial, sans-serif;
     border: none;
     height: 5vh;
     padding: 10px;
-  }
-  .btn:hover{
+}
+.btn:hover{
     background-color: goldenrod;
     color: black;
     border-radius: 10px;
-  }
-  .postText:hover::after {
+}
+.postText:hover::after {
     content: attr(data-date);
     position: absolute;
     top: -20px;
@@ -85,4 +80,4 @@
     border-radius: 5px;
     font-size: 14px;
     font-family: Arial;
-  }
+}

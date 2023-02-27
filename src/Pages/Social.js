@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/storage";
+import "firebase/compat/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import './Style/Social.css';
 import Floating from '../Pages/images/floatin1.png';
+import Login from "./Login";
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_KEY,
@@ -20,6 +22,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
 const storage = firebase.storage();
+const auth = firebase.auth();
 
 export function Social() {
 	const [text, setText] = useState("");
@@ -28,6 +31,7 @@ export function Social() {
 	);
 	const [imageFile, setImageFile] = useState(null);
 	const [clientData, setClientData] = useState("");
+	const [user, setUser] = useState(null);
 
 	useEffect(() => {
 		firestore.collection("posts.text").onSnapshot(() => {
@@ -38,9 +42,25 @@ export function Social() {
 			const data = await response.json();
 			setClientData(data);
 		  };
-		  fetchIpAddress();
+		fetchIpAddress();
+		const unsubscribe = auth.onAuthStateChanged((user) => {
+			setUser(user);
+		  });
+		  return unsubscribe;
 	}, []);
 	
+	const handleLogout = async () => {
+		try {
+		  await auth.signOut();
+		} catch (error) {
+		  console.log(error);
+		}
+	};
+	
+	  if (!user) {
+		return <Login />;
+	  }
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		let imageUrl = null; 
@@ -95,6 +115,7 @@ export function Social() {
 	}
 	return (
 		<div className="body">
+			<button className="submit" onClick={() => handleLogout()}>Logout</button>
 			<p className="welcoming">Welcome to my social media application.<br/>New Features Coming Soon!</p>
 			<form onSubmit={handleSubmit}>
 				<input
