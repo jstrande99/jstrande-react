@@ -22,7 +22,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
 const storage = firebase.storage();
-const auth = firebase.auth();
+const auth = firebase.auth(firebase.initializeApp(firebaseConfig));
 
 export function Social() {
 	const [text, setText] = useState("");
