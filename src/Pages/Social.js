@@ -32,7 +32,10 @@ export function Social() {
 	const [imageFile, setImageFile] = useState(null);
 	const [clientData, setClientData] = useState("");
 	const [user, setUser] = useState(null);
-
+	let activeUser = "";
+	if(firebase.auth().currentUser?.displayName){
+		activeUser = firebase.auth().currentUser?.displayName;
+	}
 	useEffect(() => {
 		firestore.collection("posts.text").onSnapshot(() => {
 		window.scrollTo(0, 0); //document.body.scrollHeight
@@ -116,7 +119,7 @@ export function Social() {
 	return (
 		<div className="body">
 			<button className="submit" onClick={() => handleLogout()}>Logout</button>
-			<p className="welcoming">Welcome to my social media application.<br/>New Features Coming Soon!</p>
+			<p className="welcoming">Welcome {activeUser},<br/> this is my social media application.<br/>New Features Coming Soon!</p>
 			<form onSubmit={handleSubmit}>
 				<input
 				className="textBox"
