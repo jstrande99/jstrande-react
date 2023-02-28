@@ -88,7 +88,7 @@ export function Social() {
 			if(post.clientLike && post.clientLike.includes(activeUser)){
 				return;
 			}
-			if(post.clientLike &&  post.creator === activeUser){
+			if(post.creator === activeUser){
 				return;
 			}
 			postRef.update({
