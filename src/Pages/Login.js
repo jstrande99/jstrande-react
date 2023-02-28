@@ -116,8 +116,8 @@ export default function Login(){
                 )}
                 <p className="errors">{errorLog}</p>
                 <button type="submit" className="btn">{isSignUp ? "Sign Up" : "Login"}</button>
-                <button className="btn" onClick={handleResetPassword}>Forgot Password </button>
                 <button className="btn" onClick={handleToggleSignUp}>{isSignUp ? "Login" : "Sign Up"} </button>
+                <button className="btn" onClick={handleResetPassword}>Forgot Password </button>
             </form>
         </div>
     );
