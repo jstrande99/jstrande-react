@@ -137,7 +137,7 @@ export function Social() {
 					)}
 					<p>{post.text}</p>
 					<div className="likes">
-						<button onClick={() => handleLike(post)} className="btn"> {post.likes} Likes</button>
+						<button onClick={() => handleLike(post)} className="btn likeBTN"> {post.likes} Likes</button>
 					</div>
 				</div>
 			))}
