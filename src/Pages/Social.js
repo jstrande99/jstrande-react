@@ -32,6 +32,7 @@ export function Social() {
 	const [imageFile, setImageFile] = useState(null);
 	const [user, setUser] = useState(null);
 	let activeUser = "";
+
 	if(firebase.auth().currentUser?.displayName){
 		activeUser = firebase.auth().currentUser?.displayName;
 	}
@@ -53,9 +54,9 @@ export function Social() {
 		}
 	};
 	
-	  if (!user) {
+	if (!user) {
 		return <Login />;
-	  }
+	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
