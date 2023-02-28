@@ -46,6 +46,15 @@ export default function Login(){
         setUserName(event.target.value);
     }
 
+    const handleResetPassword = async () =>{
+		try {
+            await firebase.auth().sendPasswordResetEmail(email);
+            alert(`Password reset email sent to ${email}`);
+        } catch (error) {
+            console.log(error);
+        }
+	}
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (isSignUp) {
@@ -108,6 +117,7 @@ export default function Login(){
                 <p className="errors">{errorLog}</p>
                 <button type="submit" className="btn">{isSignUp ? "Sign Up" : "Login"}</button>
                 <button className="btn" onClick={handleToggleSignUp}>{isSignUp ? "Login" : "Sign Up"} </button>
+                <button className="btn" onClick={handleResetPassword}>Forgot Password </button>
             </form>
         </div>
     );
