@@ -64,6 +64,11 @@ export function Navbar() {
                                     {dropdownOpen && (
                                         <ul>
                                             <li className='dropdownOption'>
+                                                <Link to='/Social' onClick={handleDropdown} className="nav-links">
+                                                    My Social Media App
+                                                </Link>
+                                            </li>
+                                            <li className='dropdownOption'>
                                                 <Link to='/Weather' onClick={handleDropdown} className="nav-links">
                                                     My Weather App
                                                 </Link>
@@ -71,11 +76,6 @@ export function Navbar() {
                                             <li className='dropdownOption'>
                                                 <Link to='/Cookbook' onClick={handleDropdown} className="nav-links">
                                                     My Cookbook App
-                                                </Link>
-                                            </li>
-                                            <li className='dropdownOption'>
-                                                <Link to='/Social' onClick={handleDropdown} className="nav-links">
-                                                    My Social Media App
                                                 </Link>
                                             </li>
                                             <li className='dropdownOption'>
