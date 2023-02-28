@@ -58,7 +58,10 @@ form {
     display: flex;
     align-items: center;
     margin-top: auto;
-    bottom: 10px;
+    background: transparent;
+}
+.likeBTN{
+    background: transparent;
 }
 .btn{
     font-family: Arial, sans-serif;
