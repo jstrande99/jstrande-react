@@ -25,6 +25,9 @@
     left: 60vw;
     background: transparent;
 }
+.socialLink{
+    margin-top: 10px;
+}
 .line1{
     width: 80vw;
     height: .2vh;
