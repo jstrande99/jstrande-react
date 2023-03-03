@@ -13,6 +13,7 @@ form {
     text-align: center;
     font-size: 15px;
     margin-bottom: 5%;
+    color: goldenrod;
 }
 .textBox {
     font-size: 16px;
@@ -20,6 +21,7 @@ form {
     border: 2px solid #ccc;
     border-radius: 10px;
     margin-bottom: 10px;
+    width: 100%;
 }
 .textBox::placeholder{
     text-align: center;
@@ -32,9 +34,9 @@ form {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    width: 25%;
+    width: 20%;
     position: relative;
-    left: 75%;
+    left: 80%;
 }
 .submit:hover {
     background-color: #006F8C;
@@ -86,4 +88,28 @@ form {
     border-radius: 5px;
     font-size: 14px;
     font-family: Arial;
+}
+.dropdown-menu {
+    position: relative;
+}
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: transparent;
+    z-index: 1;
+} 
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    text-align: center;
+    background-color: goldenrod;
+    color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+
+}
+.dropdown-item:hover {
+    background-color: white;
 }

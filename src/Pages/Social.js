@@ -3,7 +3,6 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/storage";
 import "firebase/compat/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import './Style/Social.css';
 import Floating from '../Pages/images/floatin1.png';
 import Login from "./Login";
@@ -26,16 +25,34 @@ const auth = firebase.auth(firebase.initializeApp(firebaseConfig));
 
 export function Social() {
 	const [text, setText] = useState("");
-	const [posts, loading, error] = useCollectionData(
-		firestore.collection("posts").orderBy("createdAt", "desc")
-	);
+	const [sortBy, setSortBy] = useState("createdAt");
+	const [posts, setPosts] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
 	const [imageFile, setImageFile] = useState(null);
 	const [user, setUser] = useState(null);
+	const [isOpen, setIsOpen] = useState(false);
 	let activeUser = "";
 
 	if(firebase.auth().currentUser?.displayName){
 		activeUser = firebase.auth().currentUser?.displayName;
 	}
+	useEffect(() => {
+		console.log(sortBy)
+		setLoading(true);
+		const unsubscribe = firestore.collection("posts")
+		  .orderBy(sortBy, "desc")
+		  .onSnapshot(snapshot => {
+			const updatedPosts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+			setPosts(updatedPosts);
+			setLoading(false);
+		  }, error => {
+			setError(error);
+			setLoading(false);
+		  });
+		return unsubscribe;
+	  }, [sortBy]);
+
 	useEffect(() => {
 		firestore.collection("posts.text").onSnapshot(() => {
 		window.scrollTo(0, 0); //document.body.scrollHeight
@@ -116,18 +133,24 @@ export function Social() {
 	}
 	return (
 		<div className="body">
-			<button className="submit" onClick={() => handleLogout()}>Logout</button>
-			<p className="welcoming">Welcome {activeUser},<br/> this is my social media application.<br/>New Features Coming Soon!</p>
+			<div className="dropdown-menu">
+				<button className="submit" onClick={() => setIsOpen(!isOpen)}>{isOpen ? "X" : "Menu"}</button>
+				{isOpen && (
+					<div className="dropdown-content">
+						<select value={sortBy} className="dropdown-item" onChange={(e) => setSortBy(e.target.value)}>
+							<option value="createdAt">Sort by Date</option>
+							<option value="likes">Sort by Popularity</option>
+							<option value="creator">{activeUser}'s Posts</option>
+						</select>
+						<button className="dropdown-item" onClick={() => handleLogout()}>Logout</button>
+					</div>
+				)}
+			</div>
+			<p className="welcoming">Welcome {activeUser}</p>
 			<form onSubmit={handleSubmit}>
-				<input
-				className="textBox"
-				type="text"
-				value={text}
-				onChange={(e) => setText(e.target.value)}
-				placeholder="Post Something!"
-				/>
-				<input type="file" name="imageFile" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])} />
-				<button className="submit" type="submit">Post</button>
+				<input className="textBox" type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Post Something!"/>
+				<input type="file" className="imgInput" name="imageFile" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])}/>
+				<button className="submit postBtn" type="submit">Post</button>
 			</form>
 			{posts.map((post, index) => (
 				<div key={index} className="posts postText" data-date={post.createdAt ? post.createdAt.toDate().toLocaleDateString() : ''}>
