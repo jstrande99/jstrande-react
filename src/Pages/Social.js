@@ -3,7 +3,6 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/storage";
 import "firebase/compat/auth";
-// import { useCollectionData } from "react-firebase-hooks/firestore";
 import './Style/Social.css';
 import Floating from '../Pages/images/floatin1.png';
 import Login from "./Login";
@@ -27,9 +26,6 @@ const auth = firebase.auth(firebase.initializeApp(firebaseConfig));
 export function Social() {
 	const [text, setText] = useState("");
 	const [sortBy, setSortBy] = useState("createdAt");
-	// const [posts, loading, error] = useCollectionData(
-	// 	firestore.collection("posts").orderBy(sortBy, "desc")
-	// );
 	const [posts, setPosts] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -144,7 +140,7 @@ export function Social() {
 						<select value={sortBy} className="dropdown-item" onChange={(e) => setSortBy(e.target.value)}>
 							<option value="createdAt">Sort by Date</option>
 							<option value="likes">Sort by Popularity</option>
-							<option value="creator">Sort by Creator</option>
+							<option value="creator">{activeUser}'s Posts</option>
 						</select>
 						<button className="dropdown-item" onClick={() => handleLogout()}>Logout</button>
 					</div>
@@ -153,7 +149,7 @@ export function Social() {
 			<p className="welcoming">Welcome {activeUser}</p>
 			<form onSubmit={handleSubmit}>
 				<input className="textBox" type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Post Something!"/>
-				<input type="file" className="imgInput" name="imageFile" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])} />
+				<input type="file" className="imgInput" name="imageFile" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])}/>
 				<button className="submit postBtn" type="submit">Post</button>
 			</form>
 			{posts.map((post, index) => (
