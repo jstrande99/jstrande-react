@@ -11,6 +11,7 @@ import Work from './Work.js';
 import Languages from './Languages.js';
 import About from './About.js';
 import Studies from './Studies.js';
+import { HashLink as Link } from 'react-router-hash-link';
 
 
 
@@ -25,6 +26,9 @@ export default function Home(props) {
                     <h2 className='Jordan welcomeText'>I'm Jordan Strande,</h2>
                     <h2 className='engineer welcomeText'>Software Developer</h2>
                     <button className='contactBtn' onClick={() => window.location = 'mailto:strandejordan@gmail.com'}>Let's Talk</button>
+                    <Link to='/Social' className='socialLink'>
+                        <button className='contactBtn'>My Social Media App</button>
+                    </Link>
                     <div className='icons'>
                         <a href='https://github.com/jstrande99' target="_blank" rel="noopener noreferrer"><img src={Github} alt='Github' className='iconLink gt'/></a>
                         <a href='https://www.instagram.com/jstrande/' target="_blank" rel="noopener noreferrer"><img src={Insta} alt='Instagram' className='iconLink ins'/></a>
