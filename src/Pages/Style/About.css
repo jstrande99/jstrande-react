@@ -23,6 +23,8 @@
     position: absolute;
     left: 65vw;
     top: 5vh;
+    background-color: transparent;
+    filter: invert(59%) sepia(7%) saturate(2000%) hue-rotate(187deg) brightness(97%) contrast(110%);
 }
 .Computer{
     height: 20vh;
