@@ -13,6 +13,8 @@ import Maintenance from './Pages/Maintenance';
 export default function App() {
   const [offSetY, setOffSetY] = useState(0);
   const handleOffset = () => setOffSetY(window.pageYOffset);
+  const [bgColor, setBgColor] = useState('rgb(0,0,0)');
+  const [textColor, setTextColor] = useState('rgb(225,225,225)')
 
   useEffect(() => {
     window.addEventListener('scroll', handleOffset);
@@ -24,16 +26,17 @@ export default function App() {
     <>
      <Loader />
     <Router>
-      <Navbar />
-      {/* <Home setOffSetY={setOffSetY} offSetY={offSetY}/> */}
+      <div style={{backgroundColor: bgColor, color: textColor}}>
+      <Navbar textColor={textColor} />
       <Routes>
-        <Route path='/' element={<Home setOffSetY={setOffSetY} offSetY={offSetY}/>}/>
+        <Route path='/' element={<Home setOffSetY={setOffSetY} offSetY={offSetY} setBgColor={setBgColor} bgColor={bgColor} setTextColor={setTextColor}  style={{backgroundColor: bgColor, color: 'white'}}/>}/>
         <Route path='/Projects' element={<Projects />}/>
         <Route path='/Weather' element={<Weather  {...process.env}/>}/>
         <Route path='/Cookbook' element={<Cookbook />}/>
         <Route path='/Social' element={<Social  {...process.env}/>}/>
         <Route path='/Maintenance' element={ <Maintenance/> }/>
       </Routes>
+      </div>
     </Router>
     </>
   );
