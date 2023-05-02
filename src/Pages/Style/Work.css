@@ -1,4 +1,7 @@
-/* WORK CSS */
+*{
+    color: inherit;
+    background-color: inherit;
+}
 .workLinks{
     display: flex;
     flex-direction: column;
@@ -22,7 +25,6 @@
 .innerWork{
     border: 2px solid goldenrod;
     border-radius: 15vh;
-    background-color: black;
     padding: 5px;
     width: 45vw;
     height: 13vh;
@@ -63,12 +65,10 @@
 }
 .ttl{
     text-decoration-line: underline;
-    color: white;
     background-color: transparent;
 }
 .locationTitle{
     background-color: transparent;
-    color: white;
     font-size: medium;
     padding-bottom: 5px;
 }

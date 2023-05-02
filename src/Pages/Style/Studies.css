@@ -18,10 +18,10 @@
     border: 2px solid goldenrod;
     float: left;
     border-radius: 5vh;
+    background-color: transparent;
 }
 .classTitle{
     font-size: 2vw;
-    color: white;
     padding-bottom: 2vh;
     background: transparent;
 }
@@ -45,7 +45,6 @@
     }
     .classTitle{
         font-size: 4vw;
-        color: white;
         padding-bottom: 1vh;
         background: transparent;
     }

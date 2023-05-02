@@ -1,23 +1,29 @@
 import React from 'react';
 import '../App.css';
 import './Style/Home.css';
-import Github from './images/GitHub.png';
-import Insta from './images/instagram.png';
-import LinkedIn from './images/linkedin.png';
-import Email from './images/email.png';
-import Resume from './images/resume.png';
 import pdfResume from './PDF/JordanStrande.pdf';
 import Work from './Work.js';
 import Languages from './Languages.js';
 import About from './About.js';
 import Studies from './Studies.js';
 import { HashLink as Link } from 'react-router-hash-link';
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faSun, faMoon, faEnvelope, faFileLines } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Home(props) { 
     let timeOfday = GetTimeOfDay();
+    const handleBG = () => {
+        if(props.bgColor === 'rgb(0,0,0)'){
+            props.setBgColor('white');
+            props.setTextColor('rgb(0,0,0)');
+        }else{
+            props.setBgColor('rgb(0,0,0)');
+            props.setTextColor('rgb(225,225,225)');
+        }
+    }
+
     return (
         <>  
             <div className='bodies' id='Home'>
@@ -30,11 +36,12 @@ export default function Home(props) {
                         <button className='contactBtn'>My Social Media App</button>
                     </Link>
                     <div className='icons'>
-                        <a href='https://github.com/jstrande99' target="_blank" rel="noopener noreferrer"><img src={Github} alt='Github' className='iconLink gt'/></a>
-                        <a href='https://www.instagram.com/jstrande/' target="_blank" rel="noopener noreferrer"><img src={Insta} alt='Instagram' className='iconLink ins'/></a>
-                        <a href='https://www.linkedin.com/in/jordan-strande/' target="_blank" rel="noopener noreferrer"><img src={LinkedIn} alt='LinkedIn' className='iconLink lnk'/></a>
-                        <a href='mailto:strandejordan@gmail.com' rel="noopener noreferrer"><img src={Email} alt='Email' className='iconLink lnk'/></a>
-                        <a href={pdfResume} target="_blank" rel="noopener noreferrer"><img src={Resume} alt='Resume' className='iconLink lnk'/></a>
+                        <a href='https://github.com/jstrande99' target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} size="2x"/></a>
+                        <a href='https://www.instagram.com/jstrande/' target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} size="2x"/></a>
+                        <a href='https://www.linkedin.com/in/jordan-strande/' target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedin} size="2x"/></a>
+                        <a href='mailto:strandejordan@gmail.com' rel="noopener noreferrer"><FontAwesomeIcon icon={faEnvelope} size="2x"/></a>
+                        <a href={pdfResume} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFileLines} size="2x"/></a>
+                        <button onClick={() => handleBG()} className='changer '> {props.bgColor === 'rgb(0,0,0)' ? <FontAwesomeIcon icon={faSun} size="2x" fade style={{animationDuration:'4s'}}/>  : <FontAwesomeIcon icon={faMoon} size="2x" fade style={{animationDuration:'4s'}}/>} </button>
                     </div>
                 </div>
             </div>

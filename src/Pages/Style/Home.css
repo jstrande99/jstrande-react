@@ -1,3 +1,6 @@
+*{
+    color: inherit;
+}
 .welcomeScreen { 
     padding: 10%;
     display: flex;
@@ -13,10 +16,11 @@
     z-index: 100;
     background: transparent;
     position: fixed;
-    left: 90vw;
+    left: 91vw;
     top: 20vh;
+    align-items: center;
 }
-.icons a{
+.icons a, .icons button{
     background: transparent;
     padding-bottom: 1vh;
 }
@@ -24,6 +28,10 @@
     height: 5vh;
     left: 60vw;
     background: transparent;
+    filter: invert(59%) sepia(7%) saturate(2000%) hue-rotate(187deg) brightness(97%) contrast(110%);
+}
+.changer{
+    border: none;
 }
 .socialLink{
     margin-top: 10px;
@@ -66,7 +74,6 @@
 .timeOfDay{
     font-size: 5vh;
     padding: 5px;
-    /* color: rgb(175, 175, 175); */
     position: relative;
     top: -10rem;
     background: transparent;
@@ -83,14 +90,12 @@
     padding: 5px;
     position: relative;
     top: -8rem;
-    color: rgb(175, 175, 175);
     background: transparent;
 }
 .whoIam{
    font-size: 15px;
    position: relative;
    top: -7rem;
-   color: rgb(175, 175, 175);
    padding: 5px;
    background: transparent;
 }
@@ -98,7 +103,6 @@
     position: relative;
     top: -8.5rem;
     padding: 5px;
-    color: rgb(175, 175, 175);
     background: transparent;
 }
 
@@ -131,7 +135,7 @@
     }
     .icons{
         left: 2.5vw;
-        top: 65vh;
+        top: 62vh;
     }
     .iconLink{
         height: 3.5vh;
