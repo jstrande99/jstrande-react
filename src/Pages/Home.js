@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import './Style/Home.css';
-import pdfResume from './PDF/JordanStrande.pdf';
+import pdfResume from './PDF/Jordan_Strande_2023.pdf';
 import Work from './Work.js';
 import Languages from './Languages.js';
 import About from './About.js';
