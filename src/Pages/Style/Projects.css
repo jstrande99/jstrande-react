@@ -1,3 +1,7 @@
+*{
+    color: inherit;
+    background-color: inherit;
+}
 .Project-body{
     text-align: center;
     height: 80vh;
@@ -12,7 +16,7 @@
 }
 .links{
     text-decoration: none;
-    color: white;
+    /* color: white; */
     position: relative;
     display: block;
     top: 0vh;
