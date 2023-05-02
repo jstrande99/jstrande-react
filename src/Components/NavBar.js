@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import './NavBar.css';
 
-export function Navbar() { 
+export function Navbar(props) { 
     const [click, setClick] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [screenSize, setScreenSize] = useState(window.innerWidth)
@@ -31,55 +31,55 @@ export function Navbar() {
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}> 
                         <li className='nav-item'>            
-                            <Link to='/#Home' className='nav-links' onClick={closeMobileMenu}>
+                            <Link to='/#Home' className='nav-links' onClick={closeMobileMenu} onMouseOver={(e) => (e.target.style.borderBottom = `4px solid ${props.textColor}`)} onMouseOut={(e) => (e.target.style.borderBottom = 'inherit')}>
                                 Home
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/#About' className='nav-links' onClick={closeMobileMenu}>
+                            <Link to='/#About' className='nav-links' onClick={closeMobileMenu} onMouseOver={(e) => (e.target.style.borderBottom = `4px solid ${props.textColor}`)} onMouseOut={(e) => (e.target.style.borderBottom = 'inherit')}>
                                 About
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/#Languages' className='nav-links' onClick={closeMobileMenu}>
+                            <Link to='/#Languages' className='nav-links' onClick={closeMobileMenu} onMouseOver={(e) => (e.target.style.borderBottom = `4px solid ${props.textColor}`)} onMouseOut={(e) => (e.target.style.borderBottom = 'inherit')}>
                                 Experience
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/#Studies' className='nav-links' onClick={closeMobileMenu}>
+                            <Link to='/#Studies' className='nav-links' onClick={closeMobileMenu} onMouseOver={(e) => (e.target.style.borderBottom = `4px solid ${props.textColor}`)} onMouseOut={(e) => (e.target.style.borderBottom = 'inherit')}>
                                 Studies
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/#Work' className='nav-links' onClick={closeMobileMenu}>
+                            <Link to='/#Work' className='nav-links' onClick={closeMobileMenu} onMouseOver={(e) => (e.target.style.borderBottom = `4px solid ${props.textColor}`)} onMouseOut={(e) => (e.target.style.borderBottom = 'inherit')}>
                                 Work
                             </Link>
                         </li>
                         <li className='nav-item'>
                             {screenSize > 960 ? (
                                 <>
-                                    <p onClick={() => setDropdownOpen(!dropdownOpen)} className="nav-links">
+                                    <p onClick={() => setDropdownOpen(!dropdownOpen)} className="nav-links" onMouseOver={(e) => (e.target.style.borderBottom = `4px solid ${props.textColor}`)} onMouseOut={(e) => (e.target.style.borderBottom = 'inherit')}>
                                         Projects
                                     </p>
                                     {dropdownOpen && (
                                         <ul>
                                             <li className='dropdownOption'>
-                                                <Link to='/Social' onClick={handleDropdown} className="nav-links">
+                                                <Link to='/Social' onClick={handleDropdown} className="nav-links" onMouseOver={(e) => (e.target.style.borderBottom = `4px solid ${props.textColor}`)} onMouseOut={(e) => (e.target.style.borderBottom = 'inherit')}>
                                                     My Social Media App
                                                 </Link>
                                             </li>
                                             <li className='dropdownOption'>
-                                                <Link to='/Weather' onClick={handleDropdown} className="nav-links">
+                                                <Link to='/Weather' onClick={handleDropdown} className="nav-links" onMouseOver={(e) => (e.target.style.borderBottom = `4px solid ${props.textColor}`)} onMouseOut={(e) => (e.target.style.borderBottom = 'inherit')}>
                                                     My Weather App
                                                 </Link>
                                             </li>
                                             <li className='dropdownOption'>
-                                                <Link to='/Cookbook' onClick={handleDropdown} className="nav-links">
+                                                <Link to='/Cookbook' onClick={handleDropdown} className="nav-links" onMouseOver={(e) => (e.target.style.borderBottom = `4px solid ${props.textColor}`)} onMouseOut={(e) => (e.target.style.borderBottom = 'inherit')}>
                                                     My Cookbook App
                                                 </Link>
                                             </li>
                                             <li className='dropdownOption'>
-                                                <Link to='/Maintenance' onClick={handleDropdown} className="nav-links">
+                                                <Link to='/Maintenance' onClick={handleDropdown} className="nav-links" onMouseOver={(e) => (e.target.style.borderBottom = `4px solid ${props.textColor}`)} onMouseOut={(e) => (e.target.style.borderBottom = 'inherit')}>
                                                     Check the News
                                                 </Link>
                                             </li>
@@ -98,5 +98,3 @@ export function Navbar() {
         </>
     );
 }
-
-//Active buttons {button && <Button buttonStyle='btn--outline'>HTML/JS</Button>}
