@@ -55,8 +55,7 @@
     width: 20px;
     height: 20px;
     animation: fall-star 10s linear infinite;
-  }
-  
+  } 
 @keyframes fall-star {
     from {
       transform: translateY(-100%);

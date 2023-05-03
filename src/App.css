@@ -1,32 +1,30 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Georgia', serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
 }
 .bodies{ 
-  height: 85vh;
-  position: relative;
-  overflow: hidden;
+    height: 85vh;
+    position: relative;
+    overflow: hidden;
 }
 .smallBody{
-  height: auto;
-  position: relative;
-  overflow: hidden;
+    height: auto;
+    position: relative;
+    overflow: hidden;
 }
-
 .work {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    font-size: 100px;
 }
-
 .studies {
-  background-position: center;
-  background-size: fill;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
+    background-position: center;
+    background-size: fill;
+    background-repeat: no-repeat;
+    color: #fff;
+    font-size: 100px;
 }

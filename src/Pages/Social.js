@@ -134,33 +134,72 @@ export function Social() {
 	return (
 		<div className="body">
 			<div className="dropdown-menu">
-				<button className="submit" onClick={() => setIsOpen(!isOpen)}>{isOpen ? "X" : "Menu"}</button>
+				<button className="submit" onClick={() => setIsOpen(!isOpen)}>
+					{isOpen ? 
+						"X" : 
+						"Menu"
+					}
+				</button>
 				{isOpen && (
 					<div className="dropdown-content">
 						<select value={sortBy} className="dropdown-item" onChange={(e) => setSortBy(e.target.value)}>
-							<option value="createdAt">Sort by Date</option>
-							<option value="likes">Sort by Popularity</option>
-							<option value="creator">{activeUser}'s Posts</option>
+							<option value="createdAt">
+								Sort by Date
+							</option>
+							<option value="likes">
+								Sort by Popularity
+							</option>
+							<option value="creator">
+								{activeUser}'s Posts
+							</option>
 						</select>
-						<button className="dropdown-item" onClick={() => handleLogout()}>Logout</button>
+						<button className="dropdown-item" onClick={() => handleLogout()}>
+							Logout
+						</button>
 					</div>
 				)}
 			</div>
-			<p className="welcoming">Welcome {activeUser}</p>
+			<p className="welcoming">
+				Welcome {activeUser}
+			</p>
 			<form onSubmit={handleSubmit}>
-				<input className="textBox" type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Post Something!"/>
-				<input type="file" className="imgInput" name="imageFile" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])}/>
-				<button className="submit postBtn" type="submit">Post</button>
+				<input 
+					className="textBox" 
+					type="text" 
+					value={text} 
+					onChange={(e) => setText(e.target.value)} 
+					placeholder="Post Something!"
+				/>
+				<input 
+					type="file" 
+					className="imgInput" 
+					name="imageFile" 
+					accept="image/*" 
+					onChange={(e) => setImageFile(e.target.files[0])}
+				/>
+				<button className="submit postBtn" type="submit">
+					Post
+				</button>
 			</form>
 			{posts.map((post, index) => (
 				<div key={index} className="posts postText" data-date={post.createdAt ? post.createdAt.toDate().toLocaleDateString() : ''}>
-					<p className="creator">{post.creator}</p>
+					<p className="creator">
+						{post.creator}
+					</p>
 					{post.imageUrl && (
-						<img src={post.imageUrl} alt="Uploaded by user" style={{ maxWidth: "70%", maxHeight: "300px", objectFit:"contain", marginLeft:"15%" }}/>
+						<img 
+							src={post.imageUrl} 
+							alt="Uploaded by user" 
+							style={{ maxWidth: "70%", maxHeight: "300px", objectFit:"contain", marginLeft:"15%" }}
+						/>
 					)}
-					<p>{post.text}</p>
+					<p>
+						{post.text}
+					</p>
 					<div className="likes">
-						<button onClick={() => handleLike(post)} className="btn likeBTN"> {post.likes} Likes</button>
+						<button onClick={() => handleLike(post)} className="btn likeBTN"> 
+							{post.likes} Likes
+						</button>
 					</div>
 				</div>
 			))}
