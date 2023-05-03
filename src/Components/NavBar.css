@@ -11,18 +11,16 @@
     position: sticky;
     top: 0;
     z-index: 999;
-  }
-  
-  .navbar-container {
+}
+.navbar-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80px;
     max-width: 1500px;
     padding-left: 3vw;
-  }
-  
-  .nav-menu {
+}
+.nav-menu {
     display: grid;
     grid-template-columns: repeat(6, auto);
     grid-gap: 10px;
@@ -30,42 +28,35 @@
     text-align: center;
     justify-content: end;
     margin-right: 2rem;
-  }
-  
-  .nav-item {
+}
+.nav-item {
     height: 80px;
-  }
-  
-  .nav-links {
+}
+.nav-links {
     display: flex;
     align-items: center;
     text-decoration: none;
     padding: 0.5rem 1rem;
     height: 100%;
     background-color: inherit;
-  }
+}
   
-  .nav-links:hover {
+.nav-links:hover {
     border-bottom: 4px solid white;
     transition: all 0.2s ease-out;
-  }
-  
-  .fa-bars {
+}
+.fa-bars {
     color: lightgray;
-  }
-  
-  .nav-links-mobile {
+}
+.nav-links-mobile {
     display: none;
-  }
-  
-  .menu-icon {
+}
+.menu-icon {
     display: none;
-  }
-
-  .dropdownOption::marker{
+}
+.dropdownOption::marker{
     color: transparent;
-  }
-  
+}
   @media screen and (max-width: 960px) {
     .NavbarItems {
       position: relative;
@@ -89,7 +80,6 @@
       margin-bottom: 10rem;
       background-color: inherit;
     }
-
     .nav-menu.active {
       left: -5vw;
       opacity: 1;
@@ -102,14 +92,13 @@
     .nav-item {
         border: 2px;
         margin: 10px;
-      }
+    }
     .nav-links {
       text-align: center;
       padding: 1.5rem;
       width: 100%;
       display: table;
     }
-  
     .menu-icon {
       display: block;
       position: absolute;
@@ -119,7 +108,6 @@
       font-size: 1.8rem;
       cursor: pointer;
     }
-  
     .fa-times {
       font-size: 2rem;
     }
