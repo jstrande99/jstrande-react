@@ -16,9 +16,15 @@ export default function Maintenance(){
             </div>
             <div className='maintenanceContainer'>
                 <img src={Moon} alt="moon" className='moon'/>
-                <h1 className='heading'>Page currently down for maintenance.</h1>
-                <h2 className='comeBack'>There's something spectacular in the works,<br/> please check back soon</h2>
-                <Link to='/Projects' className='linkage'><b className='arrow'>&#8249;</b> Back to Projects Page</Link>
+                <h1 className='heading'>
+                    Page currently down for maintenance.
+                </h1>
+                <h2 className='comeBack'>
+                    There's something spectacular in the works,<br/> please check back soon
+                </h2>
+                <Link to='/Projects' className='linkage'>
+                    <b className='arrow'>&#8249;</b> Back to Projects Page
+                </Link>
             </div>
         </div>
         )
