@@ -24,20 +24,65 @@ export default function App() {
 
   return (
     <>
-     <Loader />
-    <Router>
-      <div style={{backgroundColor: bgColor, color: textColor}}>
-      <Navbar textColor={textColor} />
-      <Routes>
-        <Route path='/' element={<Home setOffSetY={setOffSetY} offSetY={offSetY} setBgColor={setBgColor} bgColor={bgColor} setTextColor={setTextColor}  style={{backgroundColor: bgColor, color: 'white'}}/>}/>
-        <Route path='/Projects' element={<Projects />}/>
-        <Route path='/Weather' element={<Weather  {...process.env}/>}/>
-        <Route path='/Cookbook' element={<Cookbook />}/>
-        <Route path='/Social' element={<Social  {...process.env}/>}/>
-        <Route path='/Maintenance' element={ <Maintenance/> }/>
-      </Routes>
-      </div>
-    </Router>
+        <Loader />
+        <Router>
+            <div style={{backgroundColor: bgColor, color: textColor}}>
+            <Navbar 
+                textColor={textColor} 
+            />
+            <Routes>
+                <Route 
+                    path='/' 
+                    element={
+                        <Home 
+                            setOffSetY={setOffSetY} 
+                            offSetY={offSetY} 
+                            setBgColor={setBgColor} 
+                            bgColor={bgColor} 
+                            setTextColor={setTextColor}  
+                            style={{
+                                backgroundColor: bgColor, 
+                                color: 'white'}}
+                        />
+                    }
+                />
+                <Route 
+                    path='/Projects' 
+                    element={
+                        <Projects />
+                    }
+                />
+                <Route 
+                    path='/Weather' 
+                    element={
+                        <Weather  
+                            {...process.env}
+                        />
+                    }
+                />
+                <Route 
+                    path='/Cookbook' 
+                    element={
+                        <Cookbook />
+                    }
+                />
+                <Route 
+                    path='/Social' 
+                    element={
+                        <Social  
+                            {...process.env}
+                        />
+                    }
+                />
+                <Route 
+                    path='/Maintenance' 
+                    element={ 
+                        <Maintenance/>
+                    }
+                />
+            </Routes>
+            </div>
+        </Router>
     </>
   );
 }
