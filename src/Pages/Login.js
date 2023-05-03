@@ -95,29 +95,81 @@ export default function Login(){
             <h2 className="loginTTL">{isSignUp ? "Sign Up" : "Login"}</h2>
             <form onSubmit={handleSubmit} className="inputs">
                 <div className="form-group">
-                    <label htmlFor="email" className="emailPad">Email: </label>
-                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" value={email} onChange={handleEmailChange} placeholder="Enter Email" required/>
+                    <label htmlFor="email" className="emailPad">
+                        Email: 
+                    </label>
+                    <input 
+                        type="email" 
+                        className="form-control" 
+                        id="email" 
+                        aria-describedby="emailHelp" 
+                        value={email} onChange={handleEmailChange} 
+                        placeholder="Enter Email" 
+                        required
+                    />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Password: </label>
-                    <input type="password" className="form-control" id="password" value={password} onChange={handlePasswordChange} placeholder="Enter Password" required/>
+                    <label htmlFor="password">
+                        Password: 
+                    </label>
+                    <input 
+                        type="password" 
+                        className="form-control" 
+                        id="password" 
+                        value={password} 
+                        onChange={handlePasswordChange} 
+                        placeholder="Enter Password" 
+                        required
+                    />
                 </div>
                 {isSignUp && (
                     <>
                         <div className="form-group">
-                            <label htmlFor="confirm-password" className="confirmPass">Confirm: </label>
-                            <input type="password" className="form-control" id="confirm-password" value={confirmPassword} onChange={handleConfirmPasswordChange} placeholder="Confirm Password" required/>
+                            <label htmlFor="confirm-password" className="confirmPass">
+                                Confirm: 
+                            </label>
+                            <input 
+                                type="password" 
+                                className="form-control" 
+                                id="confirm-password" 
+                                value={confirmPassword} 
+                                onChange={handleConfirmPasswordChange} 
+                                placeholder="Confirm Password" 
+                                required
+                            />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="username">Username:</label>
-                            <input type="text" className="form-control" id="username" value={userName} onChange={handleUserNameChange} placeholder="Enter Username" required/>
+                            <label htmlFor="username">
+                                Username:
+                            </label>
+                            <input 
+                                type="text" 
+                                className="form-control" 
+                                id="username" 
+                                value={userName} 
+                                onChange={handleUserNameChange} 
+                                placeholder="Enter Username" 
+                                required
+                            />
                         </div>
                     </>
                 )}
                 <p className="errors">{errorLog}</p>
-                <button type="submit" className="btn">{isSignUp ? "Sign Up" : "Login"}</button>
-                <button className="btn" onClick={handleToggleSignUp}>{isSignUp ? "Login" : "Sign Up"} </button>
-                <button className="btn" onClick={handleResetPassword}>Forgot Password </button>
+                <button type="submit" className="btn">
+                    {isSignUp ? 
+                        "Sign Up" : 
+                        "Login"
+                    }
+                </button>
+                <button className="btn" onClick={handleToggleSignUp}>
+                    {isSignUp ? 
+                        "Login" : 
+                        "Sign Up"
+                    } 
+                </button>
+                <button className="btn" onClick={handleResetPassword}>
+                    Forgot Password 
+                </button>
             </form>
         </div>
     );
