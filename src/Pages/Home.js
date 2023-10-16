@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import './Style/Home.css';
 import pdfResume from './PDF/Jordan_Strande_2023.pdf';
+import HeadShot from './images/Realheadshot.png';
 import Work from './Work.js';
 import Languages from './Languages.js';
 import About from './About.js';
@@ -37,6 +38,9 @@ export default function Home(props) {
                     <h2 className='engineer welcomeText'>
                         Software Developer
                     </h2>
+                    <div className='RealimgContainer'>
+                        <img src={HeadShot} alt='HeadShot' className='RealheadShot'/>
+                    </div>
                     <button 
                         className='contactBtn' 
                         onClick={() => window.location = 'mailto:strandejordan@gmail.com'}

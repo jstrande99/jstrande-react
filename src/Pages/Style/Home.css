@@ -124,6 +124,19 @@
     height: 15vh;
     background: transparent;
 }
+.RealimgContainer {
+    width: 40vw;
+}
+
+.RealheadShot {
+    height: 40vh;
+    position: absolute;
+    left: 60vw;
+    top: 5vh;
+    background-color: transparent;
+    border-radius: 25%;
+    filter: brightness(80%);
+}
 @media screen and (max-width: 960px) {
     .homeImg{
         width: 150vw;
@@ -145,5 +158,11 @@
     }
     .engineer{
         font-size: 3vh;
+    }
+    .RealimgContainer {
+       display: none;
+    }
+    .RealheadShot {
+        display: none;
     }
 }
