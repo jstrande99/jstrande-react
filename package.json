@@ -19,7 +19,7 @@
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^6.4.3",
     "react-router-hash-link": "^2.4.3",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "reactjs-popup": "^2.0.5",
     "reactstrap": "^9.1.5",
     "web-vitals": "^2.1.4"
