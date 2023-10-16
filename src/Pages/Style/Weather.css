@@ -26,6 +26,9 @@ p{
 .weatherIcon1{
     background-color: transparent;
     position: absolute;
-    left: 55%;
-    top: 18vh;
+    left: 60%;
+    top: 22vh;
+}
+.paddingBtm{
+    height: 80vh;
 }
