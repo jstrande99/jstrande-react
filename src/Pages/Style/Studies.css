@@ -19,6 +19,7 @@
     float: left;
     border-radius: 5vh;
     background-color: transparent;
+    text-align: center;
 }
 .classTitle{
     font-size: 2vw;
@@ -28,9 +29,6 @@
 .descriptClass{
     background: transparent;
     font-size: 1.5vw;
-}
-.collapse{
-    display: none;
 }
 .show {
     display: contents;
