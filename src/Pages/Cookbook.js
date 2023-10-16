@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Style/Cookbook.css'
+import RecipeModal from '../Components/RecipeModal';
 
 const recipes = [
     { 
@@ -130,6 +131,7 @@ const recipes = [
 export function Cookbook() {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedFood, setSelectedFood] = useState(null);
+    const [modalOpen, setModalOpen] = useState(false);
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
@@ -140,12 +142,25 @@ export function Cookbook() {
             setSelectedFood(null);
         }else{
             setSelectedFood(food);
+            setModalOpen(true);
         }
     }
+    const closeModal = () => {
+    setModalOpen(false); 
+  }
 
+    const [containerHeight, setContainerHeight] = useState(0);
+
+    useEffect(() => {
+        const container = document.querySelector('.container');
+        setContainerHeight(container.offsetHeight);
+    }, []);
     const filteredRecipes = recipes.filter((recipe) =>
         recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+    const contHeight = ((containerHeight/ window.innerHeight) * 100);
+    const paddingBtmHeight = containerHeight > 0 ? `calc(100vh - ${contHeight}vh)` : '0';
+    
     return (
         <div className='container'>
         <input type="text" placeholder="Lookup a recipe" onChange={handleSearch} className="search" />
@@ -154,7 +169,7 @@ export function Cookbook() {
             <li className='recipeContainer' key={index} onClick={()=> handleFoodSelection(recipe)}>
                 <h2>{recipe.name}</h2>
                 <img src={recipe.image} alt={recipe.name} width="200" height="150"/>
-                {selectedFood === recipe && (
+                {/* {selectedFood === recipe && (
                 <>
                 <p><u>Ingredients:</u></p> {recipe.ingredients.map((ingredient,index) => <p key={index}>{ingredient}<br/></p>)}
                 <div className='horizontalLine'></div>
@@ -162,10 +177,16 @@ export function Cookbook() {
                     <p key={index1}><b><u>{index1+1}.</u></b><br/>{instruction}</p>
                 ))}
                 </>
-                )}
+                )} */}
             </li>
             ))}
         </ul>
+        <div onClick={()=> setModalOpen(false)}>
+            {selectedFood && modalOpen && (
+                <RecipeModal recipe={selectedFood} closeModal={closeModal}/>
+            )}
+        </div>
+        <div style={{ paddingBottom: paddingBtmHeight }}></div>
         </div>
     );
 }
