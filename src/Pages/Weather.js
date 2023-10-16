@@ -32,6 +32,9 @@ export function Weather(process){
                         Invalid Zip Code
                     </h2>
                 </div>
+                <div className="paddingBtm">
+
+                </div>
             </div>
         );
     }else{
@@ -81,6 +84,9 @@ export function Weather(process){
                     </p>
                 </div>
                 )}
+                <div className="paddingBtm">
+
+                </div>
             </div>
         );
     }
