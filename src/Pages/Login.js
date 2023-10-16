@@ -89,6 +89,14 @@ export default function Login(){
             }
         }
     };
+    const handleLoginAsGuest = async () => {
+            try {
+                await firebase.auth().signInAnonymously();
+            } catch (error) {
+                console.log("Error Code: " + error);
+                setErrorLog("Unable to log in as guest.");
+            }
+    };
 
     return (
         <div className="login body">
@@ -167,10 +175,14 @@ export default function Login(){
                         "Sign Up"
                     } 
                 </button>
+                <button className="btn" onClick={handleLoginAsGuest}>
+                    Login as Guest
+                </button>
                 <button className="btn" onClick={handleResetPassword}>
                     Forgot Password 
                 </button>
             </form>
+            <div style={{ paddingBottom: '30vh' }}></div>
         </div>
     );
 };
