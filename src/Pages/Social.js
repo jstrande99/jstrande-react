@@ -36,6 +36,8 @@ export function Social() {
 
 	if(firebase.auth().currentUser?.displayName){
 		activeUser = firebase.auth().currentUser?.displayName;
+	}else{
+		activeUser = `Anonymous-404`;
 	}
 	useEffect(() => {
 		console.log(sortBy)
