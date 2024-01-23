@@ -20,12 +20,19 @@ canvas {
     margin-top: 20px;
 }
 
+.chooseItem {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .firstSection,
 .textSection {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 90vh;
+    height: 70vh;
     width: 100vw;
     text-align: center;
     overflow: hidden;
