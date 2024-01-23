@@ -132,6 +132,7 @@ const ProductShowcase = () => {
         currentFrame,
         currentImgIndex,
         frameCount,
+        itemChosen,
     ]);
 
     return (
