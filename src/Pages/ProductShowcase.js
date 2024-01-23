@@ -5,28 +5,27 @@ const ProductShowcase = () => {
     const el = document.documentElement;
     const canvasRef = useRef();
     const contextRef = useRef();
-    const frameCount = 148;
     const scrollMultiplier = 2;
     const [textVisible, setTextVisible] = useState(false);
     const [currentImgIndex, setCurrentImgIndex] = useState(1);
+    const [itemChosen, setItemChosen] = useState("apple");
+    const frameCount = itemChosen === "apple" ? 148 : 59;
 
-    // const currentFrame = (index) =>
-    //     `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${index
-    //         .toString()
-    //         .padStart(4, "0")}.jpg`;
     const currentFrame = useCallback(
-        (index) =>
-            `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${index
-                .toString()
-                .padStart(4, "0")}.jpg`,
-        []
+        (index) => {
+            if (itemChosen === "apple") {
+                return `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${index
+                    .toString()
+                    .padStart(4, "0")}.jpg`;
+            } else if (itemChosen === "cola") {
+                return `./images/CokeCola/${index.toString()}.png`;
+            } else {
+                return "";
+            }
+        },
+        [itemChosen]
     );
 
-    // const preloadImages = () => {
-    //     Array.from({ length: frameCount - 1 }).forEach(
-    //         (_, i) => (new Image().src = currentFrame(i + 1))
-    //     );
-    // };
     const preloadImages = useCallback(() => {
         Array.from({ length: frameCount - 1 }).forEach(
             (_, i) => (new Image().src = currentFrame(i + 1))
@@ -87,6 +86,12 @@ const ProductShowcase = () => {
                             scrollMultiplier
                     )
                 );
+                if (viewportWidth < 800) {
+                    firstSection.style.fontSize = `${
+                        scrollTop * 4 + 50 * 0.8
+                    }px`;
+                    descriptionSection.style.whiteSpace = "wrap";
+                }
                 firstSection.style.display = "none";
                 textSection.style.position = "static";
                 imageSection.style.position = "fixed";
@@ -121,40 +126,98 @@ const ProductShowcase = () => {
         preloadImages,
         currentFrame,
         currentImgIndex,
+        frameCount,
     ]);
 
     return (
         <div className="showcaseContainer">
-            <section
-                className="firstSection"
-                style={{ display: textVisible ? "none" : "flex" }}
-            >
-                <div className={`firstTextContainer`}>
-                    <h1>Airpods</h1>
-                    <p className="Description">
-                        Products seen here are strictly for the website effects
-                        and are not for sale.{" "}
-                    </p>
-                </div>
-            </section>
-            <section className="canvasSection" style={{ display: "none" }}>
-                <canvas ref={canvasRef} id="hero-lightpass" />
-            </section>
-            <section
-                className="textSection"
-                style={{ display: textVisible ? "block" : "none" }}
-            >
-                <div className="firstTextContainer">
-                    <h1 className="FindYourSound">Find Your Sound</h1>
-                    <a
-                        href="https://www.apple.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
+            <div className="chooseItem">
+                <h2 onClick={() => setItemChosen("apple")}>Apple</h2>
+                <h2
+                    onClick={() => {
+                        setItemChosen("cola");
+                        setCurrentImgIndex(1);
+                    }}
+                >
+                    Coke-Cola
+                </h2>
+            </div>
+            {itemChosen === "apple" && (
+                <div>
+                    <section
+                        className="firstSection"
+                        style={{ display: textVisible ? "none" : "flex" }}
                     >
-                        <p>Shop Here</p>
-                    </a>
+                        <div className={`firstTextContainer`}>
+                            <h1>Airpods</h1>
+                            <p className="Description">
+                                Products seen here are strictly for the website
+                                effects and are not for sale.{" "}
+                            </p>
+                        </div>
+                    </section>
+                    <section
+                        className="canvasSection"
+                        style={{ display: "none" }}
+                    >
+                        <canvas ref={canvasRef} id="hero-lightpass" />
+                    </section>
+                    <section
+                        className="textSection"
+                        style={{ display: textVisible ? "block" : "none" }}
+                    >
+                        <div className="firstTextContainer">
+                            <h1 className="FindYourSound">Find Your Sound</h1>
+                            <a
+                                href="https://www.apple.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <p>Shop Here</p>
+                            </a>
+                        </div>
+                    </section>
                 </div>
-            </section>
+            )}
+            {itemChosen === "cola" && (
+                <div>
+                    <section
+                        className="firstSection"
+                        style={{ display: textVisible ? "none" : "flex" }}
+                    >
+                        <div className={`firstTextContainer`}>
+                            <h1>Testing</h1>
+                            <p className="Description">
+                                Products seen here are strictly for the website
+                                effects and are not for sale.{" "}
+                            </p>
+                        </div>
+                    </section>
+                    <section
+                        className="canvasSection"
+                        style={{ display: "none" }}
+                    >
+                        <canvas ref={canvasRef} id="hero-lightpass" />
+                        <p>HERE</p>
+                    </section>
+                    <section
+                        className="textSection"
+                        style={{ display: textVisible ? "block" : "none" }}
+                    >
+                        <div className="firstTextContainer">
+                            <h1 className="FindYourSound">Find Your Sound</h1>
+                            <a
+                                href="https://www.apple.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <p>Shop Here</p>
+                                <img src="./images/CokeCola/2.png" alt="cola" />
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            )}
         </div>
     );
 };
