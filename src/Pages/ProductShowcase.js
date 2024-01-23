@@ -9,7 +9,7 @@ const ProductShowcase = () => {
     const [textVisible, setTextVisible] = useState(false);
     const [currentImgIndex, setCurrentImgIndex] = useState(1);
     const [itemChosen, setItemChosen] = useState("apple");
-    const frameCount = itemChosen === "apple" ? 148 : 59;
+    const frameCount = itemChosen === "apple" ? 148 : 50;
 
     const currentFrame = useCallback(
         (index) => {
@@ -18,7 +18,7 @@ const ProductShowcase = () => {
                     .toString()
                     .padStart(4, "0")}.jpg`;
             } else if (itemChosen === "cola") {
-                return `./images/CokeCola/${index.toString()}.png`;
+                return `https://raw.githubusercontent.com/jstrande99/jstrande-react/main/src/Pages/images/CokeCola/${index.toString()}.png`;
             } else {
                 return "";
             }
@@ -111,8 +111,13 @@ const ProductShowcase = () => {
                 setTextVisible(true);
             }
 
-            setCurrentImgIndex(frameIndex + 1);
-            requestAnimationFrame(() => updateImage(frameIndex + 1));
+            if (itemChosen === "cola" && frameIndex <= frameCount - 1) {
+                setCurrentImgIndex(frameIndex + 1);
+                requestAnimationFrame(() => updateImage(frameIndex + 1));
+            } else if (itemChosen === "apple") {
+                setCurrentImgIndex(frameIndex + 1);
+                requestAnimationFrame(() => updateImage(frameIndex + 1));
+            }
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -212,7 +217,6 @@ const ProductShowcase = () => {
                                 rel="noopener noreferrer"
                             >
                                 <p>Shop Here</p>
-                                <img src="./images/CokeCola/2.png" alt="cola" />
                             </a>
                         </div>
                     </section>
