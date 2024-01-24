@@ -9,7 +9,7 @@ const ProductShowcase = () => {
     const [textVisible, setTextVisible] = useState(false);
     const [currentImgIndex, setCurrentImgIndex] = useState(1);
     const [itemChosen, setItemChosen] = useState("apple");
-    const frameCount = itemChosen === "apple" ? 148 : 50;
+    const frameCount = itemChosen === "apple" ? 148 : 167;
 
     const currentFrame = useCallback(
         (index) => {
