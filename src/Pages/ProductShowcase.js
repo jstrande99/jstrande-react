@@ -8,23 +8,13 @@ const ProductShowcase = () => {
     const scrollMultiplier = 2;
     const [textVisible, setTextVisible] = useState(false);
     const [currentImgIndex, setCurrentImgIndex] = useState(1);
-    const [itemChosen, setItemChosen] = useState("apple");
-    const frameCount = itemChosen === "apple" ? 148 : 167;
+    const frameCount = 148;
 
-    const currentFrame = useCallback(
-        (index) => {
-            if (itemChosen === "apple") {
-                return `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${index
-                    .toString()
-                    .padStart(4, "0")}.jpg`;
-            } else if (itemChosen === "cola") {
-                return `https://raw.githubusercontent.com/jstrande99/jstrande-react/main/src/Pages/images/CokeCola/${index.toString()}.png`;
-            } else {
-                return "";
-            }
-        },
-        [itemChosen]
-    );
+    const currentFrame = useCallback((index) => {
+        return `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${index
+            .toString()
+            .padStart(4, "0")}.jpg`;
+    }, []);
 
     const preloadImages = useCallback(() => {
         Array.from({ length: frameCount - 1 }).forEach(
@@ -39,8 +29,8 @@ const ProductShowcase = () => {
 
         const img = new Image();
         img.onload = () => {
-            canvas.width = 579; // Adjusted width (half of 1158)
-            canvas.height = 385; // Adjusted height (half of 770)
+            canvas.width = 579;
+            canvas.height = 385;
             context.drawImage(img, 0, 0, canvas.width, canvas.height);
         };
         img.src = currentFrame(currentImgIndex);
@@ -53,13 +43,17 @@ const ProductShowcase = () => {
         const firstSection = document.querySelector(".firstSection");
         const textSection = document.querySelector(".textSection");
         const imageSection = document.querySelector(".canvasSection");
+        const videoComponent = document.querySelector(".video");
         const descriptionSection = document.querySelector(".Description");
+        const tvComponent = document.querySelector(".tv");
 
         const handleScroll = () => {
             const scrollTop = el.scrollTop;
             const maxScrollTop = el.scrollHeight - window.innerHeight;
             let frameIndex = 0;
             const viewportWidth = window.innerWidth;
+            const videoSize = 100 - (scrollTop - 1650) * 0.05;
+            const tvSize = 100 - (scrollTop - 1650) * 0.01;
 
             if (scrollTop <= 500) {
                 firstSection.style.display = "flex";
@@ -100,7 +94,7 @@ const ProductShowcase = () => {
                 setTextVisible(false);
             }
 
-            if (scrollTop >= 1650) {
+            if (scrollTop >= 1650 && scrollTop <= 3100) {
                 firstSection.style.display = "none";
                 textSection.style.position = "fixed";
                 textSection.style.display = "block";
@@ -108,16 +102,18 @@ const ProductShowcase = () => {
                 imageSection.style.display = "none";
                 textSection.style.display = "flex";
                 textSection.style.whiteSpace = "nowrap";
-                setTextVisible(true);
+                if (videoSize > 45) {
+                    videoComponent.style.width = `${videoSize}vw`;
+                    if (tvSize > 90) {
+                        tvComponent.style.width = `${tvSize}vw`;
+                    }
+                } else {
+                    videoComponent.style.position = "relative";
+                }
             }
 
-            if (itemChosen === "cola" && frameIndex <= frameCount - 1) {
-                setCurrentImgIndex(frameIndex + 1);
-                requestAnimationFrame(() => updateImage(frameIndex + 1));
-            } else if (itemChosen === "apple") {
-                setCurrentImgIndex(frameIndex + 1);
-                requestAnimationFrame(() => updateImage(frameIndex + 1));
-            }
+            setCurrentImgIndex(frameIndex + 1);
+            requestAnimationFrame(() => updateImage(frameIndex + 1));
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -132,97 +128,58 @@ const ProductShowcase = () => {
         currentFrame,
         currentImgIndex,
         frameCount,
-        itemChosen,
     ]);
 
     return (
         <div className="showcaseContainer">
             <div className="chooseItem">
-                <h2 onClick={() => setItemChosen("apple")}>Apple</h2>
-                <h2
-                    onClick={() => {
-                        setItemChosen("cola");
-                        setCurrentImgIndex(1);
-                    }}
-                >
-                    Coke-Cola
-                </h2>
+                <h2>Find your Apple</h2>
             </div>
-            {itemChosen === "apple" && (
-                <div>
-                    <section
-                        className="firstSection"
-                        style={{ display: textVisible ? "none" : "flex" }}
-                    >
-                        <div className={`firstTextContainer`}>
-                            <h1>Airpods</h1>
-                            <p className="Description">
-                                Products seen here are strictly for the website
-                                effects and are not for sale.{" "}
-                            </p>
-                        </div>
-                    </section>
-                    <section
-                        className="canvasSection"
-                        style={{ display: "none" }}
-                    >
-                        <canvas ref={canvasRef} id="hero-lightpass" />
-                    </section>
-                    <section
-                        className="textSection"
-                        style={{ display: textVisible ? "block" : "none" }}
-                    >
-                        <div className="firstTextContainer">
-                            <h1 className="FindYourSound">Find Your Sound</h1>
-                            <a
-                                href="https://www.apple.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <p>Shop Here</p>
-                            </a>
-                        </div>
-                    </section>
-                </div>
-            )}
-            {itemChosen === "cola" && (
-                <div>
-                    <section
-                        className="firstSection"
-                        style={{ display: textVisible ? "none" : "flex" }}
-                    >
-                        <div className={`firstTextContainer`}>
-                            <h1>Testing</h1>
-                            <p className="Description">
-                                Products seen here are strictly for the website
-                                effects and are not for sale.{" "}
-                            </p>
-                        </div>
-                    </section>
-                    <section
-                        className="canvasSection"
-                        style={{ display: "none" }}
-                    >
-                        <canvas ref={canvasRef} id="hero-lightpass" />
-                        <p>HERE</p>
-                    </section>
-                    <section
-                        className="textSection"
-                        style={{ display: textVisible ? "block" : "none" }}
-                    >
-                        <div className="firstTextContainer">
-                            <h1 className="FindYourSound">Find Your Sound</h1>
-                            <a
-                                href="https://www.apple.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <p>Shop Here</p>
-                            </a>
-                        </div>
-                    </section>
-                </div>
-            )}
+            <div>
+                <section
+                    className="firstSection"
+                    style={{ display: textVisible ? "none" : "flex" }}
+                >
+                    <div className={`firstTextContainer`}>
+                        <h1>Airpods</h1>
+                        <p className="Description">
+                            Products seen here are strictly for the website
+                            effects and are not for sale.{" "}
+                        </p>
+                    </div>
+                </section>
+                <section className="canvasSection" style={{ display: "none" }}>
+                    <canvas ref={canvasRef} id="hero-lightpass" />
+                </section>
+                <section className="textSection">
+                    <video autoPlay muted loop className="video">
+                        <source
+                            src="https://www.apple.com/105/media/us/apple-tv-4k/2022/90c4e81a-c161-4f7f-9ea3-137ffd1054f5/anim/dolby/large_2x.mp4"
+                            type="video/mp4"
+                        />
+                    </video>
+                    <img
+                        src="https://www.apple.com/v/apple-tv-4k/ah/images/overview/performance/home_pod__ds0gcvpbly4i_large.jpg"
+                        alt="tv"
+                        className="tv"
+                    />
+                </section>
+                <section
+                    className="textSection"
+                    style={{ display: textVisible ? "block" : "none" }}
+                >
+                    <div className="firstTextContainer">
+                        <h1 className="FindYourSound">Find Your Sound</h1>
+                        <a
+                            href="https://www.apple.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <p>Shop Here</p>
+                        </a>
+                    </div>
+                </section>
+            </div>
         </div>
     );
 };
