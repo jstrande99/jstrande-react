@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    height: 400vh;
+    height: 550vh;
     background: #000;
 }
 
@@ -39,6 +39,11 @@ canvas {
     font-size: 50px;
 }
 
+.textSection {
+    height: 100vh;
+    top: 0vh;
+    background: white;
+}
 @media (max-width: 600px) {
     .textSection {
         font-size: 25px;
@@ -60,4 +65,13 @@ canvas {
 
 .FindYourSound {
     font-family: 'Snell Roundhand', cursive;
+}
+.video { 
+    z-index: 20;
+}
+.tv { 
+    z-index: 15;
+    width: 90vw;
+    position: fixed;
+    top: 16.5vh;
 }
