@@ -70,6 +70,8 @@ const ProductShowcase = () => {
                 textSection.style.display = "none";
                 imageSection.style.display = "none";
                 firstSection.style.whiteSpace = "nowrap";
+                tvComponent.style.display = "none";
+                videoComponent.style.display = "none";
                 setTextVisible(false);
             } else {
                 frameIndex = Math.max(
@@ -90,6 +92,8 @@ const ProductShowcase = () => {
                 textSection.style.position = "static";
                 imageSection.style.position = "fixed";
                 textSection.style.display = "none";
+                tvComponent.style.display = "none";
+                videoComponent.style.display = "none";
                 imageSection.style.display = "block";
                 setTextVisible(false);
             }
@@ -98,6 +102,8 @@ const ProductShowcase = () => {
                 firstSection.style.display = "none";
                 textSection.style.position = "fixed";
                 textSection.style.display = "block";
+                tvComponent.style.display = "block";
+                videoComponent.style.display = "block";
                 imageSection.style.position = "static";
                 imageSection.style.display = "none";
                 textSection.style.display = "flex";
