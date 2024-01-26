@@ -72,7 +72,29 @@ const ProductShowcase = () => {
                 firstSection.style.whiteSpace = "nowrap";
                 tvComponent.style.display = "none";
                 videoComponent.style.display = "none";
+                tvComponent.style.position = "static";
+                videoComponent.style.position = "static";
                 setTextVisible(false);
+            } else if (scrollTop >= 1650 && scrollTop <= 3100) {
+                firstSection.style.display = "none";
+                textSection.style.position = "fixed";
+                textSection.style.display = "block";
+                tvComponent.style.display = "block";
+                videoComponent.style.display = "block";
+                imageSection.style.position = "static";
+                imageSection.style.display = "none";
+                textSection.style.display = "flex";
+                textSection.style.whiteSpace = "nowrap";
+                tvComponent.style.position = "fixed";
+                videoComponent.style.position = "fixed";
+                if (videoSize > 45) {
+                    videoComponent.style.width = `${videoSize}vw`;
+                    if (tvSize > 90) {
+                        tvComponent.style.width = `${tvSize}vw`;
+                    }
+                } else {
+                    videoComponent.style.position = "relative";
+                }
             } else {
                 frameIndex = Math.max(
                     0,
@@ -95,27 +117,9 @@ const ProductShowcase = () => {
                 tvComponent.style.display = "none";
                 videoComponent.style.display = "none";
                 imageSection.style.display = "block";
+                tvComponent.style.position = "static";
+                videoComponent.style.position = "static";
                 setTextVisible(false);
-            }
-
-            if (scrollTop >= 1650 && scrollTop <= 3100) {
-                firstSection.style.display = "none";
-                textSection.style.position = "fixed";
-                textSection.style.display = "block";
-                tvComponent.style.display = "block";
-                videoComponent.style.display = "block";
-                imageSection.style.position = "static";
-                imageSection.style.display = "none";
-                textSection.style.display = "flex";
-                textSection.style.whiteSpace = "nowrap";
-                if (videoSize > 45) {
-                    videoComponent.style.width = `${videoSize}vw`;
-                    if (tvSize > 90) {
-                        tvComponent.style.width = `${tvSize}vw`;
-                    }
-                } else {
-                    videoComponent.style.position = "relative";
-                }
             }
 
             setCurrentImgIndex(frameIndex + 1);
@@ -157,7 +161,7 @@ const ProductShowcase = () => {
                 <section className="canvasSection" style={{ display: "none" }}>
                     <canvas ref={canvasRef} id="hero-lightpass" />
                 </section>
-                <section className="textSection">
+                <section className="textSection" style={{ display: "none" }}>
                     <video autoPlay muted loop className="video">
                         <source
                             src="https://www.apple.com/105/media/us/apple-tv-4k/2022/90c4e81a-c161-4f7f-9ea3-137ffd1054f5/anim/dolby/large_2x.mp4"
@@ -170,7 +174,7 @@ const ProductShowcase = () => {
                         className="tv"
                     />
                 </section>
-                <section
+                {/* <section
                     className="textSection"
                     style={{ display: textVisible ? "block" : "none" }}
                 >
@@ -184,7 +188,7 @@ const ProductShowcase = () => {
                             <p>Shop Here</p>
                         </a>
                     </div>
-                </section>
+                </section> */}
             </div>
         </div>
     );
