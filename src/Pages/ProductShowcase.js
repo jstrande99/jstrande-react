@@ -142,9 +142,6 @@ const ProductShowcase = () => {
 
     return (
         <div className="showcaseContainer">
-            <div className="chooseItem">
-                <h2>Find your Apple</h2>
-            </div>
             <div>
                 <section
                     className="firstSection"
@@ -162,7 +159,13 @@ const ProductShowcase = () => {
                     <canvas ref={canvasRef} id="hero-lightpass" />
                 </section>
                 <section className="textSection" style={{ display: "none" }}>
-                    <video autoPlay muted loop className="video">
+                    <video
+                        autoPlay
+                        muted
+                        loop
+                        className="video"
+                        disablePictureInPicture
+                    >
                         <source
                             src="https://www.apple.com/105/media/us/apple-tv-4k/2022/90c4e81a-c161-4f7f-9ea3-137ffd1054f5/anim/dolby/large_2x.mp4"
                             type="video/mp4"
