@@ -52,8 +52,8 @@ const ProductShowcase = () => {
             const maxScrollTop = el.scrollHeight - window.innerHeight;
             let frameIndex = 0;
             const viewportWidth = window.innerWidth;
-            const videoSize = 100 - (scrollTop - 1650) * 0.05;
-            const tvSize = 100 - (scrollTop - 1650) * 0.01;
+            const videoSize = 100 - (scrollTop - 1750) * 0.05;
+            const tvSize = 100 - (scrollTop - 1750) * 0.01;
 
             if (scrollTop <= 500) {
                 firstSection.style.display = "flex";
@@ -75,7 +75,7 @@ const ProductShowcase = () => {
                 tvComponent.style.position = "static";
                 videoComponent.style.position = "static";
                 setTextVisible(false);
-            } else if (scrollTop >= 1650 && scrollTop <= 3100) {
+            } else if (scrollTop >= 1750 && scrollTop <= 3200) {
                 firstSection.style.display = "none";
                 textSection.style.position = "fixed";
                 textSection.style.display = "block";
