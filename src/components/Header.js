@@ -25,13 +25,6 @@ const Nav = styled.nav`
 	margin: 0 auto;
 `;
 
-const Logo = styled.h1`
-	font-size: 1.5rem;
-	font-weight: 700;
-	color: ${({ theme, scrolled }) =>
-		scrolled ? theme.colors.primary : theme.colors.white};
-`;
-
 const NavLinks = styled.ul`
 	display: flex;
 	list-style: none;
