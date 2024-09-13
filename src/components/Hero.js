@@ -1,5 +1,5 @@
 // src/components/Hero.js
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { Typewriter } from "react-simple-typewriter";
 import { Link } from "react-scroll";
@@ -20,8 +20,8 @@ const StarCanvas = styled.canvas`
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 `;
 
 const HeroContent = styled.div`
@@ -71,6 +71,8 @@ const StyledTypewriter = styled.span`
 
 function Hero() {
 	const canvasRef = useRef(null);
+	// eslint-disable-next-line
+	const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
 	useEffect(() => {
 		const canvas = canvasRef.current;
@@ -79,31 +81,34 @@ function Hero() {
 		let mouseX = 0;
 		let mouseY = 0;
 
-		// Set canvas size
+		// Set canvas size and update dimensions
 		const setCanvasSize = () => {
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
+			const { innerWidth, innerHeight } = window;
+			canvas.width = innerWidth;
+			canvas.height = innerHeight;
+			setDimensions({ width: innerWidth, height: innerHeight });
 		};
 
 		// Create stars
-		const stars = [];
-		const numStars = 400;
-		const maxDistance = 150;
-
-		for (let i = 0; i < numStars; i++) {
-			stars.push({
-				x: Math.random() * canvas.width,
-				y: Math.random() * canvas.height,
-				radius: Math.random() * 1.5 + 0.5,
-				originalX: 0,
-				originalY: 0,
-			});
-		}
+		const createStars = () => {
+			const numStars = 400;
+			const stars = [];
+			for (let i = 0; i < numStars; i++) {
+				stars.push({
+					x: Math.random() * canvas.width,
+					y: Math.random() * canvas.height,
+					radius: Math.random() * 1.5 + 0.5,
+					originalX: Math.random() * canvas.width,
+					originalY: Math.random() * canvas.height,
+				});
+			}
+			return stars;
+		};
 
 		// Update star positions
-		const updateStars = () => {
-			for (let i = 0; i < numStars; i++) {
-				const star = stars[i];
+		const updateStars = (stars) => {
+			const maxDistance = 150;
+			stars.forEach((star) => {
 				const dx = mouseX - star.x;
 				const dy = mouseY - star.y;
 				const distance = Math.sqrt(dx * dx + dy * dy);
@@ -117,27 +122,25 @@ function Hero() {
 					star.x += (star.originalX - star.x) * 0.05;
 					star.y += (star.originalY - star.y) * 0.05;
 				}
-			}
+			});
 		};
 
 		// Draw stars
-		const drawStars = () => {
+		const drawStars = (stars) => {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.fillStyle = "white";
-
-			for (let i = 0; i < numStars; i++) {
-				const star = stars[i];
+			stars.forEach((star) => {
 				ctx.beginPath();
 				ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
 				ctx.fill();
-			}
+			});
 		};
 
 		// Animation loop
-		const animate = () => {
-			updateStars();
-			drawStars();
-			animationFrameId = requestAnimationFrame(animate);
+		const animate = (stars) => {
+			updateStars(stars);
+			drawStars(stars);
+			animationFrameId = requestAnimationFrame(() => animate(stars));
 		};
 
 		// Handle mouse movement
@@ -147,18 +150,28 @@ function Hero() {
 		};
 
 		// Initialize
-		setCanvasSize();
-		for (let i = 0; i < numStars; i++) {
-			stars[i].originalX = stars[i].x;
-			stars[i].originalY = stars[i].y;
-		}
-		animate();
+		const init = () => {
+			setCanvasSize();
+			const stars = createStars();
+			animate(stars);
+		};
 
-		window.addEventListener("resize", setCanvasSize);
+		// Delay initialization slightly to ensure proper sizing
+		const timer = setTimeout(init, 100);
+
+		// Handle window resize
+		const handleResize = () => {
+			setCanvasSize();
+			cancelAnimationFrame(animationFrameId);
+			init();
+		};
+
+		window.addEventListener("resize", handleResize);
 		window.addEventListener("mousemove", handleMouseMove);
 
 		return () => {
-			window.removeEventListener("resize", setCanvasSize);
+			clearTimeout(timer);
+			window.removeEventListener("resize", handleResize);
 			window.removeEventListener("mousemove", handleMouseMove);
 			cancelAnimationFrame(animationFrameId);
 		};
