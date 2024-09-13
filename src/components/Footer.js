@@ -1,38 +1,25 @@
 // src/components/Footer.js
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
-import { gsap } from "gsap";
 
 const FooterSection = styled.footer`
 	padding: 2rem;
-	background-color: #333;
+	background-color: #f8f9fa;
 	text-align: center;
 `;
 
 const FooterText = styled.p`
-	color: #fff;
+	color: #694901;
 	font-size: 1rem;
 `;
 
 function Footer() {
 	const footerRef = useRef(null);
 
-	useEffect(() => {
-		gsap.from(footerRef.current, {
-			opacity: 0,
-			y: 20,
-			duration: 1,
-			scrollTrigger: {
-				trigger: footerRef.current,
-				start: "top bottom",
-			},
-		});
-	}, []);
-
 	return (
 		<FooterSection ref={footerRef}>
 			<FooterText>
-				&copy; {new Date().getFullYear()} Your Name. All rights reserved.
+				&copy; {new Date().getFullYear()} All rights reserved.
 			</FooterText>
 		</FooterSection>
 	);
