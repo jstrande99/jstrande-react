@@ -9,8 +9,7 @@ const NavbarContainer = styled.header`
 	left: 0;
 	right: 0;
 	z-index: 1000;
-	background-color: ${({ theme, scrolled }) =>
-		scrolled ? theme.colors.white : "transparent"};
+	background-color: black;
 	transition: background-color 0.3s ease;
 	box-shadow: ${({ scrolled }) =>
 		scrolled ? "0 2px 4px rgba(0,0,0,0.1)" : "none"};
@@ -39,8 +38,7 @@ const NavItem = styled.li`
 const NavLink = styled(Link)`
 	font-weight: 500;
 	cursor: pointer;
-	color: ${({ theme, scrolled }) =>
-		scrolled ? theme.colors.text : theme.colors.white};
+	color: ${({ theme }) => theme.colors.white};
 	transition: color 0.3s ease;
 
 	&:hover {

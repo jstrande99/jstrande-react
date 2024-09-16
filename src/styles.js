@@ -48,12 +48,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${({ theme }) => theme.colors.primary};
+    color: #ffd791;
     text-decoration: none;
     transition: color 0.3s ease;
 
     &:hover {
-      color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.primary};
     }
   }
 

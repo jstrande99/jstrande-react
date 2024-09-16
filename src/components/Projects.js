@@ -1,24 +1,30 @@
-// src/components/Projects.js
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const ProjectsSection = styled.section`
+	position: relative;
 	padding: 5rem 0;
-	background-color: ${({ theme }) => theme.colors.background};
+	background-color: black;
+	color: white;
+	overflow: hidden;
+`;
+
+const StarCanvas = styled.canvas`
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
 `;
 
 const Container = styled.div`
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 0 2rem;
-`;
-
-const SectionTitle = styled.h2`
-	font-size: 2.5rem;
-	text-align: center;
-	margin-bottom: 3rem;
-	color: ${({ theme }) => theme.colors.primary};
+	position: relative;
+	z-index: 1;
 `;
 
 const ProjectGrid = styled.div`
@@ -28,10 +34,16 @@ const ProjectGrid = styled.div`
 `;
 
 const ProjectCard = styled(motion.div)`
-	background-color: transparent;
 	width: 100%;
 	height: 400px;
 	perspective: 1000px;
+	background-color: transparent !important;
+	border: 2px solid transparent !important;
+	background-image: linear-gradient(black, black),
+		linear-gradient(90deg, #ffd791, #694901) !important;
+	background-origin: border-box !important;
+	background-clip: padding-box, border-box !important;
+	border-radius: 10px;
 `;
 
 const CardInner = styled(motion.div)`
@@ -54,7 +66,7 @@ const CardFace = styled.div`
 `;
 
 const CardFront = styled(CardFace)`
-	background-color: ${({ theme }) => theme.colors.white};
+	background-color: transparent !important;
 `;
 
 const CardBack = styled(CardFace)`
@@ -76,8 +88,8 @@ const ProjectIframeContainer = styled.div`
 `;
 
 const ProjectIframe = styled.iframe`
-	width: 1280px; // Standard desktop width
-	height: 800px; // Approximate height for 16:10 aspect ratio
+	width: 1280px;
+	height: 800px;
 	border: none;
 	pointer-events: none;
 	transform: scale(0.3);
@@ -89,12 +101,13 @@ const ProjectIframe = styled.iframe`
 
 const ProjectContent = styled.div`
 	padding: 1.5rem;
+	background-color: transparent !important;
 `;
 
 const ProjectTitle = styled.h3`
 	font-size: 1.5rem;
 	margin-bottom: 0.5rem;
-	color: ${({ theme }) => theme.colors.text};
+	color: white;
 `;
 
 const ProjectTitleBack = styled.h3`
@@ -211,11 +224,112 @@ const projects = [
 
 function Projects() {
 	const [hoveredCard, setHoveredCard] = useState(null);
+	const canvasRef = useRef(null);
+
+	useEffect(() => {
+		const canvas = canvasRef.current;
+		const ctx = canvas.getContext("2d");
+		let particlesArray = [];
+		const numberOfParticles = 180;
+
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+
+		class Particle {
+			constructor(x, y, directionX, directionY, size, color) {
+				this.x = x;
+				this.y = y;
+				this.directionX = directionX;
+				this.directionY = directionY;
+				this.size = size;
+				this.color = color;
+				this.opacity = 0.05;
+			}
+
+			draw() {
+				ctx.beginPath();
+				ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+				ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+				ctx.fill();
+			}
+
+			update() {
+				if (this.x > canvas.width || this.x < 0) {
+					this.directionX = -this.directionX;
+				}
+				if (this.y > canvas.height || this.y < 0) {
+					this.directionY = -this.directionY;
+				}
+
+				this.x += this.directionX * 0.6;
+				this.y += this.directionY * 0.6;
+
+				this.draw();
+			}
+		}
+
+		function init() {
+			particlesArray = [];
+			for (let i = 0; i < numberOfParticles; i++) {
+				let size = Math.random() * 3 + 1;
+				let x = Math.random() * canvas.width;
+				let y = Math.random() * canvas.height;
+				let directionX = Math.random() * 2 - 1;
+				let directionY = Math.random() * 2 - 1;
+
+				particlesArray.push(new Particle(x, y, directionX, directionY, size));
+			}
+		}
+
+		function animate() {
+			requestAnimationFrame(animate);
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			for (let i = 0; i < particlesArray.length; i++) {
+				particlesArray[i].update();
+			}
+			connect();
+		}
+
+		function connect() {
+			for (let a = 0; a < particlesArray.length; a++) {
+				for (let b = a + 1; b < particlesArray.length; b++) {
+					let distance =
+						(particlesArray[a].x - particlesArray[b].x) *
+							(particlesArray[a].x - particlesArray[b].x) +
+						(particlesArray[a].y - particlesArray[b].y) *
+							(particlesArray[a].y - particlesArray[b].y);
+
+					if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+						ctx.strokeStyle = `rgba(255, 255, 255, 0.05)`;
+						ctx.lineWidth = 1;
+						ctx.beginPath();
+						ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+						ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+						ctx.stroke();
+					}
+				}
+			}
+		}
+
+		init();
+		animate();
+
+		window.addEventListener("resize", function () {
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			init();
+		});
+
+		return () => {
+			window.removeEventListener("resize", init);
+		};
+	}, []);
 
 	return (
 		<ProjectsSection id="projects">
+			<StarCanvas ref={canvasRef} />
 			<Container>
-				<SectionTitle>My Projects</SectionTitle>
 				<ProjectGrid>
 					{projects.map((project) => (
 						<ProjectCard
