@@ -70,7 +70,12 @@ const CardFront = styled(CardFace)`
 `;
 
 const CardBack = styled(CardFace)`
-	background-color: ${({ theme }) => theme.colors.primary};
+	background-color: transparent !important;
+	border: 2px solid transparent !important;
+	background-image: linear-gradient(transparent, transparent),
+		linear-gradient(90deg, #ffd791, #694901) !important;
+	background-origin: border-box !important;
+	background-clip: padding-box, border-box !important;
 	color: ${({ theme }) => theme.colors.white};
 	transform: rotateY(180deg);
 	display: flex;
@@ -130,7 +135,7 @@ const TagContainer = styled.div`
 `;
 
 const Tag = styled.span`
-	background-color: ${({ theme }) => theme.colors.secondary};
+	background-color: black;
 	color: ${({ theme }) => theme.colors.white};
 	padding: 0.25rem 0.5rem;
 	border-radius: 4px;
