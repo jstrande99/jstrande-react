@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+  node_version = "20"
+
+# Ensure SPA routes work (also have _redirects in public/)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+
