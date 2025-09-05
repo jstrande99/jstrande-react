@@ -155,6 +155,9 @@ function About() {
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg"
               alt="JavaScript"
+              style={{
+                filter: "invert(100%) brightness(100%) saturate(100%)",
+              }}
             />
             <span>JavaScript</span>
           </GlassSurface>
@@ -182,6 +185,31 @@ function About() {
               alt="React"
             />
             <span>React</span>
+          </GlassSurface>
+        </Badge>
+        <Badge>
+          <GlassSurface
+            width={200}
+            height={80}
+            borderRadius={24}
+            // backgroundOpacity={0.1}
+            // saturation={1}
+            // blur={10}
+            borderWidth={0.5}
+            displace={0.9}
+            distortionScale={-180}
+            redOffset={0}
+            greenOffset={10}
+            blueOffset={20}
+            brightness={50}
+            opacity={0.9}
+            // mixBlendMode="screen"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg"
+              alt="SQL"
+            />
+            <span>SQL</span>
           </GlassSurface>
         </Badge>
         <Badge>
@@ -516,6 +544,131 @@ function About() {
               alt="HTML5"
             />
             <span>HTML5</span>
+          </GlassSurface>
+        </Badge>
+        <Badge>
+          <GlassSurface
+            width={200}
+            height={80}
+            borderRadius={24}
+            // backgroundOpacity={0.1}
+            // saturation={1}
+            // blur={10}
+            borderWidth={0.5}
+            displace={0.9}
+            distortionScale={-180}
+            redOffset={0}
+            greenOffset={10}
+            blueOffset={20}
+            brightness={50}
+            opacity={0.9}
+            // mixBlendMode="screen"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"
+              alt="AWS"
+            />
+            <span>AWS</span>
+          </GlassSurface>
+        </Badge>
+        <Badge>
+          <GlassSurface
+            width={200}
+            height={80}
+            borderRadius={24}
+            // backgroundOpacity={0.1}
+            // saturation={1}
+            // blur={10}
+            borderWidth={0.5}
+            displace={0.9}
+            distortionScale={-180}
+            redOffset={0}
+            greenOffset={10}
+            blueOffset={20}
+            brightness={50}
+            opacity={0.9}
+            // mixBlendMode="screen"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg"
+              alt="Google Cloud"
+            />
+            <span>G Cloud</span>
+          </GlassSurface>
+        </Badge>
+        <Badge>
+          <GlassSurface
+            width={200}
+            height={80}
+            borderRadius={24}
+            // backgroundOpacity={0.1}
+            // saturation={1}
+            // blur={10}
+            borderWidth={0.5}
+            displace={0.9}
+            distortionScale={-180}
+            redOffset={0}
+            greenOffset={10}
+            blueOffset={20}
+            brightness={50}
+            opacity={0.9}
+            // mixBlendMode="screen"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg"
+              alt="TensorFlow"
+            />
+            <span>TensorFlow</span>
+          </GlassSurface>
+        </Badge>
+        <Badge>
+          <GlassSurface
+            width={200}
+            height={80}
+            borderRadius={24}
+            // backgroundOpacity={0.1}
+            // saturation={1}
+            // blur={10}
+            borderWidth={0.5}
+            displace={0.9}
+            distortionScale={-180}
+            redOffset={0}
+            greenOffset={10}
+            blueOffset={20}
+            brightness={50}
+            opacity={0.9}
+            // mixBlendMode="screen"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg"
+              alt="Bootstrap"
+            />
+            <span>Bootstrap</span>
+          </GlassSurface>
+        </Badge>
+        <Badge>
+          <GlassSurface
+            width={200}
+            height={80}
+            borderRadius={24}
+            // backgroundOpacity={0.1}
+            // saturation={1}
+            // blur={10}
+            borderWidth={0.5}
+            displace={0.9}
+            distortionScale={-180}
+            redOffset={0}
+            greenOffset={10}
+            blueOffset={20}
+            brightness={50}
+            opacity={0.9}
+            // mixBlendMode="screen"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg"
+              alt="Pytorch"
+            />
+            <span>Pytorch</span>
           </GlassSurface>
         </Badge>
       </BadgeGrid>

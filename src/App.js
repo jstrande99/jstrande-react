@@ -33,7 +33,7 @@ function App() {
       <GlobalStyle />
       <BackgroundLayer>
         <LiquidEther
-          colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
+          colors={["#ffdf00", "#b09400", "#c9bc04"]}
           mouseForce={30}
           cursorSize={100}
           isViscous={false}
