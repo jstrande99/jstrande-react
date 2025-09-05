@@ -2,28 +2,26 @@
 import { createGlobalStyle } from "styled-components";
 
 export const theme = {
-	colors: {
-		primary: "#694901",
-		secondary: "#6c757d",
-		background: "#f8f9fa",
-		text: "#333333",
-		lightText: "#6c757d",
-		white: "#ffffff",
-	},
-	fonts: {
-		main: "'Poppins', sans-serif",
-		heading: "'Playfair Display', serif",
-	},
-	breakpoints: {
-		mobile: "576px",
-		tablet: "768px",
-		desktop: "992px",
-	},
+  colors: {
+    primary: "#f7bf22",
+    secondary: "#6c757d",
+    background: "#f8f9fa",
+    text: "#333333",
+    lightText: "#6c757d",
+    white: "#ffffff",
+  },
+  fonts: {
+    main: "'Poppins', sans-serif",
+    heading: "'Playfair Display', serif",
+  },
+  breakpoints: {
+    mobile: "576px",
+    tablet: "768px",
+    desktop: "992px",
+  },
 };
 
 export const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
-
   *, *::before, *::after {
     box-sizing: border-box;
   }
