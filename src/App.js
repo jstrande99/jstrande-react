@@ -1,5 +1,6 @@
 // src/App.js
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import styled from "styled-components";
 import { GlobalStyle, theme } from "./styles";
@@ -33,29 +34,38 @@ function App() {
       <BackgroundLayer>
         <LiquidEther
           colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
-          mouseForce={14}
-          cursorSize={80}
+          mouseForce={30}
+          cursorSize={100}
           isViscous={false}
-          viscous={24}
-          iterationsViscous={12}
-          iterationsPoisson={12}
-          resolution={0.38}
+          viscous={30}
+          iterationsViscous={32}
+          iterationsPoisson={32}
+          resolution={0.5}
           isBounce={false}
           autoDemo={true}
-          autoSpeed={0.35}
-          autoIntensity={1.6}
+          autoSpeed={0.5}
+          autoIntensity={2.2}
           takeoverDuration={0.25}
-          autoResumeDelay={1500}
-          autoRampDuration={0.6}
+          autoResumeDelay={3000}
+          autoRampDuration={0.4}
         />
       </BackgroundLayer>
       <ContentLayer>
         <Header />
         <main>
-          <Hero />
-          <About />
-          <Projects />
-          <Contact />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Hero />
+                  <About />
+                </>
+              }
+            />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
         </main>
       </ContentLayer>
     </ThemeProvider>

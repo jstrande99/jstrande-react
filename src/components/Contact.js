@@ -137,6 +137,7 @@ function Contact() {
 
   // eslint-disable-next-line
   const contactRef = useRef(null);
+  // eslint-disable-next-line
   const canvasRef = useRef(null);
   const sectionRef = useRef(null);
 
@@ -156,7 +157,6 @@ function Contact() {
 
   return (
     <ContactSection id="contact" ref={sectionRef}>
-      {/* global background handles visuals */}
       <ContactContainer>
         <ContactInfo>
           <Heading>Get in Touch</Heading>

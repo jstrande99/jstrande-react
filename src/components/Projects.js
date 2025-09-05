@@ -233,7 +233,6 @@ function Projects() {
 
   return (
     <ProjectsSection id="projects" ref={sectionRef}>
-      {/* global background handles visuals */}
       <Container>
         <ProjectGrid>
           {projects.map((project) => (

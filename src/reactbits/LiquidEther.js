@@ -85,12 +85,11 @@ export default function LiquidEther({
       }
       init(container) {
         this.container = container;
-        this.pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+        this.pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
         this.resize();
         this.renderer = new THREE.WebGLRenderer({
-          antialias: false,
+          antialias: true,
           alpha: true,
-          powerPreference: "high-performance",
         });
         this.renderer.autoClear = false;
         this.renderer.setClearColor(new THREE.Color(0x000000), 0);
@@ -126,8 +125,6 @@ export default function LiquidEther({
         this.diff = new THREE.Vector2();
         this.timer = null;
         this.container = null;
-        this._lastClientX = null;
-        this._lastClientY = null;
         this._onMouseMove = this.onDocumentMouseMove.bind(this);
         this._onTouchStart = this.onDocumentTouchStart.bind(this);
         this._onTouchMove = this.onDocumentTouchMove.bind(this);
@@ -212,16 +209,7 @@ export default function LiquidEther({
         this.mouseMoved = true;
       }
       onDocumentMouseMove(event) {
-        // Only treat as interaction if movement exceeds a small threshold
-        let movedEnough = true;
-        if (this._lastClientX !== null && this._lastClientY !== null) {
-          const dx = event.clientX - this._lastClientX;
-          const dy = event.clientY - this._lastClientY;
-          movedEnough = Math.hypot(dx, dy) > 0.75;
-        }
-        this._lastClientX = event.clientX;
-        this._lastClientY = event.clientY;
-        if (movedEnough && this.onInteract) this.onInteract();
+        if (this.onInteract) this.onInteract();
         if (this.isAutoActive && !this.hasUserControl && !this.takeoverActive) {
           const rect = this.container.getBoundingClientRect();
           const nx = (event.clientX - rect.left) / rect.width;
@@ -235,15 +223,6 @@ export default function LiquidEther({
           return;
         }
         this.setCoords(event.clientX, event.clientY);
-        // Mark hover state based on container bounds even when no mouseenter/leave fires
-        if (this.container) {
-          const rect = this.container.getBoundingClientRect();
-          this.isHoverInside =
-            event.clientX >= rect.left &&
-            event.clientX <= rect.right &&
-            event.clientY >= rect.top &&
-            event.clientY <= rect.bottom;
-        }
         this.hasUserControl = true;
       }
       onDocumentTouchStart(event) {
@@ -331,13 +310,8 @@ export default function LiquidEther({
           if (this.active) this.forceStop();
           return;
         }
-        // Release user control after idle so auto can resume
-        this.mouse.hasUserControl = false;
-        // Allow auto-motion even when cursor is over the canvas,
-        // as long as the user hasn't interacted recently and isn't moving
-        // Do not block auto when hover is inside; let it co-exist unless actively moving
-        if (this.mouse.isHoverInside && this.mouse.mouseMoved) {
-          // brief pause this frame only, but don't forceStop
+        if (this.mouse.isHoverInside) {
+          if (this.active) this.forceStop();
           return;
         }
         if (!this.active) {
@@ -652,43 +626,6 @@ export default function LiquidEther({
       update(props) {
         const forceX = (Mouse.diff.x / 2) * props.mouse_force;
         const forceY = (Mouse.diff.y / 2) * props.mouse_force;
-        // Random burst impulses: short, decaying pushes at random intervals
-        const t = Common.time;
-        if (this.nextBurstTime === undefined) {
-          this.nextBurstTime = 0;
-          this.burstStart = 0;
-          this.burstDuration = 0;
-          this.burstAmp = 0;
-          this.burstDir = new THREE.Vector2(0, 0);
-        }
-        if (t >= this.nextBurstTime) {
-          const moving = !!Mouse.mouseMoved;
-          // Slower cadence between bursts
-          const minGap = moving ? 1.6 : 1.2;
-          const maxGap = moving ? 3.0 : 2.0;
-          this.nextBurstTime = t + (minGap + Math.random() * (maxGap - minGap));
-          this.burstStart = t;
-          // Longer burst duration (0.5–1.3s)
-          this.burstDuration = 0.5 + Math.random() * 0.8;
-          const base = props.mouse_force;
-          // Slightly gentler amplitude to match longer duration
-          const ampFactor = moving ? 0.08 : 0.12;
-          this.burstAmp = base * ampFactor;
-          const theta = Math.random() * Math.PI * 2;
-          if (!this.burstDir) this.burstDir = new THREE.Vector2();
-          this.burstDir.set(Math.cos(theta), Math.sin(theta));
-        }
-        let burstX = 0;
-        let burstY = 0;
-        const dtBurst = t - this.burstStart;
-        if (dtBurst >= 0 && dtBurst <= this.burstDuration) {
-          const k = dtBurst / this.burstDuration;
-          // Slower decay so bursts feel longer
-          const envelope = Math.exp(-2.5 * k);
-          const s = this.burstAmp * envelope;
-          burstX = this.burstDir.x * s;
-          burstY = this.burstDir.y * s;
-        }
         const cursorSizeX = props.cursor_size * props.cellScale.x;
         const cursorSizeY = props.cursor_size * props.cellScale.y;
         const centerX = Math.min(
@@ -700,7 +637,7 @@ export default function LiquidEther({
           1 - cursorSizeY - props.cellScale.y * 2
         );
         const uniforms = this.mouse.material.uniforms;
-        uniforms.force.value.set(forceX + burstX, forceY + burstY);
+        uniforms.force.value.set(forceX, forceY);
         uniforms.center.value.set(centerX, centerY);
         uniforms.scale.value.set(props.cursor_size, props.cursor_size);
         super.update();
@@ -1038,7 +975,7 @@ export default function LiquidEther({
         this.lastUserInteraction = performance.now();
         Mouse.onInteract = () => {
           this.lastUserInteraction = performance.now();
-          // Don't force-stop auto; we'll blend with user input instead
+          if (this.autoDriver) this.autoDriver.forceStop();
         };
         this.autoDriver = new AutoDriver(Mouse, this, {
           enabled: props.autoDemo,
@@ -1153,8 +1090,7 @@ export default function LiquidEther({
     const io = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        const isVisible =
-          entry.isIntersecting && entry.intersectionRatio >= 0.5;
+        const isVisible = entry.isIntersecting && entry.intersectionRatio > 0;
         isVisibleRef.current = isVisible;
         if (!webglRef.current) return;
         if (isVisible && !document.hidden) {
@@ -1163,7 +1099,7 @@ export default function LiquidEther({
           webglRef.current.pause();
         }
       },
-      { threshold: [0, 0.25, 0.5, 0.75, 1] }
+      { threshold: [0, 0.01, 0.1] }
     );
     io.observe(container);
     intersectionObserverRef.current = io;
