@@ -46,7 +46,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: #ffd791;
+    /* color: #ffd791; */
+    color: ${({ theme }) => theme.colors.primary};
     text-decoration: none;
     transition: color 0.3s ease;
 

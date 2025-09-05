@@ -39,6 +39,7 @@ const Subtitle = styled.h2`
   font-size: 1.5rem;
   font-weight: 400;
   margin-bottom: 2rem;
+  color: ${({ theme }) => theme.colors.lightText};
 
   @media (min-width: 768px) {
     font-size: 2rem;
@@ -60,11 +61,11 @@ const CTAButton = styled(Link)`
   transition: background-color 0.3s ease;
   color: white;
 
-  &:hover {
-    // background-image: linear-gradient(black, black),
-    //   linear-gradient(90deg, #ffd791, #ffd791) !important;
-    color: #ffd791;
-  }
+  // &:hover {
+  //   // background-image: linear-gradient(black, black),
+  //   //   linear-gradient(90deg, #ffd791, #ffd791) !important;
+  //   // color: #ffd791;
+  // }
 `;
 
 const StyledTypewriter = styled.span`

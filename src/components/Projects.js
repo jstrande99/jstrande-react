@@ -1,10 +1,11 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import TiltedCard from "../reactbits/TiltedCard";
+import { Typewriter } from "react-simple-typewriter";
 
 const ProjectsSection = styled.section`
   position: relative;
-  padding: 5rem 0;
+  padding: 0 0 5rem;
   background-color: transparent;
   color: white;
   overflow: hidden;
@@ -28,85 +29,83 @@ const ProjectGrid = styled.div`
   gap: 2rem;
 `;
 
-const ProjectCard = styled(motion.div)`
+const ProjectCard = styled.div`
   width: 100%;
-  height: 400px;
+  height: auto;
+  position: relative;
   perspective: 1000px;
   background-color: transparent !important;
-  border: 2px solid transparent !important;
-  background-image: linear-gradient(black, black),
-    linear-gradient(90deg, #ffd791, #694901) !important;
-  background-origin: border-box !important;
-  background-clip: padding-box, border-box !important;
+  border: none !important;
   border-radius: 10px;
   contain: paint;
 `;
 
-const CardInner = styled(motion.div)`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  will-change: transform;
-  transform: translateZ(0);
-`;
-
-const CardFace = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-`;
-
-const CardFront = styled(CardFace)`
-  background-color: transparent !important;
-`;
-
-const CardBack = styled(CardFace)`
-  background-color: transparent !important;
-  border: 2px solid transparent !important;
-  background-image: linear-gradient(transparent, transparent),
-    linear-gradient(90deg, #ffd791, #694901) !important;
-  background-origin: border-box !important;
-  background-clip: padding-box, border-box !important;
-  color: ${({ theme }) => theme.colors.white};
-  transform: rotateY(180deg);
+const ProjectsHero = styled.div`
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 2rem;
+  justify-content: center;
+  text-align: center;
+  background-color: transparent;
+  color: white;
 `;
 
-const ProjectIframeContainer = styled.div`
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
+const SectionHeader = styled.div`
+  text-align: center;
+  margin: 0 auto 2.5rem;
+  max-width: 800px;
+  padding: 0 1rem;
   position: relative;
+  z-index: 1;
+`;
+// eslint-disable-next-line
+const Eyebrow = styled.span`
+  display: inline-block;
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.lightText};
+  opacity: 0.9;
+  margin-bottom: 0.75rem;
 `;
 
-const ProjectIframe = styled.iframe`
-  width: 1280px;
-  height: 800px;
-  border: none;
-  pointer-events: none;
-  transform: scale(0.3);
-  transform-origin: 0 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  will-change: transform;
-  contain: paint;
+const SectionTitle = styled.h2`
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  color: white;
+
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  }
 `;
 
-const ProjectContent = styled.div`
-  padding: 1.5rem;
-  background-color: transparent !important;
+const SectionSubtitle = styled.p`
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0;
+  color: ${({ theme }) => theme.colors.lightText};
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
+const StyledTypewriter = styled.span`
+  color: #ffffff;
+`;
+
+const SectionUnderline = styled.div`
+  width: 120px;
+  height: 3px;
+  margin: 1.25rem auto 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 215, 145, 0.9),
+    rgba(105, 73, 1, 0.9)
+  );
 `;
 
 const ProjectTitle = styled.h3`
@@ -115,59 +114,34 @@ const ProjectTitle = styled.h3`
   color: white;
 `;
 
-const ProjectTitleBack = styled.h3`
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: ${({ theme }) => theme.colors.white};
-`;
+// removed ProjectTitleBack; using ProjectTitle in overlay instead
 
-const ProjectDescription = styled.p`
-  font-size: 1rem;
-  color: ${({ theme }) => theme.colors.lightText};
-  margin-bottom: 1rem;
-`;
-
-const TagContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 1rem;
-`;
-
-const Tag = styled.span`
-  background-color: black;
-  color: ${({ theme }) => theme.colors.white};
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-`;
-
-const ProjectLink = styled.a`
-  display: inline-block;
-  background-color: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.primary};
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: black;
-    border: 1px solid ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.white};
-  }
-`;
+// cleaned up: removed description/tags/CTA styles to simplify UI
 
 const projects = [
+  {
+    id: 0,
+    title: "Nural Labs AI",
+    description: "AI powered phone agent.",
+    link: "https://www.nurallabs.com",
+    image: "/projects/NuralLabs.png",
+    tags: [
+      "React",
+      "Firebase",
+      "Python",
+      "Node.js",
+      "Render Severs",
+      "Firebase Cloud Functions",
+      "REST-API",
+      "Built Solo",
+    ],
+  },
   {
     id: 0,
     title: "SpinFlow AI",
     description: "AI powered assistant for small and large companies.",
     link: "https://app.spinflow.ai",
+    image: "/projects/SpinFlow.png",
     tags: [
       "React",
       "Firebase",
@@ -185,6 +159,7 @@ const projects = [
     description:
       "A full-stack restaurant website for hosting social events and services.",
     link: "https://tjssportsbarlakewood.com/",
+    image: "/projects/TJsportsBarAndGrill.png",
     tags: ["React", "Node.js", "Firebase"],
   },
   {
@@ -193,91 +168,99 @@ const projects = [
     description:
       "Strande Designs. A showcase of 3D elements, in both a website and E-commerce site.",
     link: "https://strandedesigns.netlify.app",
+    image: "/projects/StrandeDesigns2.png",
     tags: ["React", "THREE.js", "CSS", "Blender", "Firebase"],
   },
-  {
-    id: 3,
-    title: "Coaching Pro App",
-    description: "Sports team tracking system.",
-    link: "https://coachingpro.netlify.app/",
-    tags: ["React", "Firebase", "AWS"],
-  },
+
   {
     id: 4,
     title: "Tail Trails App",
     description: "Pet health and location tracking system via QR codes.",
     link: "https://tailtrails.netlify.app/",
+    image: "/projects/TailTrails.png",
     tags: ["React", "Firebase", "Firebase Cloud Functions"],
   },
-  {
-    id: 5,
-    title: "Intelli AI Software Engineer",
-    description:
-      "One stop shop for developing any React JS site or element. With built in compiler.",
-    link: "https://dreamy-platypus-ai.netlify.app/",
-    tags: ["React", "Firebase", "REST-API", "Render Servers"],
-  },
+
   {
     id: 6,
     title: "Sibling Kinect",
     description:
       "Site to assist children in need find help for them and their family.",
     link: "https://sibling-kinect.netlify.app",
+    image: "/projects/siblingkinnect.png",
     tags: ["React", "Firebase"],
   },
 ];
 
 function Projects() {
-  const [hoveredCard, setHoveredCard] = useState(null);
-  const sectionRef = useRef(null);
-
   return (
-    <ProjectsSection id="projects" ref={sectionRef}>
+    <ProjectsSection id="projects">
+      <ProjectsHero>
+        <Container>
+          <SectionHeader>
+            <SectionTitle>Projects</SectionTitle>
+            <SectionSubtitle>
+              Built with
+              <StyledTypewriter>
+                <Typewriter
+                  words={[
+                    " React JS",
+                    " Python",
+                    " Node JS",
+                    " Firebase",
+                    " Rest API",
+                    " Docker",
+                    " Typescript",
+                  ]}
+                  loop={0}
+                  cursor
+                  cursorStyle="|"
+                  typeSpeed={70}
+                  deleteSpeed={50}
+                  delaySpeed={1200}
+                />
+              </StyledTypewriter>
+            </SectionSubtitle>
+            <SectionUnderline />
+          </SectionHeader>
+        </Container>
+      </ProjectsHero>
       <Container>
         <ProjectGrid>
           {projects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              onMouseEnter={() => setHoveredCard(project.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              <CardInner
-                animate={{ rotateY: hoveredCard === project.id ? 180 : 0 }}
-                transition={{ duration: 0.6 }}
+            <ProjectCard key={project.id}>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "block",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                }}
               >
-                <CardFront>
-                  <ProjectIframeContainer>
-                    <ProjectIframe
-                      loading="lazy"
-                      src={project.link}
-                      title={project.title}
-                      sandbox="allow-scripts allow-same-origin"
-                      allow="payment 'none'"
-                    />
-                  </ProjectIframeContainer>
-                  <ProjectContent>
-                    <ProjectTitle>{project.title}</ProjectTitle>
-                    <ProjectDescription>
-                      {project.description}
-                    </ProjectDescription>
-                  </ProjectContent>
-                </CardFront>
-                <CardBack>
-                  <ProjectTitleBack>{project.title}</ProjectTitleBack>
-                  <TagContainer>
-                    {project.tags.map((tag, index) => (
-                      <Tag key={index}>{tag}</Tag>
-                    ))}
-                  </TagContainer>
-                  <ProjectLink
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Project
-                  </ProjectLink>
-                </CardBack>
-              </CardInner>
+                <TiltedCard
+                  imageSrc={project.image || "/logos/logo512.png"}
+                  altText={project.title}
+                  captionText={project.title}
+                  containerHeight="300px"
+                  containerWidth="100%"
+                  imageHeight="300px"
+                  imageWidth="100%"
+                  rotateAmplitude={10}
+                  scaleOnHover={1.08}
+                  showMobileWarning={false}
+                  showTooltip={false}
+                  displayOverlayContent={true}
+                  overlayContent={
+                    <div style={{ width: "100%", textAlign: "center" }}>
+                      <ProjectTitle style={{ margin: 0 }}>
+                        {project.title}
+                      </ProjectTitle>
+                    </div>
+                  }
+                />
+              </a>
             </ProjectCard>
           ))}
         </ProjectGrid>

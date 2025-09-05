@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import GlassSurface from "../reactbits/GlassSurface";
 
 const AboutSection = styled.section`
   position: relative;
@@ -111,6 +110,22 @@ const Badge = styled.div`
   }
 `;
 
+const BadgesWrapper = styled.div`
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  isolation: isolate;
+`;
+
+const BadgesGlassPane = styled.div`
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+  z-index: 0;
+`;
+
 function About() {
   return (
     <AboutSection id="about">
@@ -120,191 +135,75 @@ function About() {
         </ImageContainer>
         <ContentContainer>
           <Bio>
-            I'm a full-stack developer with a passion for continuous learning.
-            With deep expertise in JavaScript, React, and modern web development
-            technologies, I'm driven by creativity, logic, and the constant need
-            to explore new things.
+            I’m an AI & Full-Stack Developer with a passion for continuous
+            learning and building impactful software. With expertise in
+            JavaScript, React, Node.js, Python, and modern cloud technologies, I
+            thrive at the intersection of creativity and logic, developing
+            applications that are as robust on the backend as they are intuitive
+            on the frontend.
           </Bio>
           <Bio>
-            My journey as a developer has led me to master a variety of
-            programming languages and frameworks, and I love crafting intuitive,
-            efficient, and elegant solutions for complex problems. When I'm not
-            coding, I enjoy keeping fit and playing guitar.
+            My experience spans designing scalable APIs, orchestrating cloud
+            deployments, and building responsive interfaces — enabling me to
+            deliver solutions that are both technically sound and user-friendly.
+            I enjoy tackling complex challenges, whether it’s optimizing
+            database performance, architecting distributed systems, or crafting
+            clean, maintainable code.
+          </Bio>
+          <Bio>
+            Beyond coding, I bring the same focus and discipline I’ve built as
+            an athlete and lifelong learner. When I’m not developing software, I
+            stay active and continuously explore new technologies to sharpen my
+            skills.
           </Bio>
         </ContentContainer>
       </Container>
-      <BadgeGrid>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+      <BadgesWrapper>
+        <BadgesGlassPane />
+        <BadgeGrid>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg"
               alt="JavaScript"
-              style={{
-                filter: "invert(100%) brightness(100%) saturate(100%)",
-              }}
             />
             <span>JavaScript</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
               alt="React"
             />
             <span>React</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg"
               alt="SQL"
             />
             <span>SQL</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
               alt="CSS3"
             />
             <span>CSS3</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-plain-wordmark.svg"
               alt="Java"
             />
             <span>Java</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-plain-wordmark.svg"
               alt="NodeJS"
             />
             <span>NodeJS</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original-wordmark.svg"
               alt="Git"
@@ -313,26 +212,8 @@ function About() {
               }}
             />
             <span>Git</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
               alt="GitHub"
@@ -341,51 +222,15 @@ function About() {
               }}
             />
             <span>GitHub</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg"
               alt="npm"
             />
             <span>NPM</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"
               alt="NextJS"
@@ -394,284 +239,86 @@ function About() {
               }}
             />
             <span>NextJS</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg"
               alt="C"
             />
             <span>C</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg"
               alt="C++"
             />
             <span>C++</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
               alt="Python"
             />
             <span>Python</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg"
               alt="SQL"
             />
             <span>SQL</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original-wordmark.svg"
               alt="Firebase"
             />
             <span>Firebase</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-plain-wordmark.svg"
               alt="HTML5"
             />
             <span>HTML5</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"
               alt="AWS"
             />
             <span>AWS</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg"
               alt="Google Cloud"
             />
             <span>G Cloud</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg"
               alt="TensorFlow"
             />
             <span>TensorFlow</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg"
               alt="Bootstrap"
             />
             <span>Bootstrap</span>
-          </GlassSurface>
-        </Badge>
-        <Badge>
-          <GlassSurface
-            width={200}
-            height={80}
-            borderRadius={24}
-            // backgroundOpacity={0.1}
-            // saturation={1}
-            // blur={10}
-            borderWidth={0.5}
-            displace={0.9}
-            distortionScale={-180}
-            redOffset={0}
-            greenOffset={10}
-            blueOffset={20}
-            brightness={50}
-            opacity={0.9}
-            // mixBlendMode="screen"
-          >
+          </Badge>
+          <Badge>
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg"
               alt="Pytorch"
             />
             <span>Pytorch</span>
-          </GlassSurface>
-        </Badge>
-      </BadgeGrid>
+          </Badge>
+        </BadgeGrid>
+      </BadgesWrapper>
     </AboutSection>
   );
 }

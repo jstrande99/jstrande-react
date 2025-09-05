@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import styled from "styled-components";
 import { GlobalStyle, theme } from "./styles";
 import Header from "./components/Header";
+import ScrollToTop from "./components/ScrollToTop";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
@@ -51,6 +52,7 @@ function App() {
         />
       </BackgroundLayer>
       <ContentLayer>
+        <ScrollToTop />
         <Header />
         <main>
           <Routes>
