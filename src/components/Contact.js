@@ -13,6 +13,9 @@ const ContactSection = styled.section`
   overflow: hidden;
   content-visibility: auto;
   contain-intrinsic-size: 1000px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 `;
 
 // background is provided globally in App.js
@@ -23,7 +26,9 @@ const ContactContainer = styled.div`
   padding: 0 2rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
   position: relative;
   z-index: 1;
 `;

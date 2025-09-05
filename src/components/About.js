@@ -45,8 +45,7 @@ const ImageContainer = styled.div`
 const ProfileImage = styled.img`
   width: 100%;
   max-width: 300px;
-  border-radius: 75%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
 `;
 
 const ContentContainer = styled.div`
@@ -116,7 +115,7 @@ const BadgesWrapper = styled.div`
   overflow: hidden;
   isolation: isolate;
 `;
-
+/* eslint-disable-next-line */
 const BadgesGlassPane = styled.div`
   position: absolute;
   inset: 0;
@@ -159,7 +158,7 @@ function About() {
         </ContentContainer>
       </Container>
       <BadgesWrapper>
-        <BadgesGlassPane />
+        {/* <BadgesGlassPane /> */}
         <BadgeGrid>
           <Badge>
             <img

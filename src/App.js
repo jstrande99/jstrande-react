@@ -45,7 +45,7 @@ function App() {
           isBounce={false}
           autoDemo={true}
           autoSpeed={0.5}
-          autoIntensity={2.2}
+          autoIntensity={0.5}
           takeoverDuration={0.25}
           autoResumeDelay={3000}
           autoRampDuration={0.4}

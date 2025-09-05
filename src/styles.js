@@ -11,8 +11,8 @@ export const theme = {
     white: "#ffffff",
   },
   fonts: {
-    main: "'Poppins', sans-serif",
-    heading: "'Playfair Display', serif",
+    main: "'Meriva', 'Poppins', sans-serif",
+    heading: "'Meriva', 'Playfair Display', serif",
   },
   breakpoints: {
     mobile: "576px",
