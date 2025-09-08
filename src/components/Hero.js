@@ -1,7 +1,8 @@
+"use client";
 import React from "react";
 import styled from "styled-components";
 import { Typewriter } from "react-simple-typewriter";
-import { Link } from "react-scroll";
+import Link from "next/link";
 import GlassSurface from "../reactbits/GlassSurface";
 
 const HeroSection = styled.section`
@@ -46,7 +47,7 @@ const Subtitle = styled.h2`
   }
 `;
 
-const CTAButton = styled(Link)`
+const CTAButton = styled.a`
   display: inline-block;
   padding: 0.75rem 2rem;
   background-color: transparent !important;
@@ -98,11 +99,13 @@ function Hero() {
             />
           </StyledTypewriter>
         </Subtitle>
-        <CTAButton to="contact" smooth={true} duration={500}>
-          <GlassSurface width={150} height={50} borderRadius={24}>
-            Get in Touch
-          </GlassSurface>
-        </CTAButton>
+        <Link href="/contact" legacyBehavior>
+          <CTAButton>
+            <GlassSurface width={150} height={50} borderRadius={24}>
+              Get in Touch
+            </GlassSurface>
+          </CTAButton>
+        </Link>
       </HeroContent>
     </HeroSection>
   );

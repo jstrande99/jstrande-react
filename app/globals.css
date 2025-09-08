@@ -1,0 +1,12 @@
+@import url("../src/styles/globals.css");
+@import url("../src/reactbits/LiquidEther.css");
+@import url("../src/reactbits/TiltedCard.css");
+@import url("../src/reactbits/GlassSurface.css");
+@import url("../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
+
+html,
+body,
+#__next {
+  height: 100%;
+}
+

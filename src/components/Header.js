@@ -1,7 +1,9 @@
 // src/components/Header.js
+"use client";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { NavLink as RouterNavLink } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import GlassSurface from "../reactbits/GlassSurface";
 
 const NavbarContainer = styled.header`
@@ -36,7 +38,7 @@ const NavItem = styled.li`
   margin-left: 2rem;
 `;
 
-const NavLink = styled(RouterNavLink)`
+const NavAnchor = styled.a`
   font-weight: 500;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.white};
@@ -53,6 +55,7 @@ const NavLink = styled(RouterNavLink)`
 `;
 
 function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -85,73 +88,79 @@ function Header() {
       >
         <NavLinks>
           <NavItem>
-            <NavLink to="/" end>
-              <GlassSurface
-                width={100}
-                height={50}
-                borderRadius={24}
-                // backgroundOpacity={0.1}
-                // saturation={1}
-                // blur={10}
-                borderWidth={0.5}
-                displace={0.9}
-                distortionScale={-180}
-                redOffset={0}
-                greenOffset={10}
-                blueOffset={20}
-                brightness={50}
-                opacity={0.9}
-                // mixBlendMode="screen"
-              >
-                Home
-              </GlassSurface>
-            </NavLink>
+            <Link href="/" legacyBehavior passHref>
+              <NavAnchor className={pathname === "/" ? "active" : ""}>
+                <GlassSurface
+                  width={100}
+                  height={50}
+                  borderRadius={24}
+                  // backgroundOpacity={0.1}
+                  // saturation={1}
+                  // blur={10}
+                  borderWidth={0.5}
+                  displace={0.9}
+                  distortionScale={-180}
+                  redOffset={0}
+                  greenOffset={10}
+                  blueOffset={20}
+                  brightness={50}
+                  opacity={0.9}
+                  // mixBlendMode="screen"
+                >
+                  Home
+                </GlassSurface>
+              </NavAnchor>
+            </Link>
           </NavItem>
           <NavItem>
-            <NavLink to="/projects">
-              <GlassSurface
-                width={100}
-                height={50}
-                borderRadius={24}
-                // backgroundOpacity={0.1}
-                // saturation={1}
-                // blur={10}
-                borderWidth={0.5}
-                displace={0.9}
-                distortionScale={-180}
-                redOffset={0}
-                greenOffset={10}
-                blueOffset={20}
-                brightness={50}
-                opacity={0.9}
-                // mixBlendMode="screen"
-              >
-                Projects
-              </GlassSurface>
-            </NavLink>
+            <Link href="/projects" legacyBehavior passHref>
+              <NavAnchor className={pathname === "/projects" ? "active" : ""}>
+                <GlassSurface
+                  width={100}
+                  height={50}
+                  borderRadius={24}
+                  // backgroundOpacity={0.1}
+                  // saturation={1}
+                  // blur={10}
+                  borderWidth={0.5}
+                  displace={0.9}
+                  distortionScale={-180}
+                  redOffset={0}
+                  greenOffset={10}
+                  blueOffset={20}
+                  brightness={50}
+                  opacity={0.9}
+                  // mixBlendMode="screen"
+                >
+                  Projects
+                </GlassSurface>
+              </NavAnchor>
+            </Link>
           </NavItem>
           <NavItem>
-            <NavLink to="/contact">
-              <GlassSurface
-                width={100}
-                height={50}
-                borderRadius={24}
-                // backgroundOpacity={0.1}
-                // saturation={1}
-                // blur={10}
-                borderWidth={0.5}
-                displace={0.9}
-                distortionScale={-180}
-                redOffset={0}
-                greenOffset={10}
-                blueOffset={20}
-                brightness={50}
-                opacity={0.9}
-                // mixBlendMode="screen"
-              >
-                Contact
-              </GlassSurface>
-            </NavLink>
+            <Link href="/contact" legacyBehavior passHref>
+              <NavAnchor className={pathname === "/contact" ? "active" : ""}>
+                <GlassSurface
+                  width={100}
+                  height={50}
+                  borderRadius={24}
+                  // backgroundOpacity={0.1}
+                  // saturation={1}
+                  // blur={10}
+                  borderWidth={0.5}
+                  displace={0.9}
+                  distortionScale={-180}
+                  redOffset={0}
+                  greenOffset={10}
+                  blueOffset={20}
+                  brightness={50}
+                  opacity={0.9}
+                  // mixBlendMode="screen"
+                >
+                  Contact
+                </GlassSurface>
+              </NavAnchor>
+            </Link>
           </NavItem>
         </NavLinks>
       </Nav>

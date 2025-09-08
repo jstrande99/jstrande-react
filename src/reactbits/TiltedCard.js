@@ -1,3 +1,4 @@
+"use client";
 import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
 import "./TiltedCard.css";
