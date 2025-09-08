@@ -26,6 +26,20 @@ const ContentLayer = styled.div`
 `;
 
 export default function Providers({ children }) {
+  const [mouseForce, setMouseForce] = React.useState(30);
+  const [cursorSize, setCursorSize] = React.useState(100);
+
+  React.useEffect(() => {
+    const updateInteractiveParams = () => {
+      const isLargeViewport = window.matchMedia("(min-width: 3000px)").matches;
+      setMouseForce(isLargeViewport ? 45 : 30);
+      setCursorSize(isLargeViewport ? 140 : 100);
+    };
+
+    updateInteractiveParams();
+    window.addEventListener("resize", updateInteractiveParams);
+    return () => window.removeEventListener("resize", updateInteractiveParams);
+  }, []);
   return (
     <StyledRegistry>
       <ThemeProvider theme={theme}>
@@ -33,8 +47,8 @@ export default function Providers({ children }) {
         <BackgroundLayer>
           <LiquidEther
             colors={["#ffdf00", "#b09400", "#c9bc04"]}
-            mouseForce={30}
-            cursorSize={100}
+            mouseForce={mouseForce}
+            cursorSize={cursorSize}
             isViscous={false}
             viscous={30}
             iterationsViscous={32}
