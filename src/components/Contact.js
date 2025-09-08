@@ -173,7 +173,7 @@ function Contact() {
           <Subheading>Contact Information</Subheading>
           <Text>
             Email:{" "}
-            <a href="mailto:jordan.strande@example.com">
+            <a href="mailto:jordan.strande@jordanstrande.com">
               StrandeJordan@gmail.com
             </a>
           </Text>
