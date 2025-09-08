@@ -138,6 +138,27 @@ function Header() {
             </Link>
           </NavItem>
           <NavItem>
+            <Link href="/resume" legacyBehavior passHref>
+              <NavAnchor className={pathname === "/resume" ? "active" : ""}>
+                <GlassSurface
+                  width={100}
+                  height={50}
+                  borderRadius={24}
+                  borderWidth={0.5}
+                  displace={0.9}
+                  distortionScale={-180}
+                  redOffset={0}
+                  greenOffset={10}
+                  blueOffset={20}
+                  brightness={50}
+                  opacity={0.9}
+                >
+                  Resume
+                </GlassSurface>
+              </NavAnchor>
+            </Link>
+          </NavItem>
+          <NavItem>
             <Link href="/contact" legacyBehavior passHref>
               <NavAnchor className={pathname === "/contact" ? "active" : ""}>
                 <GlassSurface
@@ -158,29 +179,6 @@ function Header() {
                   // mixBlendMode="screen"
                 >
                   Contact
-                </GlassSurface>
-              </NavAnchor>
-            </Link>
-          </NavItem>
-        </NavLinks>
-        <NavLinks>
-          <NavItem>
-            <Link href="/resume" legacyBehavior passHref>
-              <NavAnchor className={pathname === "/resume" ? "active" : ""}>
-                <GlassSurface
-                  width={100}
-                  height={50}
-                  borderRadius={24}
-                  borderWidth={0.5}
-                  displace={0.9}
-                  distortionScale={-180}
-                  redOffset={0}
-                  greenOffset={10}
-                  blueOffset={20}
-                  brightness={50}
-                  opacity={0.9}
-                >
-                  Resume
                 </GlassSurface>
               </NavAnchor>
             </Link>
