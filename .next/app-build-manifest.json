@@ -18,11 +18,10 @@
       "static/css/app/projects/page.css",
       "static/chunks/app/projects/page.js"
     ],
-    "/resume/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/resume/page.css",
-      "static/chunks/app/resume/page.js"
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }

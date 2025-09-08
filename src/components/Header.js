@@ -25,17 +25,28 @@ const Nav = styled.nav`
   padding: 1rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: 576px) {
+    padding: 0.5rem 0.75rem;
+  }
 `;
 
 const NavLinks = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
   margin: 0;
   padding: 0;
+  gap: 0.5rem;
+  justify-content: center;
 `;
 
 const NavItem = styled.li`
   margin-left: 2rem;
+
+  @media (max-width: 576px) {
+    margin: 0 0.5rem 0.5rem;
+  }
 `;
 
 const NavAnchor = styled.a`
@@ -51,6 +62,13 @@ const NavAnchor = styled.a`
 
   &.active {
     color: ${({ theme }) => theme.colors.primary};
+  }
+
+  @media (max-width: 576px) {
+    font-size: 0.9rem;
+    display: inline-block;
+    transform: scale(0.9);
+    transform-origin: center;
   }
 `;
 

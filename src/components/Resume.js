@@ -21,6 +21,11 @@ const ResumeHero = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  @media (max-width: 576px) {
+    min-height: 60vh;
+    padding: 2rem 0 1rem;
+  }
 `;
 
 const Container = styled.div`
@@ -29,6 +34,10 @@ const Container = styled.div`
   padding: 0 2rem;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 576px) {
+    padding: 0 1rem;
+  }
 `;
 
 const HeaderBar = styled.div`
@@ -39,6 +48,11 @@ const HeaderBar = styled.div`
   margin-bottom: 2rem;
   text-align: center;
   flex-direction: column;
+
+  @media (max-width: 576px) {
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -46,12 +60,20 @@ const Title = styled.h1`
   font-weight: 800;
   line-height: 1.1;
   margin: 0;
+
+  @media (max-width: 576px) {
+    font-size: 2.25rem;
+  }
 `;
 
 const Actions = styled.div`
   display: flex;
   gap: 0.75rem;
   justify-content: center;
+
+  @media (max-width: 576px) {
+    flex-wrap: wrap;
+  }
 `;
 
 const HeroSubtitle = styled.h2`
@@ -63,6 +85,10 @@ const HeroSubtitle = styled.h2`
 
   @media (min-width: 768px) {
     font-size: 1.5rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
   }
 `;
 
@@ -79,6 +105,10 @@ const Grid = styled.div`
   @media (min-width: 992px) {
     grid-template-columns: 0.85fr 1.15fr;
   }
+
+  @media (max-width: 576px) {
+    gap: 0.75rem;
+  }
 `;
 
 const Card = styled.section`
@@ -87,6 +117,10 @@ const Card = styled.section`
   border-radius: 16px;
   padding: 1.25rem;
   backdrop-filter: blur(6px) saturate(1.1);
+
+  @media (max-width: 576px) {
+    padding: 1rem;
+  }
 `;
 
 const SectionHeader = styled.div`
@@ -97,6 +131,10 @@ const SectionTitle = styled.h2`
   font-size: 1.25rem;
   font-weight: 700;
   margin: 0 0 0.35rem;
+
+  @media (max-width: 576px) {
+    font-size: 1.125rem;
+  }
 `;
 
 const SectionUnderline = styled.div`
@@ -114,6 +152,10 @@ const SectionHeading = styled.h2`
   font-size: 1.5rem;
   margin: 0 0 0.75rem;
   color: ${({ theme }) => theme.colors.primary};
+
+  @media (max-width: 576px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const Item = styled.div`
@@ -127,11 +169,19 @@ const ItemTitle = styled.h3`
   font-size: 1.05rem;
   font-weight: 700;
   color: #f7bf22;
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
+  }
 `;
 
 const Muted = styled.p`
   margin: 0 0 0.5rem;
   color: ${({ theme }) => theme.colors.lightText};
+
+  @media (max-width: 576px) {
+    font-size: 0.95rem;
+  }
 `;
 
 const Body = styled.p`
@@ -166,6 +216,12 @@ const List = styled.ul`
     );
     box-shadow: 0 0 8px rgba(255, 215, 145, 0.4);
   }
+
+  @media (max-width: 576px) {
+    li {
+      font-size: 0.95rem;
+    }
+  }
 `;
 
 const PillList = styled.div`
@@ -180,6 +236,10 @@ const Pill = styled.span`
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(255, 255, 255, 0.06);
+
+  @media (max-width: 576px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export default function Resume() {

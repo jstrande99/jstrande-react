@@ -15,6 +15,11 @@ const HeroSection = styled.section`
   background-color: transparent;
   color: white;
   overflow: hidden;
+
+  @media (max-width: 576px) {
+    padding: 0 1rem;
+    height: 90vh;
+  }
 `;
 
 // background is provided globally in App.js
@@ -24,6 +29,10 @@ const HeroContent = styled.div`
   padding: 0 1rem;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 576px) {
+    padding: 0 0.5rem;
+  }
 `;
 
 const Name = styled.h1`
@@ -33,6 +42,10 @@ const Name = styled.h1`
 
   @media (min-width: 768px) {
     font-size: 4rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 2.25rem;
   }
 `;
 
@@ -44,6 +57,11 @@ const Subtitle = styled.h2`
 
   @media (min-width: 768px) {
     font-size: 2rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
@@ -67,6 +85,10 @@ const CTAButton = styled.a`
   //   //   linear-gradient(90deg, #ffd791, #ffd791) !important;
   //   // color: #ffd791;
   // }
+
+  @media (max-width: 576px) {
+    padding: 0.6rem 1.4rem;
+  }
 `;
 
 const StyledTypewriter = styled.span`

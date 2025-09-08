@@ -28,6 +28,10 @@ const Container = styled.div`
   @media (min-width: 768px) {
     flex-direction: row;
   }
+
+  @media (max-width: 576px) {
+    padding: 0 1rem;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -41,12 +45,20 @@ const ImageContainer = styled.div`
     align-items: center;
     display: flex;
   }
+
+  @media (max-width: 576px) {
+    margin-bottom: 1.25rem;
+  }
 `;
 
 const ProfileImage = styled.img`
   width: 100%;
   max-width: 300px;
   background-color: transparent;
+
+  @media (max-width: 576px) {
+    max-width: 220px;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -58,6 +70,11 @@ const Bio = styled.p`
   line-height: 1.8;
   margin-bottom: 1.5rem;
   color: white;
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
 `;
 
 const BadgeGrid = styled.div`
@@ -68,6 +85,12 @@ const BadgeGrid = styled.div`
   padding: 100px;
   @media (min-width: 768px) {
     grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding: 1rem 0.5rem 2rem;
   }
 `;
 
@@ -107,6 +130,16 @@ const Badge = styled.div`
     opacity: 0;
     transition: opacity 0.4s ease, transform 0.4s ease;
     transform: translateX(-40px);
+  }
+
+  @media (max-width: 576px) {
+    img {
+      max-width: 48px;
+    }
+
+    span {
+      font-size: 1rem;
+    }
   }
 `;
 

@@ -17,6 +17,11 @@ const ContactSection = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
+
+  @media (max-width: 576px) {
+    padding: 3rem 0 2rem;
+    min-height: 80vh;
+  }
 `;
 
 // background is provided globally in App.js
@@ -32,17 +37,30 @@ const ContactContainer = styled.div`
   gap: 2rem;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 576px) {
+    padding: 0 1rem;
+    gap: 1.25rem;
+  }
 `;
 
 const ContactInfo = styled.div`
   flex: 1;
   min-width: 300px;
   margin-right: 2rem;
+
+  @media (max-width: 576px) {
+    margin-right: 0;
+  }
 `;
 
 const ContactForm = styled.form`
   flex: 1;
   min-width: 300px;
+
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 `;
 
 const Heading = styled.h2`
@@ -50,6 +68,11 @@ const Heading = styled.h2`
   font-weight: 700;
   margin-bottom: 2rem;
   color: #fff;
+
+  @media (max-width: 576px) {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Subheading = styled.h3`
@@ -57,18 +80,30 @@ const Subheading = styled.h3`
   font-weight: 600;
   margin-bottom: 1rem;
   color: #ddd;
+
+  @media (max-width: 576px) {
+    font-size: 1.125rem;
+  }
 `;
 
 const Text = styled.p`
   font-size: 1.1rem;
   color: #fff;
   margin-bottom: 1rem;
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
+  }
 `;
 
 const SocialLinks = styled.div`
   margin-top: 2rem;
   display: flex;
   gap: 1rem;
+
+  @media (max-width: 576px) {
+    margin-top: 1rem;
+  }
 `;
 
 const SocialLink = styled.a`
@@ -94,6 +129,10 @@ const Input = styled.input`
   background-clip: padding-box, border-box !important;
   border-radius: 10px;
   color: #ffd791;
+
+  @media (max-width: 576px) {
+    padding: 0.65rem;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -111,6 +150,11 @@ const TextArea = styled.textarea`
   background-clip: padding-box, border-box !important;
   border-radius: 10px;
   color: #ffd791;
+
+  @media (max-width: 576px) {
+    padding: 0.65rem;
+    min-height: 120px;
+  }
 `;
 
 const SubmitButton = styled.button`
@@ -131,6 +175,10 @@ const SubmitButton = styled.button`
     background-image: linear-gradient(black, black),
       linear-gradient(90deg, #694901, #ffd791) !important;
     color: white;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0.65rem 1.25rem;
   }
 `;
 

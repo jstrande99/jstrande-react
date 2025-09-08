@@ -22,12 +22,21 @@ const Container = styled.div`
   padding: 0 2rem;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 576px) {
+    padding: 0 1rem;
+  }
 `;
 
 const ProjectGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `;
 
 const ProjectCard = styled.div`
@@ -49,6 +58,11 @@ const ProjectsHero = styled.div`
   text-align: center;
   background-color: transparent;
   color: white;
+
+  @media (max-width: 576px) {
+    min-height: 60vh;
+    padding: 2rem 0;
+  }
 `;
 
 const SectionHeader = styled.div`
@@ -58,6 +72,10 @@ const SectionHeader = styled.div`
   padding: 0 1rem;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 576px) {
+    margin-bottom: 1.5rem;
+  }
 `;
 // eslint-disable-next-line
 const Eyebrow = styled.span`
@@ -80,6 +98,10 @@ const SectionTitle = styled.h2`
   @media (min-width: 768px) {
     font-size: 4rem;
   }
+
+  @media (max-width: 576px) {
+    font-size: 2rem;
+  }
 `;
 
 const SectionSubtitle = styled.p`
@@ -90,6 +112,10 @@ const SectionSubtitle = styled.p`
 
   @media (min-width: 768px) {
     font-size: 2rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
   }
 `;
 
@@ -113,6 +139,10 @@ const ProjectTitle = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   color: white;
+
+  @media (max-width: 576px) {
+    font-size: 1.25rem;
+  }
 `;
 
 // removed ProjectTitleBack; using ProjectTitle in overlay instead
