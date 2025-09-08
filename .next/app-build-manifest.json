@@ -1,10 +1,10 @@
 {
   "pages": {
-    "/page": [
+    "/resume/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
+      "static/css/app/resume/page.css",
+      "static/chunks/app/resume/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
