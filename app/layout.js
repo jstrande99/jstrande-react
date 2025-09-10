@@ -56,7 +56,8 @@ export const metadata = {
   icons: {
     icon: [
       { url: "/logos/favicon.ico" },
-      { url: "/logos/logo192.png", type: "image/png" },
+      { url: "/favicon.ico" },
+      { url: "/logos/logo192.png", type: "image/png", sizes: "192x192" },
     ],
     apple: [{ url: "/logos/logo192.png" }],
   },
@@ -76,7 +77,13 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
         <link rel="icon" href="/logos/favicon.ico" />
-        <link rel="icon" href="/logos/logo192.png" type="image/png" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link
+          rel="icon"
+          href="/logos/logo192.png"
+          type="image/png"
+          sizes="192x192"
+        />
         <link rel="apple-touch-icon" href="/logos/logo192.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
