@@ -1,1 +1,1 @@
-self.__BUILD_MANIFEST = {__rewrites:{afterFiles:[],beforeFiles:[],fallback:[]},sortedPages:["\u002F_app"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
+self.__BUILD_MANIFEST = (function(a){return {__rewrites:{afterFiles:[{has:a,source:"\u002Ffavicon.ico",destination:"\u002Flogos\u002Ffavicon.ico"},{has:a,source:"\u002Fapple-touch-icon.png",destination:"\u002Flogos\u002Flogo192.png"}],beforeFiles:[],fallback:[]},sortedPages:["\u002F_app"]}}(void 0));self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
