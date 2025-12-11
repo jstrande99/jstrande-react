@@ -90,6 +90,9 @@ export default function RootLayout({ children }) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
+<!-- Spinflow SEO Pixel - Universal Edition -->
+<!-- Fetches from Edge CDN (~50ms) - Zero database calls -->
+<script>
 (function() {
   const siteId = "f9a10685-7b76-45b7-b5a6-8f6955a77299";
   const cdnUrl = "https://seo-config-cdn.strandejord.workers.dev";
@@ -127,51 +130,92 @@ export default function RootLayout({ children }) {
     .then(data => {
       if (!data.optimized_title) return;
 
-      // Apply title
-      document.title = data.optimized_title;
+      // Store the optimized data globally for persistence
+      window.__spinflowSEO = data;
 
-      // Apply meta description
-      let metaDesc = document.querySelector('meta[name="description"]');
-      if (!metaDesc) {
-        metaDesc = document.createElement('meta');
-        metaDesc.name = "description";
-        document.head.appendChild(metaDesc);
+      // Function to apply all SEO tags
+      function applyOptimizations() {
+        // Apply title
+        if (document.title !== data.optimized_title) {
+          document.title = data.optimized_title;
+        }
+
+        // Apply meta description
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+          metaDesc = document.createElement('meta');
+          metaDesc.name = "description";
+          document.head.appendChild(metaDesc);
+        }
+        if (metaDesc.content !== data.optimized_meta_desc) {
+          metaDesc.content = data.optimized_meta_desc;
+        }
+
+        // Apply Open Graph tags
+        if (data.og_tags) {
+          Object.keys(data.og_tags).forEach(property => {
+            let ogTag = document.querySelector('meta[property="' + property + '"]');
+            if (!ogTag) {
+              ogTag = document.createElement('meta');
+              ogTag.setAttribute('property', property);
+              document.head.appendChild(ogTag);
+            }
+            ogTag.content = data.og_tags[property];
+          });
+        }
+
+        // Apply Twitter Card tags
+        if (data.twitter_card) {
+          Object.keys(data.twitter_card).forEach(name => {
+            let twitterTag = document.querySelector('meta[name="' + name + '"]');
+            if (!twitterTag) {
+              twitterTag = document.createElement('meta');
+              twitterTag.setAttribute('name', name);
+              document.head.appendChild(twitterTag);
+            }
+            twitterTag.content = data.twitter_card[name];
+          });
+        }
+
+        // Inject Schema.org JSON-LD (only once)
+        if (data.schema_markup && !document.querySelector('script[data-spinflow-schema]')) {
+          const script = document.createElement('script');
+          script.type = 'application/ld+json';
+          script.setAttribute('data-spinflow-schema', 'true');
+          script.text = JSON.stringify(data.schema_markup);
+          document.head.appendChild(script);
+        }
       }
-      metaDesc.content = data.optimized_meta_desc;
 
-      // Apply Open Graph tags
-      if (data.og_tags) {
-        Object.keys(data.og_tags).forEach(property => {
-          let ogTag = document.querySelector('meta[property="' + property + '"]');
-          if (!ogTag) {
-            ogTag = document.createElement('meta');
-            ogTag.setAttribute('property', property);
-            document.head.appendChild(ogTag);
+      // Apply immediately
+      applyOptimizations();
+
+      // Watch for framework overwrites (React, Next.js, etc.)
+      // Re-apply if title changes away from our optimized version
+      const titleEl = document.querySelector('title');
+      if (titleEl) {
+        const observer = new MutationObserver(() => {
+          if (document.title !== data.optimized_title) {
+            document.title = data.optimized_title;
           }
-          ogTag.content = data.og_tags[property];
         });
+        observer.observe(titleEl, { childList: true, characterData: true, subtree: true });
       }
 
-      // Apply Twitter Card tags
-      if (data.twitter_card) {
-        Object.keys(data.twitter_card).forEach(name => {
-          let twitterTag = document.querySelector('meta[name="' + name + '"]');
-          if (!twitterTag) {
-            twitterTag = document.createElement('meta');
-            twitterTag.setAttribute('name', name);
-            document.head.appendChild(twitterTag);
+      // Also watch document.title property changes
+      let currentTitle = data.optimized_title;
+      Object.defineProperty(document, 'title', {
+        get: function() { return currentTitle; },
+        set: function(val) {
+          // Only allow our optimized title or store the attempt
+          if (window.__spinflowSEO) {
+            currentTitle = window.__spinflowSEO.optimized_title;
+          } else {
+            currentTitle = val;
           }
-          twitterTag.content = data.twitter_card[name];
-        });
-      }
-
-      // Inject Schema.org JSON-LD
-      if (data.schema_markup) {
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.text = JSON.stringify(data.schema_markup);
-        document.head.appendChild(script);
-      }
+        },
+        configurable: true
+      });
 
       // Track click if from search engine (only tracking call hits Supabase)
       if (isFromSearch && data.page_id) {
@@ -190,6 +234,7 @@ export default function RootLayout({ children }) {
     })
     .catch(() => {}); // Silent fail - site still works
 })();
+</script>
             `,
           }}
         />
