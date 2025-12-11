@@ -90,9 +90,6 @@ export default function RootLayout({ children }) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-<!-- Spinflow SEO Pixel - Universal Edition -->
-<!-- Fetches from Edge CDN (~50ms) - Zero database calls -->
-<script>
 (function() {
   const siteId = "f9a10685-7b76-45b7-b5a6-8f6955a77299";
   const cdnUrl = "https://seo-config-cdn.strandejord.workers.dev";
@@ -234,7 +231,6 @@ export default function RootLayout({ children }) {
     })
     .catch(() => {}); // Silent fail - site still works
 })();
-</script>
             `,
           }}
         />
