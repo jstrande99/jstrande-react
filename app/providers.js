@@ -7,6 +7,9 @@ import { GlobalStyle, theme } from "../src/styles";
 import Header from "../src/components/Header";
 import LiquidEther from "../src/reactbits/LiquidEther";
 import ScrollToTop from "../src/components/ScrollToTop";
+import ScrollProgress from "../src/components/ScrollProgress";
+import CursorSpotlight from "../src/components/CursorSpotlight";
+import IntroOverlay from "../src/components/IntroOverlay";
 import StyledRegistry from "./styled-registry";
 
 const BackgroundLayer = styled.div`
@@ -17,7 +20,13 @@ const BackgroundLayer = styled.div`
   height: 100vh;
   z-index: 0;
   pointer-events: none;
-  background: #000;
+  background: radial-gradient(
+      ellipse at 20% 10%,
+      rgba(107, 78, 30, 0.22),
+      transparent 55%
+    ),
+    radial-gradient(ellipse at 80% 90%, rgba(201, 161, 74, 0.12), transparent 60%),
+    #0a0806;
 `;
 
 const ContentLayer = styled.div`
@@ -26,29 +35,15 @@ const ContentLayer = styled.div`
 `;
 
 export default function Providers({ children }) {
-  const [mouseForce, setMouseForce] = React.useState(30);
-  const [cursorSize, setCursorSize] = React.useState(100);
-
-  React.useEffect(() => {
-    const updateInteractiveParams = () => {
-      const isLargeViewport = window.matchMedia("(min-width: 3000px)").matches;
-      setMouseForce(isLargeViewport ? 45 : 30);
-      setCursorSize(isLargeViewport ? 140 : 100);
-    };
-
-    updateInteractiveParams();
-    window.addEventListener("resize", updateInteractiveParams);
-    return () => window.removeEventListener("resize", updateInteractiveParams);
-  }, []);
   return (
     <StyledRegistry>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <BackgroundLayer>
           <LiquidEther
-            colors={["#ffdf00", "#b09400", "#c9bc04"]}
-            mouseForce={mouseForce}
-            cursorSize={cursorSize}
+            colors={["#c9a14a", "#6b4e1e", "#e6cfa1"]}
+            mouseForce={0}
+            cursorSize={0}
             isViscous={false}
             viscous={30}
             iterationsViscous={32}
@@ -56,18 +51,21 @@ export default function Providers({ children }) {
             resolution={0.5}
             isBounce={false}
             autoDemo={true}
-            autoSpeed={0.5}
-            autoIntensity={0.5}
-            takeoverDuration={0.25}
-            autoResumeDelay={3000}
+            autoSpeed={0.3}
+            autoIntensity={0.3}
+            takeoverDuration={0}
+            autoResumeDelay={0}
             autoRampDuration={0.4}
           />
         </BackgroundLayer>
         <ContentLayer>
+          <ScrollProgress />
           <ScrollToTop />
+          <CursorSpotlight />
           <Header />
           <main>{children}</main>
         </ContentLayer>
+        <IntroOverlay />
       </ThemeProvider>
     </StyledRegistry>
   );
