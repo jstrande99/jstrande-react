@@ -1,50 +1,42 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { FLAGSHIP_PROJECTS, type Project } from "@/lib/content";
 import SectionLabel from "@/components/ui/SectionLabel";
 import Reveal from "@/components/motion/Reveal";
 import { useInView } from "@/components/motion/useInView";
 import { Button } from "@/components/ui/Button";
-import ProjectModal from "@/components/sections/ProjectModal";
 import styles from "./ProjectsCatalog.module.css";
 
-/* Projects catalog page — flagship-only (OTHER_WORK removed).
- *
- *  Signature moves:
- *    1. Filter strip with search + tag chips; substring match so
- *       "Mobile CI/CD" still matches the Forge category.
- *    2. Each flagship row is an IO-driven cinematic reveal — gold rail
- *       draws down the left, number pops, title slides in, tagline
- *       fades, stack chips stagger, arrow settles. Reverses when the
- *       row leaves the viewport.
- *    3. Modal opens an iframe of the live site (GitHub-based projects
- *       fall back to the screenshot). */
+/* Lazy-load the modal chunk — only paid for if the user opens a
+ * project. Preloaded on row hover and during browser idle so the first
+ * open doesn't visibly fetch. */
+const loadModalModule = () => import("@/components/sections/ProjectModal");
+const ProjectModal = dynamic(loadModalModule, {
+  ssr: false,
+  loading: () => null,
+});
 
 type Row = {
   key: string;
   title: string;
   subtitle: string;
-  category: string;
   year: string;
-  tags: string[];
-  image?: string;
-  link: string;
   project: Project;
 };
 
-const ALL_TAGS = [
-  "All",
-  "AI Agent Platform",
-  "SEO & AI Visibility",
-  "AI Red Team",
-  "Mobile CI/CD",
-] as const;
-
 export default function ProjectsCatalog() {
   const [selected, setSelected] = useState<Project | null>(null);
-  const [query, setQuery] = useState("");
-  const [tag, setTag] = useState<string>("All");
+  /* Keeps the modal mounted after the first open so its close
+   * transition plays out instead of snapping when selected goes null. */
+  const [everOpened, setEverOpened] = useState(false);
 
   const rows: Row[] = useMemo(
     () =>
@@ -52,32 +44,45 @@ export default function ProjectsCatalog() {
         key: `f-${p.num}`,
         title: p.title,
         subtitle: p.italic,
-        category: p.category,
         year: p.year,
-        tags: [p.category, ...p.stack],
-        image: p.image,
-        link: p.link,
         project: p,
       })),
     []
   );
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    const tl = tag.toLowerCase();
-    return rows.filter((r) => {
-      if (tag !== "All") {
-        const matches = r.tags.some((t) => {
-          const x = t.toLowerCase();
-          return x === tl || x.includes(tl) || tl.includes(x);
-        });
-        if (!matches) return false;
-      }
-      if (!q) return true;
-      const hay = `${r.title} ${r.subtitle} ${r.category} ${r.tags.join(" ")}`.toLowerCase();
-      return hay.includes(q);
-    });
-  }, [rows, query, tag]);
+  /* Preload the modal chunk exactly once. Called on row hover and
+   * after idle so the first open feels instant across input modes. */
+  const preloaded = useRef(false);
+  const preloadModal = useCallback(() => {
+    if (preloaded.current) return;
+    preloaded.current = true;
+    loadModalModule();
+  }, []);
+
+  useEffect(() => {
+    const win = window as Window & {
+      requestIdleCallback?: (
+        cb: () => void,
+        opts?: { timeout: number }
+      ) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    if (win.requestIdleCallback) {
+      const id = win.requestIdleCallback(preloadModal, { timeout: 3000 });
+      return () => win.cancelIdleCallback?.(id);
+    }
+    const t = window.setTimeout(preloadModal, 3000);
+    return () => window.clearTimeout(t);
+  }, [preloadModal]);
+
+  const openModal = useCallback((p: Project) => {
+    setEverOpened(true);
+    setSelected(p);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setSelected(null);
+  }, []);
 
   return (
     <div className={styles.page}>
@@ -112,36 +117,6 @@ export default function ProjectsCatalog() {
         </Reveal>
       </div>
 
-      <div className={styles.filters}>
-        <label className={styles.searchWrap}>
-          <span className={styles.searchPrompt}>λ</span>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Filter · title, stack, tag…"
-            className={styles.searchInput}
-            aria-label="Filter projects"
-          />
-        </label>
-        <div className={styles.tagRow}>
-          {ALL_TAGS.map((t) => (
-            <button
-              key={t}
-              type="button"
-              className={`${styles.tag} ${tag === t ? styles.tagActive : ""}`}
-              onClick={() => setTag(t)}
-              data-cursor="link"
-            >
-              {t}
-            </button>
-          ))}
-        </div>
-        <span className={styles.countBadge}>
-          <strong>{filtered.length}</strong>/ {rows.length}
-        </span>
-      </div>
-
       <section className={styles.flagship}>
         <div className={styles.sectionHeader}>
           <Reveal>
@@ -152,19 +127,16 @@ export default function ProjectsCatalog() {
           </Reveal>
         </div>
 
-        {filtered.length === 0 ? (
-          <div className={styles.empty}>No projects match — clear filters</div>
-        ) : (
-          <div className={styles.flagshipList}>
-            {filtered.map((r) => (
-              <FlagshipRow
-                key={r.key}
-                row={r}
-                onOpen={() => setSelected(r.project)}
-              />
-            ))}
-          </div>
-        )}
+        <div className={styles.flagshipList}>
+          {rows.map((r) => (
+            <FlagshipRow
+              key={r.key}
+              row={r}
+              onOpen={() => openModal(r.project)}
+              onPreload={preloadModal}
+            />
+          ))}
+        </div>
       </section>
 
       <div className={styles.outro}>
@@ -180,22 +152,23 @@ export default function ProjectsCatalog() {
         </Reveal>
       </div>
 
-      <ProjectModal project={selected} onClose={() => setSelected(null)} />
+      {everOpened && (
+        <ProjectModal project={selected} onClose={closeModal} />
+      )}
     </div>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* FlagshipRow — owns its own IO so inner elements animate in a
- * staggered sequence (gold rail draw, number pop, title slide, chip
- * cascade, arrow settle) and reverse on scroll-up. */
 
 function FlagshipRow({
   row,
   onOpen,
+  onPreload,
 }: {
   row: Row;
   onOpen: () => void;
+  onPreload: () => void;
 }) {
   const { ref, inView } = useInView<HTMLButtonElement>({
     amount: 0,
@@ -207,6 +180,8 @@ function FlagshipRow({
       ref={ref}
       type="button"
       onClick={onOpen}
+      onPointerEnter={onPreload}
+      onFocus={onPreload}
       className={styles.row}
       data-inview={inView ? "true" : "false"}
       data-cursor="link"

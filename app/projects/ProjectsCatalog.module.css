@@ -95,114 +95,6 @@
 }
 
 /* ========================================================================= */
-/* Filter strip                                                              */
-/* ========================================================================= */
-
-.filters {
-  max-width: var(--max-width);
-  margin: 0 auto 2rem;
-  padding: 0.85rem 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: rgba(10, 8, 6, 0.35);
-  backdrop-filter: blur(6px);
-  position: sticky;
-  top: var(--nav-height);
-  z-index: 6;
-}
-
-.searchWrap {
-  flex: 1;
-  min-width: 220px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.4rem 0.85rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(5, 4, 3, 0.5);
-  transition: border-color 0.3s var(--ease-smooth);
-}
-
-.searchWrap:focus-within {
-  border-color: var(--gold);
-}
-
-.searchPrompt {
-  color: var(--gold);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-}
-
-.searchInput {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: var(--cream);
-  font-family: var(--font-mono);
-  font-size: 0.84rem;
-  letter-spacing: 0.01em;
-}
-
-.searchInput::placeholder {
-  color: var(--dim);
-}
-
-.tagRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.tag {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  padding: 0.35rem 0.7rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--muted);
-  cursor: pointer;
-  transition:
-    color 0.3s var(--ease-smooth),
-    border-color 0.3s var(--ease-smooth),
-    background 0.3s var(--ease-smooth);
-}
-
-.tag:hover {
-  color: var(--cream);
-  border-color: var(--line-strong);
-}
-
-.tagActive {
-  color: var(--bg-deep);
-  background: var(--gold-high);
-  border-color: var(--gold-high);
-}
-
-.countBadge {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin-left: auto;
-}
-
-.countBadge strong {
-  color: var(--gold-high);
-  font-weight: 500;
-  padding: 0 0.3rem;
-}
-
-/* ========================================================================= */
 /* Flagship list                                                             */
 /* ========================================================================= */
 
@@ -443,21 +335,6 @@
     align-items: center;
     width: 100%;
   }
-}
-
-/* ========================================================================= */
-/* Empty state                                                               */
-/* ========================================================================= */
-
-.empty {
-  padding: 4rem 2rem;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--dim);
-  border: 1px dashed var(--line);
 }
 
 /* ========================================================================= */
