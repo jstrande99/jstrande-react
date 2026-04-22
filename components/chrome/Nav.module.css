@@ -50,15 +50,6 @@
   transition: color 0.3s var(--ease-smooth);
 }
 
-.brandMark {
-  font-family: var(--font-mono);
-  font-style: normal;
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
-  color: var(--gold);
-  text-transform: uppercase;
-}
-
 .brand:hover {
   color: var(--gold-high);
 }

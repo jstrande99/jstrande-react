@@ -55,7 +55,6 @@ export default function Nav() {
         <nav className={styles.nav} aria-label="Primary">
           <Link href="/" className={styles.brand} aria-label="Home">
             Jordan Strande
-            <span className={styles.brandMark}>JS</span>
           </Link>
 
           <ul className={styles.links}>

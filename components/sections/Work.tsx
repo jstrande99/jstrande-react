@@ -260,19 +260,6 @@ export default function Work() {
         ))}
       </div>
 
-      <div className={styles.outro}>
-        <Reveal>
-          <h3 className={styles.outroTitle}>
-            Four projects, all <em>in production.</em>
-          </h3>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <Button href="/projects" variant="solid">
-            View Full Catalog
-          </Button>
-        </Reveal>
-      </div>
-
       <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </section>
   );

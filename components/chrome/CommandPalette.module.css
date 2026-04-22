@@ -214,11 +214,11 @@
   margin: 0 0.25rem;
 }
 
-/* Trigger chip shown in the top-right under the nav */
+/* Trigger chip anchored to the bottom-left of the viewport. */
 .triggerChip {
   position: fixed;
-  top: calc(var(--nav-height) + 0.8rem);
-  right: calc(var(--edge-inset) + 7ch);
+  bottom: 1.2rem;
+  left: var(--edge-inset);
   z-index: 50;
   display: none;
   align-items: center;

@@ -1,6 +1,4 @@
-/* Fixed corner metadata rails — a signature precision element.
- * Appears in the outer margins. Text is tiny, monospace, subtle.
- * Never intrudes on content; always hints at the site's "frame". */
+/* Fixed corner metadata rail — tiny, monospace, subtle location stamp. */
 .wrap {
   position: fixed;
   inset: 0;
@@ -21,60 +19,12 @@
   white-space: nowrap;
 }
 
-.topLeft {
-  top: calc(var(--nav-height) + 1.2rem);
-  left: var(--edge-inset);
-}
-
-.topRight {
-  top: calc(var(--nav-height) + 1.2rem);
-  right: var(--edge-inset);
-  pointer-events: auto;
-}
-
-.bottomLeft {
-  bottom: 1.2rem;
-  left: var(--edge-inset);
-}
-
 .bottomRight {
   bottom: 1.2rem;
   right: var(--edge-inset);
 }
 
-.statusDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--gold-high);
-  box-shadow: 0 0 8px var(--gold-high), 0 0 14px rgba(245, 230, 184, 0.4);
-  animation: pulse 2.5s var(--ease-in-out) infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.55; transform: scale(1); }
-  50%      { opacity: 1; transform: scale(1.25); }
-}
-
-.bracket {
-  color: var(--gold);
-  opacity: 0.65;
-}
-
-.activeIndex {
-  color: var(--cream);
-  font-family: var(--font-mono);
-  font-weight: 500;
-}
-
 @media (max-width: 768px) {
-  .topLeft, .topRight { top: calc(var(--nav-height) + 0.7rem); }
-  .bottomLeft, .bottomRight { bottom: 0.7rem; }
+  .bottomRight { bottom: 0.7rem; }
   .corner { font-size: 0.55rem; letter-spacing: 0.2em; gap: 0.4rem; }
-}
-
-/* Hide the top-right label on narrow screens to avoid colliding with nav */
-@media (max-width: 900px) {
-  .topRight { display: none; }
-  .topLeft { display: none; }
 }

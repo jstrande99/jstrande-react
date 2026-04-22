@@ -572,26 +572,3 @@
 }
 
 .forgeCta svg { width: 10px; height: 10px; }
-
-/* ---------- Outro ---------- */
-
-.outro {
-  max-width: var(--max-width);
-  margin: 3rem auto 4rem;
-  padding: 4rem var(--gutter);
-  text-align: center;
-  border-top: 1px solid var(--line);
-}
-
-.outroTitle {
-  font-family: var(--font-italic);
-  font-size: clamp(1.8rem, 4.5vw, 3rem);
-  line-height: 1.1;
-  margin: 0 0 1.75rem;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--cream);
-  letter-spacing: -0.02em;
-}
-
-.outroTitle em { color: var(--gold-light); }
