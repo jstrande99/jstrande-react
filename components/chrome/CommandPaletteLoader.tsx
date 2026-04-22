@@ -4,6 +4,21 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import styles from "./CommandPalette.module.css";
 
+/* Returns the OS modifier key used in ⌘/Ctrl keyboard shortcuts. SSR
+ * defaults to ⌘ (Mac is the dominant target); hydration re-detects. */
+function useModKey(): string {
+  const [mod, setMod] = useState("⌘");
+  useEffect(() => {
+    const ua =
+      (navigator as Navigator & { platform?: string }).platform ||
+      navigator.userAgent ||
+      "";
+    const isMac = /Mac|iPhone|iPod|iPad/i.test(ua);
+    if (!isMac) setMod("Ctrl");
+  }, []);
+  return mod;
+}
+
 /* Dynamic loader for CommandPalette.
  *   The cmdk library weighs a few dozen KB — we defer its chunk entirely
  *   until the user signals intent (hovers the trigger chip, focuses input,
@@ -17,6 +32,7 @@ const CommandPalette = dynamic(() => import("./CommandPalette"), {
 
 export default function CommandPaletteLoader() {
   const [shouldLoad, setShouldLoad] = useState(false);
+  const mod = useModKey();
 
   useEffect(() => {
     if (shouldLoad) return;
@@ -50,11 +66,10 @@ export default function CommandPaletteLoader() {
         className={styles.triggerChip}
         onClick={() => setShouldLoad(true)}
         onPointerEnter={() => setShouldLoad(true)}
-        aria-label="Open command palette (⌘K)"
+        aria-label={`Open command palette (${mod}+K)`}
         data-cursor="link"
       >
-        <strong>⌘ K</strong>
-        Commands
+        <strong>{mod} K</strong>
       </button>
     );
   }

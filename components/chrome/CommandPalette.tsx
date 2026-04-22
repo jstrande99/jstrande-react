@@ -14,10 +14,26 @@ import styles from "./CommandPalette.module.css";
  *   - Jump to socials
  *   - Easter eggs (toggle cursor, konami, etc.)
  * Engineer-focused UX: mono typography, caps labels, shell-prompt style. */
+/* Returns the OS modifier key used in ⌘/Ctrl keyboard shortcuts. SSR
+ * defaults to ⌘; hydration re-detects. */
+function useModKey(): string {
+  const [mod, setMod] = useState("⌘");
+  useEffect(() => {
+    const ua =
+      (navigator as Navigator & { platform?: string }).platform ||
+      navigator.userAgent ||
+      "";
+    const isMac = /Mac|iPhone|iPod|iPad/i.test(ua);
+    if (!isMac) setMod("Ctrl");
+  }, []);
+  return mod;
+}
+
 export default function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const router = useRouter();
+  const mod = useModKey();
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -97,11 +113,10 @@ export default function CommandPalette() {
         type="button"
         className={styles.triggerChip}
         onClick={() => setOpen(true)}
-        aria-label="Open command palette"
+        aria-label={`Open command palette (${mod}+K)`}
         data-cursor="link"
       >
-        <strong>⌘ K</strong>
-        Commands
+        <strong>{mod} K</strong>
       </button>
 
       <div
