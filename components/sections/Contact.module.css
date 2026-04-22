@@ -1,0 +1,370 @@
+.section {
+  position: relative;
+  padding: 7rem var(--gutter) 5rem;
+  overflow: hidden;
+}
+
+.grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (min-width: 992px) {
+  .grid {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+  }
+}
+
+.left {
+  position: relative;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 8rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  margin: 1.5rem 0 0;
+  color: var(--cream);
+}
+
+.display > * {
+  display: block;
+  line-height: 1;
+}
+
+.display em {
+  /* font-family + italic come from globals h-em rule (Instrument Sans italic). */
+  color: var(--gold-light);
+}
+
+.leadCopy {
+  max-width: 520px;
+  margin: 2rem 0 0;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--ivory);
+  font-weight: 400;
+}
+
+.infoBlock {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.infoRow {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+@media (max-width: 576px) {
+  .infoRow {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+
+.infoLabel {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.infoValue {
+  font-size: 1rem;
+  color: var(--ivory);
+}
+
+.infoValue a {
+  color: var(--gold-high);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.35s ease;
+}
+
+.infoValue a:hover {
+  border-color: var(--gold-high);
+}
+
+.socials {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.social {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ivory);
+  transition:
+    color 0.4s var(--ease-smooth),
+    background 0.4s var(--ease-smooth),
+    border-color 0.4s var(--ease-smooth),
+    transform 0.4s var(--ease-smooth);
+}
+
+.social:hover {
+  color: var(--bg);
+  background: var(--gold-high);
+  border-color: var(--gold-high);
+  transform: translateY(-2px);
+}
+
+.social svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ========================================================================= */
+/* Form card                                                                 */
+/* ========================================================================= */
+
+.formWrap {
+  position: relative;
+  padding: 2.5rem;
+  border: 1px solid var(--line-strong);
+  background: linear-gradient(
+    160deg,
+    rgba(201, 161, 74, 0.05),
+    rgba(10, 8, 6, 0.6)
+  );
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--ease-smooth);
+  will-change: transform;
+}
+
+@media (min-width: 992px) {
+  .formWrap {
+    position: sticky;
+    top: 7rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .formWrap {
+    padding: 1.5rem;
+  }
+}
+
+.formWrap::before,
+.formWrap::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--gold);
+  z-index: 2;
+}
+.formWrap::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+.formWrap::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Mouse-tracked glare inside the card */
+.formGlow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+  background: radial-gradient(
+    520px circle at var(--mx, 50%) var(--my, 30%),
+    rgba(245, 230, 184, 0.16) 0%,
+    rgba(201, 161, 74, 0.06) 40%,
+    rgba(201, 161, 74, 0) 70%
+  );
+  transition: opacity 0.4s ease;
+}
+
+.formContent {
+  position: relative;
+  z-index: 1;
+}
+
+.formTitle {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.9rem;
+  margin: 0 0 0.25rem;
+  color: var(--cream);
+}
+
+.formSub {
+  margin: 0 0 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--dim);
+  pointer-events: none;
+  transition:
+    transform 0.45s var(--ease-smooth),
+    color 0.3s var(--ease-smooth),
+    font-size 0.3s var(--ease-smooth),
+    letter-spacing 0.3s var(--ease-smooth);
+  transform-origin: left center;
+}
+
+.input,
+.textarea {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(201, 161, 74, 0.22);
+  color: var(--cream);
+  font-size: 1rem;
+  padding: 0.55rem 0;
+  outline: none;
+  transition: border-color 0.5s var(--ease-smooth);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.55;
+}
+
+/* Float the label up when the field is focused or has content */
+.input:focus ~ .label,
+.input:not(:placeholder-shown) ~ .label,
+.textarea:focus ~ .label,
+.textarea:not(:placeholder-shown) ~ .label {
+  transform: translateY(-110%) scale(0.72);
+  color: var(--gold);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+/* Animated underline border on focus */
+.field::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background: linear-gradient(90deg, var(--gold), var(--gold-high));
+  transition: width 0.55s var(--ease-smooth);
+  pointer-events: none;
+}
+.field:focus-within::after {
+  width: 100%;
+}
+
+.submitRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+/* Submit button morphs to a checkmark on success */
+.submit {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 180px;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--gold-high);
+  border-radius: 999px;
+  background: var(--gold-high);
+  color: var(--bg-deep);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    min-width 0.55s var(--ease-smooth),
+    background 0.4s var(--ease-smooth),
+    color 0.4s var(--ease-smooth);
+}
+
+.submit:hover {
+  background: transparent;
+  color: var(--gold-high);
+}
+
+.submitSuccess {
+  min-width: 56px;
+  background: transparent !important;
+  color: var(--gold-high) !important;
+  border-color: var(--gold-high);
+  animation: pulseGlow 0.8s var(--ease-smooth);
+}
+
+.submitLabel {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  transition: opacity 0.3s var(--ease-smooth);
+}
+
+.submitSuccess .submitLabel {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkSvg {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 22px;
+  height: 22px;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-smooth);
+}
+
+.submitSuccess .checkSvg {
+  opacity: 1;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(245, 230, 184, 0.45); }
+  100% { box-shadow: 0 0 0 14px rgba(245, 230, 184, 0); }
+}

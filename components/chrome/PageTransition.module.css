@@ -1,0 +1,43 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  pointer-events: none;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+}
+
+.row {
+  background: linear-gradient(
+    180deg,
+    rgba(10, 8, 6, 0.98),
+    rgba(20, 14, 8, 0.98)
+  );
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+/* Label centered across the overlay */
+.label {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(3rem, 9vw, 8rem);
+  color: var(--cream);
+  letter-spacing: -0.03em;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.label em {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold-light);
+}

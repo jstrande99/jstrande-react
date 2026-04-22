@@ -1,0 +1,301 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--nav-height) + 4rem) var(--gutter) 6rem;
+  overflow: hidden;
+  isolation: isolate;
+  text-align: center;
+}
+
+/* Ambient atmosphere — two STATIC blurred gradient orbs.
+ * No drift animation: the GPU blurs once at mount and caches the result,
+ * then just composites. Animating blurred elements forces the blur to
+ * recompute each frame, which is expensive and was the main perf hit. */
+.mesh {
+  position: absolute;
+  inset: -15%;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(90px);
+  opacity: 0.65;
+}
+
+.orb {
+  position: absolute;
+  width: 40vw;
+  height: 40vw;
+  max-width: 640px;
+  max-height: 640px;
+  border-radius: 50%;
+}
+
+.orb1 {
+  top: -15%;
+  left: -15%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(201, 161, 74, 0.32),
+    transparent 62%
+  );
+}
+.orb2 {
+  bottom: -18%;
+  right: -15%;
+  background: radial-gradient(
+    circle at 60% 40%,
+    rgba(107, 78, 30, 0.38),
+    transparent 62%
+  );
+}
+
+
+/* Watermark letters — deep background parallax layer. */
+.watermark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: -1;
+  will-change: transform;
+}
+
+.watermark span {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22rem, 55vw, 72rem);
+  line-height: 0.82;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245, 234, 209, 0.025);
+  letter-spacing: -0.05em;
+  user-select: none;
+}
+
+/* Foreground inner */
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.intro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(10, 8, 6, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.introDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-high);
+  box-shadow: 0 0 8px var(--gold-high);
+  animation: pulse 2s var(--ease-in-out) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.45; transform: scale(0.85); }
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3.2rem, 12vw, 12rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  margin: 0;
+  color: var(--cream);
+  will-change: transform;
+}
+
+/* Greeting — small italic Instrument Sans italic above JORDAN, as if written by hand.
+ * Starts blurred + offset; GSAP animates to sharp + settled. */
+.greeting {
+  display: block;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.2vw, 2rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  margin-bottom: 0.35em;
+  padding-left: 0.15em;
+  text-align: left;
+  align-self: flex-start;
+  opacity: 0;
+  transform: translateY(12px);
+  filter: blur(8px);
+  will-change: transform, filter, opacity;
+}
+
+@media (max-width: 768px) {
+  .greeting { align-self: center; text-align: center; padding-left: 0; }
+}
+
+/* Each headline line animates as a single unit with a blur-focus reveal. */
+.line {
+  display: block;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(14px);
+  will-change: transform, filter, opacity;
+}
+
+.italic {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+}
+
+.italicAccent {
+  background: linear-gradient(
+    180deg,
+    var(--cream) 0%,
+    var(--cream) 55%,
+    var(--gold-light) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+  margin: 0;
+  max-width: 580px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(1rem, 1.4vw, 1.14rem);
+  line-height: 1.55;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.tagline a {
+  color: var(--cream);
+  border-bottom: 1px solid rgba(245, 234, 209, 0.25);
+  transition: border-color 0.35s ease, color 0.3s ease;
+}
+.tagline a:hover {
+  border-color: var(--gold-high);
+  color: var(--gold-high);
+}
+
+.ctas {
+  display: flex;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.4rem;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Scroll cue sits INLINE between the two CTAs so it has its own space
+ * and doesn't visually stack into either button. Compact vertical
+ * layout (animated line + mono label). */
+.scrollHint {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 0 0.25rem;
+  /* Timeline opacity starts at 0 so GSAP can fade it in with the CTAs. */
+  opacity: 0;
+}
+
+.scrollHintLabel {
+  line-height: 1;
+}
+
+.scrollHintLine {
+  position: relative;
+  width: 1px;
+  height: 26px;
+  background: rgba(245, 234, 209, 0.14);
+  overflow: hidden;
+}
+
+.scrollHintLine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(180deg, transparent, var(--gold-high));
+  animation: scrollCue 2.2s var(--ease-in-out) infinite;
+}
+
+@keyframes scrollCue {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  40%  { opacity: 1; }
+  100% { transform: translateY(210%); opacity: 0; }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    padding: calc(var(--nav-height) + 2.5rem) var(--gutter-sm) 5rem;
+  }
+  .watermark span {
+    font-size: 90vw;
+  }
+  .ctas {
+    gap: 1rem;
+  }
+  .title {
+    font-size: clamp(2.8rem, 14vw, 5rem);
+  }
+  .inner {
+    gap: 1.5rem;
+  }
+  .intro {
+    font-size: 0.6rem;
+    padding: 0.45rem 0.85rem;
+  }
+  .tagline {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 900px) {
+  .title {
+    font-size: clamp(3.2rem, 10vw, 6.5rem);
+  }
+  .watermark span {
+    font-size: 70vw;
+  }
+}

@@ -1,0 +1,82 @@
+.button {
+  --bg: transparent;
+  --fg: var(--cream);
+  --border: var(--line-strong);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  /* Explicit min-height + line-height: 1 guarantees identical height
+   * across solid/ghost variants regardless of label text — otherwise
+   * the inherited body line-height (1.55) + variable descender metrics
+   * can make one button a pixel or two taller than the other. */
+  height: 44px;
+  min-height: 44px;
+  padding: 0 1.6rem;
+  line-height: 1;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-sizing: border-box;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    color 0.4s var(--ease-smooth),
+    border-color 0.4s var(--ease-smooth),
+    transform 0.5s var(--ease-smooth);
+  will-change: transform;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: translateY(100%);
+  background: linear-gradient(180deg, var(--gold-high), var(--gold));
+  transition: transform 0.55s var(--ease-smooth);
+}
+
+.button:hover {
+  color: var(--bg-deep);
+  border-color: var(--gold-high);
+}
+.button:hover::before {
+  transform: translateY(0);
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.5s var(--ease-smooth);
+}
+.button:hover .arrow {
+  transform: translateX(3px);
+}
+
+.solid {
+  --bg: var(--gold-high);
+  --fg: var(--bg-deep);
+  --border: var(--gold-high);
+}
+
+.solid::before {
+  background: linear-gradient(180deg, var(--bg-deep), var(--bg));
+  transform: translateY(-100%);
+}
+
+.solid:hover {
+  color: var(--cream);
+  border-color: var(--bg-deep);
+}
+.solid:hover::before {
+  transform: translateY(0);
+}

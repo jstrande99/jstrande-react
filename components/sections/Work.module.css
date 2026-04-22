@@ -1,0 +1,597 @@
+/* ============================================================================
+ * Work section — sticky phone scroll reel.
+ *
+ * Pattern (inspired by lifelogx.com):
+ *   - One phone, position: sticky, stays centered in viewport.
+ *   - Narrative blocks flow past it in the normal page scroll.
+ *   - As each narrative reaches the center band, the phone's screen
+ *     cross-fades to that product's screenshot.
+ *   - A subtle GSAP scrub adds a continuous rotateY sway to the phone
+ *     tied to scroll progress for dimensionality.
+ *
+ * Forge (repo product) lives in a separate block BELOW the sticky reel.
+ * ======================================================================== */
+
+.section {
+  position: relative;
+}
+
+/* ---------- Intro ---------- */
+
+.intro {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 7rem var(--gutter) 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 5.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  margin: 0;
+  color: var(--cream);
+}
+.display em { color: var(--gold-light); }
+
+.introMeta {
+  max-width: 640px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* ---------- Sticky reel ----------
+ * Outer `.reel` is tall (total × 100vh) and provides the scroll distance.
+ * `.reelInner` is position: sticky at the top, 100vh — it holds BOTH
+ * columns at the center of the viewport. Narratives AND the phone swap
+ * in place via opacity cross-fade as the user scrolls. Nothing actually
+ * scrolls through the viewport — content is replaced. */
+
+.reel {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  /* height is set inline: `${total * 100}vh` */
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .reel { padding: 0 var(--gutter-sm); }
+}
+
+.reelInner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .reelInner { gap: 2rem; grid-template-columns: 1fr 1.1fr; }
+}
+
+/* Scroll markers: invisible full-width strips stacked through the whole
+ * reel — IntersectionObserver watches them to drive activeIndex. */
+.scrollMarkers {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.scrollMarker {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Narrative column — holds all narratives stacked in one slot. */
+.narrativeCol {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.narrativeSlot {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  /* Height constrained so absolute children have a bounded box. */
+  height: min(560px, 76vh);
+}
+
+/* Narratives stack absolutely inside the slot — only the active one
+ * is visible. No flow scroll; content is replaced in place. */
+.narrative {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.5s var(--ease-smooth),
+    transform 0.5s var(--ease-smooth);
+  pointer-events: none;
+}
+
+.narrativeActive {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.index {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.index::after {
+  content: "";
+  width: 42px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.metaCategory { color: var(--cream); }
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6.5vw, 5.8rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  margin: 0;
+  font-weight: 500;
+  color: var(--cream);
+}
+
+.italicLine {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1.9vw, 1.5rem);
+  line-height: 1.25;
+  color: var(--gold-light);
+  margin: 0;
+}
+
+.tagline {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ivory);
+  margin: 0;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.15rem;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+.ctas {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- Phone stage (sticky) ---------- */
+
+.phoneCol {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Phone is no longer sticky itself — reelInner is. Just center inside col. */
+.phoneStage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 2200px;
+  transform-style: preserve-3d;
+  height: 100%;
+  width: 100%;
+}
+
+/* Container mirrors the iPhone 14 Pro aspect ratio. */
+.phone {
+  position: relative;
+  width: auto;
+  height: min(74vh, 680px);
+  aspect-ratio: 1180 / 2264;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.5s var(--ease-smooth);
+}
+
+/* Screen area — the rectangle behind the iPhone bezel. All product
+ * screens are absolutely stacked here; only the active one is visible
+ * via opacity. */
+.phoneScreen {
+  position: absolute;
+  inset: 5.4% 10.5% 6.1% 11%;
+  overflow: hidden;
+  z-index: 1;
+  background: #050505;
+  /* Radius scales with rendered width — matches the PhoneFrame calc. */
+  border-radius: calc((min(74vh, 680px) * 1180 / 2264) * 0.094);
+}
+
+.screenImg {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease-smooth);
+}
+
+.screenImgActive {
+  opacity: 1;
+}
+
+.screenImg img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* iPhone hardware overlay — native img to preserve natural aspect. */
+.phoneFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Ambient glow behind the phone. */
+.phoneGlow {
+  position: absolute;
+  inset: -36px;
+  z-index: 0;
+  border-radius: 120px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 161, 74, 0.26),
+    rgba(201, 161, 74, 0) 65%
+  );
+  filter: blur(36px);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* ---------- Stats column (absolute, left edge of phone stage) ---------- */
+
+.stats {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+  pointer-events: none;
+  max-width: 200px;
+  opacity: 0;
+  transition: opacity 0.55s var(--ease-smooth);
+}
+
+.statsVisible { opacity: 1; }
+
+.stat { display: flex; flex-direction: column; gap: 0.15rem; }
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--cream);
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ---------- Mobile fallback ---------- */
+
+.mobileStack { display: none; }
+
+@media (max-width: 1024px) {
+  .reel { display: none; }
+  .mobileStack {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem var(--gutter-sm) 2rem;
+  }
+  .mobileRow {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .mobileRow:last-child { border-bottom: none; }
+  .mobileRow .narrative {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .mobileRow .phoneStage {
+    height: auto;
+    padding: 1rem 0;
+  }
+  .mobileRow .phone {
+    height: min(62vh, 500px);
+  }
+  .mobileRow .stats {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem 1.25rem;
+    max-width: none;
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .mobileRow .stats .stat { flex: 1 1 40%; }
+}
+
+/* =========================================================================
+ * Forge phone-screen content. Fills the same iPhone screen rectangle
+ * as product screenshots; shows repo header + tagline + stats grid.
+ * ======================================================================= */
+
+.forgeScreen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0d0b08 0%, #060403 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 7% 7% 7%;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+}
+
+.forgeTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(245, 234, 209, 0.1);
+}
+
+.forgeOwner {
+  font-size: 0.66rem;
+  letter-spacing: -0.005em;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+.forgeOwnerSlash { color: var(--gold); }
+.forgeOwnerName { color: var(--cream); font-weight: 500; }
+
+.forgeLicense {
+  font-size: 0.48rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 0.2rem 0.45rem;
+  border: 1px solid rgba(245, 234, 209, 0.12);
+  border-radius: 4px;
+}
+
+.forgeTitle {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: -0.015em;
+  line-height: 1;
+  margin: 0.15rem 0 0;
+}
+
+.forgeTagline {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.85rem;
+  line-height: 1.25;
+  color: var(--gold-light);
+  margin: 0;
+}
+
+.forgeLang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.54rem;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+}
+.forgeLangDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3178c6;
+}
+.forgeLangPct { color: var(--muted); font-size: 0.52rem; }
+
+.forgeStatsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.forgeStat {
+  padding: 0.75rem 0.7rem;
+  border: 1px solid rgba(245, 234, 209, 0.08);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  background: rgba(245, 234, 209, 0.02);
+}
+
+.forgeStatValue {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.forgeStatLabel {
+  font-family: var(--font-mono);
+  font-size: 0.42rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.forgeFeatures {
+  list-style: none;
+  margin: 0.3rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.forgeFeatures li {
+  position: relative;
+  padding-left: 0.9em;
+  font-size: 0.56rem;
+  line-height: 1.4;
+  color: var(--ivory);
+  letter-spacing: -0.005em;
+}
+
+.forgeFeatures li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.58em;
+  top: 0.05em;
+}
+
+.forgeFooter {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(245, 234, 209, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.forgeRelease {
+  font-size: 0.45rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.forgeCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--gold-high);
+  background: var(--gold-high);
+  color: var(--bg-deep);
+  border-radius: 999px;
+  transition:
+    color 0.4s var(--ease-smooth),
+    background 0.4s var(--ease-smooth);
+}
+
+.forgeCta:hover {
+  background: transparent;
+  color: var(--gold-high);
+}
+
+.forgeCta svg { width: 10px; height: 10px; }
+
+/* ---------- Outro ---------- */
+
+.outro {
+  max-width: var(--max-width);
+  margin: 3rem auto 4rem;
+  padding: 4rem var(--gutter);
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.outroTitle {
+  font-family: var(--font-italic);
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  line-height: 1.1;
+  margin: 0 0 1.75rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cream);
+  letter-spacing: -0.02em;
+}
+
+.outroTitle em { color: var(--gold-light); }

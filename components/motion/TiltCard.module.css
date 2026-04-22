@@ -1,0 +1,33 @@
+.wrap {
+  position: relative;
+  perspective: 1400px;
+  display: block;
+  will-change: transform;
+}
+
+.inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s var(--ease-smooth);
+  will-change: transform;
+}
+
+.glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-smooth);
+  background: radial-gradient(
+    350px circle at var(--mx, 50%) var(--my, 30%),
+    rgba(245, 230, 184, 0.35) 0%,
+    rgba(201, 161, 74, 0.12) 35%,
+    rgba(201, 161, 74, 0) 70%
+  );
+  mix-blend-mode: screen;
+  z-index: 2;
+}
+
+.wrap:hover .glare {
+  opacity: 1;
+}

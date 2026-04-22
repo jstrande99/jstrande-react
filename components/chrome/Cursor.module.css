@@ -1,0 +1,54 @@
+/* Minimal custom cursor — one element, three contextual states.
+ * - Default:  solid 10px gold dot
+ * - Link:     morphs to a 34px transparent ring (hover on a/button/etc.)
+ * - Text:     morphs to a thin vertical caret (hover on input/textarea)
+ *
+ * Transitions are pure CSS so we don't pay state/style cost per frame;
+ * JS only toggles classes at element boundaries via pointerover. */
+
+.wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .wrap { display: none; }
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold-high);
+  border: 0 solid var(--gold-high);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.25s var(--ease-smooth),
+    height 0.25s var(--ease-smooth),
+    border-radius 0.25s var(--ease-smooth),
+    border-width 0.2s var(--ease-smooth),
+    background 0.25s var(--ease-smooth);
+}
+
+/* Clickable — dot grows into a transparent ring. */
+.link {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: transparent;
+  border-width: 1.5px;
+}
+
+/* Typable — dot collapses into a vertical caret. */
+.text {
+  width: 2px;
+  height: 26px;
+  border-radius: 1px;
+  background: var(--gold-high);
+  border-width: 0;
+}

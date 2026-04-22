@@ -1,0 +1,29 @@
+.rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 100;
+  background: rgba(201, 161, 74, 0.05);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(
+    90deg,
+    var(--gold-deep),
+    var(--gold),
+    var(--gold-high)
+  );
+  box-shadow: 0 0 16px rgba(245, 230, 184, 0.35);
+  will-change: transform;
+}
