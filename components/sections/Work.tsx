@@ -107,22 +107,6 @@ export default function Work() {
 
   return (
     <section id="work" className={styles.section}>
-      <div className={styles.intro}>
-        <Reveal>
-          <SectionLabel index="03">Selected Work</SectionLabel>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h2 className={styles.display}>
-            Shipped <em>in production.</em>
-          </h2>
-        </Reveal>
-        <Reveal delay={0.16}>
-          <p className={styles.introMeta}>
-            Four flagship projects from Lange Logic.
-          </p>
-        </Reveal>
-      </div>
-
       <div
         ref={reelRef}
         className={styles.reel}
@@ -144,6 +128,9 @@ export default function Work() {
         <div className={styles.reelInner}>
           {/* LEFT — narrative (all stacked, only active visible) */}
           <div className={styles.narrativeCol}>
+            <Reveal>
+              <SectionLabel index="02">Selected Work</SectionLabel>
+            </Reveal>
             <div className={styles.narrativeSlot}>
               {slides.map((p, i) => (
                 <Narrative
@@ -212,6 +199,11 @@ export default function Work() {
 
       {/* Mobile fallback — stacked cards, no sticky/scroll-magic. */}
       <div className={styles.mobileStack}>
+        <div className={styles.mobileLabel}>
+          <Reveal>
+            <SectionLabel index="02">Selected Work</SectionLabel>
+          </Reveal>
+        </div>
         {slides.map((p) => (
           <div key={p.num} className={styles.mobileRow}>
             <Narrative project={p} active onOpen={() => setSelected(p)} />
