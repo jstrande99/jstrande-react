@@ -59,6 +59,30 @@ export default function ProjectsCatalog() {
     loadModalModule();
   }, []);
 
+  /* Per-project image warmer. Fires alongside preloadModal on hover, so
+   * by the time the user actually clicks a row the two webView screens
+   * are already in the HTTP cache. Next/Image URL is reconstructed to
+   * match what the modal will request. */
+  const warmedProjects = useRef<Set<string>>(new Set());
+  const preloadProjectImages = useCallback((p: Project) => {
+    if (!p.webView) return;
+    if (warmedProjects.current.has(p.num)) return;
+    warmedProjects.current.add(p.num);
+    const srcs = [p.webView.frontend.image, p.webView.backend.image];
+    for (const src of srcs) {
+      /* Next/Image rewrites to /_next/image?url=…&w=…&q=75. We hit the
+       * same endpoint so the response is cached under the exact URL
+       * the <Image> component will later request. */
+      const url = `/_next/image?url=${encodeURIComponent(src)}&w=1920&q=75`;
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = url;
+      link.fetchPriority = "low";
+      document.head.appendChild(link);
+    }
+  }, []);
+
   useEffect(() => {
     const win = window as Window & {
       requestIdleCallback?: (
@@ -133,7 +157,10 @@ export default function ProjectsCatalog() {
               key={r.key}
               row={r}
               onOpen={() => openModal(r.project)}
-              onPreload={preloadModal}
+              onPreload={() => {
+                preloadModal();
+                preloadProjectImages(r.project);
+              }}
             />
           ))}
         </div>

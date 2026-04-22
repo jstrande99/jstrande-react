@@ -199,6 +199,25 @@ export type Project = {
   logo?: string;
   /* Headline stats lifted from langelogic.com/products. */
   stats?: { value: string; label: string }[];
+  /* Desktop web-view showcase — paired frontend/backend screenshots plus
+   * short copy for each surface. The project modal renders a browser
+   * chrome and uses a scroll-driven split to reveal the backend beneath
+   * the frontend. */
+  webView?: {
+    url: string;
+    frontend: {
+      image: string;
+      title: string;
+      blurb: string;
+      bullets: string[];
+    };
+    backend: {
+      image: string;
+      title: string;
+      blurb: string;
+      bullets: string[];
+    };
+  };
   /* Engineering-infra products (no consumer UI screenshots). When present,
    * the Work section renders a GitHub repo card instead of a phone deck. */
   repo?: {
@@ -242,6 +261,31 @@ export const FLAGSHIP_PROJECTS: Project[] = [
       { value: "100%", label: "Human-in-the-loop" },
       { value: "∞", label: "Skill extensibility" },
     ],
+    webView: {
+      url: "langelogic.com/products/olana-ai",
+      frontend: {
+        image: "/Images/webView/olanaF.webp",
+        title: "The control surface",
+        blurb:
+          "A single conversational canvas wired across React Native on mobile and Electron on desktop — tap to talk, drag to delegate, watch the agent act across every surface you own.",
+        bullets: [
+          "Cross-platform: iOS · Android · macOS · Windows · Linux",
+          "Human-in-the-loop approval for every real-world action",
+          "Unified task tray, memory browser, skill library",
+        ],
+      },
+      backend: {
+        image: "/Images/webView/olanaB.webp",
+        title: "The orchestration layer",
+        blurb:
+          "Python and Node services route each request to the right model, persist durable agent memory, and execute real-world side effects behind hardened audit logs and scoped credentials.",
+        bullets: [
+          "Multi-model routing across Claude · GPT · Gemini",
+          "Durable task queue with replay and rollback",
+          "Scoped credential vault per integration",
+        ],
+      },
+    },
   },
   {
     num: "02",
@@ -273,6 +317,31 @@ export const FLAGSHIP_PROJECTS: Project[] = [
       { value: "0", label: "Code changes" },
       { value: "2 min", label: "Setup" },
     ],
+    webView: {
+      url: "crawlableai.com",
+      frontend: {
+        image: "/Images/webView/crawlableF.webp",
+        title: "The visibility dashboard",
+        blurb:
+          "Plug in a domain, watch your rank across Google, ChatGPT, Perplexity, and 150+ crawlers — one pane, zero code deploys, live schema preview for every page.",
+        bullets: [
+          "Live rank tracking across 150+ user agents",
+          "AI-native meta + structured-data preview",
+          "Two-minute setup — zero code changes at origin",
+        ],
+      },
+      backend: {
+        image: "/Images/webView/crawlableB.webp",
+        title: "The edge pre-render",
+        blurb:
+          "Cloudflare Workers detect every bot at DNS-level, serve a cached HTML snapshot in under 50ms, and inject AI-optimized schema without ever touching the customer's origin.",
+        bullets: [
+          "DNS-level pre-rendering at the edge",
+          "<50ms cached HTML payloads worldwide",
+          "Schema + meta injection via Workers",
+        ],
+      },
+    },
   },
   {
     num: "03",
@@ -303,6 +372,31 @@ export const FLAGSHIP_PROJECTS: Project[] = [
       { value: "~2 min", label: "Avg recon" },
       { value: "4+", label: "AI integrations" },
     ],
+    webView: {
+      url: "redlens.langelogic.com",
+      frontend: {
+        image: "/Images/webView/redlensF.webp",
+        title: "The operator console",
+        blurb:
+          "Launch scans, watch exploit chains unfold in real time, and export board-ready reports — all from a browser, no agent install, no privileged access required.",
+        bullets: [
+          "One-click scans across 17 security modules",
+          "Live SSE log stream of every probe",
+          "Pentest-grade PDF + Markdown exports",
+        ],
+      },
+      backend: {
+        image: "/Images/webView/redlensB.webp",
+        title: "The reasoning engine",
+        blurb:
+          "LLM orchestration validates every finding by chaining probes — each CVE is confirmed by a working exploit before it ever lands in the customer's report.",
+        bullets: [
+          "8+ probe types, detection-only by default",
+          "LLM exploit-chain reasoning and validation",
+          "MCP + CLI integrations for CI pipelines",
+        ],
+      },
+    },
   },
   {
     num: "04",
