@@ -232,34 +232,95 @@
   flex-direction: column;
 }
 
+/* ---- Row + cinematic reveal ---- */
+
 .row {
+  --stagger: 90ms;
+  --row-ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   display: grid;
   grid-template-columns: 60px 1fr auto;
   gap: 1.75rem;
-  padding: 2rem 0.5rem;
+  padding: 2.4rem 0.5rem 2.4rem 1.5rem;
   border-top: 1px solid var(--line);
   text-align: left;
   width: 100%;
   background: transparent;
   cursor: pointer;
-  transition:
-    background 0.45s var(--ease-smooth),
-    padding-left 0.45s var(--ease-smooth);
   color: var(--cream);
+  overflow: hidden;
+  transition:
+    background 0.55s var(--row-ease),
+    padding-left 0.55s var(--row-ease),
+    border-color 0.55s var(--row-ease);
 }
 
 .row:last-child {
   border-bottom: 1px solid var(--line);
 }
 
+/* Gold vertical rail — draws from top to full height as the row enters
+ * the viewport. Sits in the left gutter. */
+.rowRail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--gold) 20%,
+    var(--gold-high) 50%,
+    var(--gold) 80%,
+    transparent
+  );
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1.1s var(--row-ease);
+  opacity: 0;
+}
+
+.row[data-inview="true"] .rowRail {
+  transform: scaleY(1);
+  opacity: 1;
+  transition-delay: 80ms;
+}
+
+/* Each child element carries its own --i for staggered delay. */
+.rowNum,
+.rowTitle,
+.rowItalic,
+.rowTagline,
+.rowMeta,
+.chip {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 0.75s var(--row-ease) calc(var(--i, 0) * var(--stagger)),
+    transform 0.75s var(--row-ease) calc(var(--i, 0) * var(--stagger));
+  will-change: transform, opacity;
+}
+
+.row[data-inview="true"] .rowNum,
+.row[data-inview="true"] .rowTitle,
+.row[data-inview="true"] .rowItalic,
+.row[data-inview="true"] .rowTagline,
+.row[data-inview="true"] .rowMeta,
+.row[data-inview="true"] .chip {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Row-level hover */
 .row:hover {
-  padding-left: 1.5rem;
+  padding-left: 2.25rem;
   background: linear-gradient(
     90deg,
-    rgba(201, 161, 74, 0.04),
-    transparent 70%
+    rgba(201, 161, 74, 0.06),
+    transparent 65%
   );
+  border-color: var(--line-strong);
 }
 
 .row:hover .rowArrow {
@@ -267,38 +328,57 @@
   opacity: 1;
 }
 
+.row:hover .rowTitle {
+  color: var(--gold-high);
+}
+
 .rowNum {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 0.28em;
   color: var(--gold);
   padding-top: 0.4rem;
+  transform-origin: left center;
+}
+
+/* Number gets a slight scale-pop on top of the translate */
+.row[data-inview="false"] .rowNum {
+  transform: translate3d(0, 18px, 0) scale(0.7);
+}
+
+.rowBody {
+  display: block;
+  min-width: 0;
 }
 
 .rowTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.8rem, 3.6vw, 3rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
   margin: 0 0 0.4rem;
   color: var(--cream);
   font-weight: 500;
+  transition:
+    opacity 0.75s var(--row-ease) calc(var(--i, 0) * var(--stagger)),
+    transform 0.75s var(--row-ease) calc(var(--i, 0) * var(--stagger)),
+    color 0.35s var(--row-ease);
 }
 
 .rowItalic {
   font-family: var(--font-italic);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
   color: var(--gold-light);
   margin-right: 0.5em;
 }
 
 .rowTagline {
-  margin-top: 0.3rem;
+  margin-top: 0.5rem;
   color: var(--muted);
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.55;
   max-width: 720px;
 }
@@ -307,7 +387,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin-top: 0.85rem;
+  margin-top: 1rem;
 }
 
 .chip {
@@ -319,6 +399,11 @@
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--muted);
+  transform: translate3d(0, 14px, 0) scale(0.9);
+}
+
+.row[data-inview="true"] .chip {
+  transform: translate3d(0, 0, 0) scale(1);
 }
 
 .rowMeta {
@@ -337,19 +422,19 @@
 }
 
 .rowArrow {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: var(--gold);
   opacity: 0.6;
   transition:
-    transform 0.45s var(--ease-smooth),
-    opacity 0.3s var(--ease-smooth);
+    transform 0.5s var(--row-ease),
+    opacity 0.35s var(--row-ease);
 }
 
 @media (max-width: 768px) {
   .row {
     grid-template-columns: 40px 1fr;
     gap: 0.9rem;
-    padding: 1.5rem 0;
+    padding: 1.8rem 0 1.8rem 1rem;
   }
   .rowMeta {
     grid-column: span 2;
@@ -358,182 +443,6 @@
     align-items: center;
     width: 100%;
   }
-}
-
-/* ========================================================================= */
-/* Other work — filterable grid                                              */
-/* ========================================================================= */
-
-.other {
-  max-width: var(--max-width);
-  margin: 6rem auto 0;
-}
-
-.otherGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-  margin-top: 1.5rem;
-}
-
-@media (min-width: 680px) {
-  .otherGrid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 1080px) {
-  .otherGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.otherCard {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  border: 1px solid var(--line);
-  background: rgba(10, 8, 6, 0.6);
-  display: block;
-  transition:
-    border-color 0.4s var(--ease-smooth),
-    transform 0.5s var(--ease-smooth);
-  color: var(--cream);
-}
-
-.otherCard:hover {
-  border-color: var(--gold);
-  transform: translateY(-4px);
-}
-
-.otherImage {
-  position: absolute;
-  inset: 0;
-}
-
-.otherImage img {
-  object-fit: cover;
-  transition: transform 0.7s var(--ease-smooth), filter 0.45s ease;
-  filter: grayscale(0.25) contrast(1.02);
-}
-
-.otherCard:hover .otherImage img {
-  transform: scale(1.04);
-  filter: grayscale(0) contrast(1.05);
-}
-
-.otherOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 8, 6, 0) 35%,
-    rgba(10, 8, 6, 0.92) 100%
-  );
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem;
-}
-
-.otherTag {
-  align-self: flex-start;
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-  padding: 0.3rem 0.6rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(10, 8, 6, 0.55);
-  backdrop-filter: blur(6px);
-}
-
-.otherTitle {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  line-height: 1.1;
-  margin: 0 0 0.25rem;
-  color: var(--cream);
-}
-
-.otherSub {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin: 0;
-}
-
-/* ========================================================================= */
-/* Cursor-following preview                                                  */
-/* ========================================================================= */
-
-.preview {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 260px;
-  height: 175px;
-  pointer-events: none;
-  z-index: 70;
-  opacity: 0;
-  transform: translate3d(0, 0, 0) scale(0.94);
-  transition:
-    opacity 0.3s var(--ease-smooth),
-    transform 0.3s var(--ease-smooth);
-  border: 1px solid var(--gold);
-  background: var(--bg);
-  overflow: hidden;
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(245, 230, 184, 0.1),
-    0 0 30px rgba(201, 161, 74, 0.15);
-}
-
-.previewActive {
-  opacity: 1;
-  transform: translate3d(0, 0, 0) scale(1);
-}
-
-.previewImg {
-  position: absolute;
-  inset: 0;
-}
-
-.previewImg img {
-  object-fit: cover;
-}
-
-.previewLabel {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0.6rem 0.75rem;
-  background: linear-gradient(
-    180deg,
-    transparent,
-    rgba(10, 8, 6, 0.95)
-  );
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--cream);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.previewLabel em {
-  font-family: var(--font-mono);
-  font-style: normal;
-  color: var(--gold-high);
-}
-
-@media (hover: none), (pointer: coarse) {
-  .preview { display: none; }
 }
 
 /* ========================================================================= */

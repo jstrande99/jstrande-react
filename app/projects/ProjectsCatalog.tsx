@@ -1,29 +1,27 @@
 "use client";
 
-import Image from "next/image";
-import { useMemo, useRef, useState, useEffect } from "react";
-import {
-  FLAGSHIP_PROJECTS,
-  OTHER_WORK,
-  type Project,
-} from "@/lib/content";
+import { useMemo, useState } from "react";
+import { FLAGSHIP_PROJECTS, type Project } from "@/lib/content";
 import SectionLabel from "@/components/ui/SectionLabel";
 import Reveal from "@/components/motion/Reveal";
+import { useInView } from "@/components/motion/useInView";
 import { Button } from "@/components/ui/Button";
 import ProjectModal from "@/components/sections/ProjectModal";
 import styles from "./ProjectsCatalog.module.css";
 
-/* Full projects catalog page.
+/* Projects catalog page — flagship-only (OTHER_WORK removed).
  *
  *  Signature moves:
- *    1. Filter strip with search + tag chips behaves like an inline palette.
- *    2. Each flagship row, on hover, summons a small preview that follows
- *       the cursor (Vercel/rauno style). Disabled on touch.
- *    3. Modal (reused) for deep case-study view.
- */
+ *    1. Filter strip with search + tag chips; substring match so
+ *       "Mobile CI/CD" still matches the Forge category.
+ *    2. Each flagship row is an IO-driven cinematic reveal — gold rail
+ *       draws down the left, number pops, title slides in, tagline
+ *       fades, stack chips stagger, arrow settles. Reverses when the
+ *       row leaves the viewport.
+ *    3. Modal opens an iframe of the live site (GitHub-based projects
+ *       fall back to the screenshot). */
 
 type Row = {
-  kind: "flagship" | "other";
   key: string;
   title: string;
   subtitle: string;
@@ -32,102 +30,54 @@ type Row = {
   tags: string[];
   image?: string;
   link: string;
-  /* Only flagship have a Project object for the modal */
-  project?: Project;
+  project: Project;
 };
 
 const ALL_TAGS = [
   "All",
   "AI Agent Platform",
-  "AI Red Team",
   "SEO & AI Visibility",
-  "Client Work",
-  "F500 Pilot",
-  "Three.js",
-  "Mobile-First",
-  "Social Impact",
+  "AI Red Team",
+  "Mobile CI/CD",
 ] as const;
 
 export default function ProjectsCatalog() {
   const [selected, setSelected] = useState<Project | null>(null);
   const [query, setQuery] = useState("");
   const [tag, setTag] = useState<string>("All");
-  const [hovered, setHovered] = useState<Row | null>(null);
-  const previewRef = useRef<HTMLDivElement>(null);
 
-  /* Merge flagship + other into a unified row list for filtering. */
-  const rows: Row[] = useMemo(() => {
-    const fs: Row[] = FLAGSHIP_PROJECTS.map((p) => ({
-      kind: "flagship" as const,
-      key: `f-${p.num}`,
-      title: p.title,
-      subtitle: p.italic,
-      category: p.category,
-      year: p.year,
-      tags: [p.category, ...p.stack],
-      image: p.image,
-      link: p.link,
-      project: p,
-    }));
-    const other: Row[] = OTHER_WORK.map((p) => ({
-      kind: "other" as const,
-      key: `o-${p.title}`,
-      title: p.title,
-      subtitle: p.sub,
-      category: p.tag,
-      year: p.year,
-      tags: [p.tag],
-      image: p.image,
-      link: p.link,
-    }));
-    return [...fs, ...other];
-  }, []);
+  const rows: Row[] = useMemo(
+    () =>
+      FLAGSHIP_PROJECTS.map((p) => ({
+        key: `f-${p.num}`,
+        title: p.title,
+        subtitle: p.italic,
+        category: p.category,
+        year: p.year,
+        tags: [p.category, ...p.stack],
+        image: p.image,
+        link: p.link,
+        project: p,
+      })),
+    []
+  );
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
+    const tl = tag.toLowerCase();
     return rows.filter((r) => {
-      if (tag !== "All" && !r.tags.some((t) => t.toLowerCase() === tag.toLowerCase())) {
-        return false;
+      if (tag !== "All") {
+        const matches = r.tags.some((t) => {
+          const x = t.toLowerCase();
+          return x === tl || x.includes(tl) || tl.includes(x);
+        });
+        if (!matches) return false;
       }
       if (!q) return true;
       const hay = `${r.title} ${r.subtitle} ${r.category} ${r.tags.join(" ")}`.toLowerCase();
       return hay.includes(q);
     });
   }, [rows, query, tag]);
-
-  const flagshipFiltered = filtered.filter((r) => r.kind === "flagship");
-  const otherFiltered = filtered.filter((r) => r.kind === "other");
-
-  /* Cursor preview positioning — write via CSS custom props so we dodge React
-   * state thrash on mousemove. */
-  useEffect(() => {
-    const el = previewRef.current;
-    if (!el) return;
-    let raf = 0;
-    let x = 0;
-    let y = 0;
-    const onMove = (e: PointerEvent) => {
-      x = e.clientX + 24;
-      y = e.clientY + 24;
-      if (!raf) {
-        raf = requestAnimationFrame(() => {
-          raf = 0;
-          /* Keep preview on-screen at right/bottom edges. */
-          const maxX = window.innerWidth - el.offsetWidth - 16;
-          const maxY = window.innerHeight - el.offsetHeight - 16;
-          el.style.transform = `translate3d(${Math.min(x, maxX)}px, ${Math.min(y, maxY)}px, 0)`;
-        });
-      }
-    };
-    window.addEventListener("pointermove", onMove);
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
-
-  const flagshipCount = rows.filter((r) => r.kind === "flagship").length;
-  const otherCount = rows.filter((r) => r.kind === "other").length;
 
   return (
     <div className={styles.page}>
@@ -143,18 +93,17 @@ export default function ProjectsCatalog() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className={styles.heroMeta}>
-              Flagship Lange Logic products plus selected client and earlier
-              work — spanning AI agent platforms, edge infrastructure,
-              automated security, mobile CI/CD, and full-stack builds.
+              Flagship Lange Logic products — spanning AI agent platforms,
+              edge infrastructure, automated security, and mobile CI/CD.
+              Each one runs in production; each one has paying or active
+              users.
             </p>
           </Reveal>
         </div>
         <Reveal delay={0.2}>
           <div className={styles.metric}>
             <span className={styles.metricLabel}>Flagship</span>
-            <span className={styles.metricValue}>{flagshipCount} products</span>
-            <span className={styles.metricLabel}>Other</span>
-            <span className={styles.metricValue}>{otherCount} projects</span>
+            <span className={styles.metricValue}>{rows.length} products</span>
             <span className={styles.metricLabel}>Years active</span>
             <span className={styles.metricValue}>2022 → present</span>
             <span className={styles.metricLabel}>Current</span>
@@ -203,93 +152,16 @@ export default function ProjectsCatalog() {
           </Reveal>
         </div>
 
-        {flagshipFiltered.length === 0 ? (
-          <div className={styles.empty}>No flagship match — clear filters</div>
+        {filtered.length === 0 ? (
+          <div className={styles.empty}>No projects match — clear filters</div>
         ) : (
           <div className={styles.flagshipList}>
-            {flagshipFiltered.map((r) => (
-              <button
+            {filtered.map((r) => (
+              <FlagshipRow
                 key={r.key}
-                type="button"
-                onClick={() => r.project && setSelected(r.project)}
-                onPointerEnter={() => setHovered(r)}
-                onPointerLeave={() => setHovered((prev) => (prev === r ? null : prev))}
-                className={styles.row}
-                data-cursor="link"
-              >
-                <span className={styles.rowNum}>
-                  {r.project?.num ?? "—"}
-                </span>
-                <div>
-                  <h3 className={styles.rowTitle}>{r.title}</h3>
-                  <span className={styles.rowItalic}>— {r.subtitle}</span>
-                  <p className={styles.rowTagline}>
-                    {r.project?.tagline}
-                  </p>
-                  <div className={styles.rowStack}>
-                    {r.project?.stack.map((s) => (
-                      <span key={s} className={styles.chip}>
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className={styles.rowMeta}>
-                  <span className={styles.rowYear}>{r.year}</span>
-                  <span className={styles.rowArrow}>↗</span>
-                </div>
-              </button>
-            ))}
-          </div>
-        )}
-      </section>
-
-      <section className={styles.other}>
-        <div className={styles.sectionHeader}>
-          <Reveal>
-            <SectionLabel index="—">Other Work</SectionLabel>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2 className={styles.sectionHeaderTitle}>
-              Client &amp; early projects.
-            </h2>
-          </Reveal>
-        </div>
-
-        {otherFiltered.length === 0 ? (
-          <div className={styles.empty}>No other projects match</div>
-        ) : (
-          <div className={styles.otherGrid}>
-            {otherFiltered.map((r) => (
-              <Reveal key={r.key}>
-                <a
-                  href={r.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.otherCard}
-                  onPointerEnter={() => setHovered(r)}
-                  onPointerLeave={() => setHovered((prev) => (prev === r ? null : prev))}
-                  data-cursor="image"
-                >
-                  <div className={styles.otherImage}>
-                    {r.image && (
-                      <Image
-                        src={r.image}
-                        alt={r.title}
-                        fill
-                        sizes="(max-width: 680px) 100vw, 33vw"
-                      />
-                    )}
-                  </div>
-                  <div className={styles.otherOverlay}>
-                    <span className={styles.otherTag}>✦ {r.category}</span>
-                    <div>
-                      <h3 className={styles.otherTitle}>{r.title}</h3>
-                      <p className={styles.otherSub}>{r.subtitle}</p>
-                    </div>
-                  </div>
-                </a>
-              </Reveal>
+                row={r}
+                onOpen={() => setSelected(r.project)}
+              />
             ))}
           </div>
         )}
@@ -308,31 +180,76 @@ export default function ProjectsCatalog() {
         </Reveal>
       </div>
 
-      {/* Floating cursor preview */}
-      <div
-        ref={previewRef}
-        className={`${styles.preview} ${hovered?.image ? styles.previewActive : ""}`}
-        aria-hidden="true"
-      >
-        {hovered?.image && (
-          <div className={styles.previewImg}>
-            <Image
-              src={hovered.image}
-              alt=""
-              fill
-              sizes="260px"
-            />
-          </div>
-        )}
-        {hovered && (
-          <div className={styles.previewLabel}>
-            <span>{hovered.title}</span>
-            <em>{hovered.year}</em>
-          </div>
-        )}
-      </div>
-
       <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* FlagshipRow — owns its own IO so inner elements animate in a
+ * staggered sequence (gold rail draw, number pop, title slide, chip
+ * cascade, arrow settle) and reverse on scroll-up. */
+
+function FlagshipRow({
+  row,
+  onOpen,
+}: {
+  row: Row;
+  onOpen: () => void;
+}) {
+  const { ref, inView } = useInView<HTMLButtonElement>({
+    amount: 0,
+    rootMargin: "0px 0px -12% 0px",
+  });
+
+  return (
+    <button
+      ref={ref}
+      type="button"
+      onClick={onOpen}
+      className={styles.row}
+      data-inview={inView ? "true" : "false"}
+      data-cursor="link"
+    >
+      <span className={styles.rowRail} aria-hidden="true" />
+      <span className={styles.rowNum} style={{ "--i": 1 } as React.CSSProperties}>
+        {row.project.num}
+      </span>
+      <div className={styles.rowBody}>
+        <h3 className={styles.rowTitle} style={{ "--i": 2 } as React.CSSProperties}>
+          {row.title}
+        </h3>
+        <span
+          className={styles.rowItalic}
+          style={{ "--i": 3 } as React.CSSProperties}
+        >
+          — {row.subtitle}
+        </span>
+        <p
+          className={styles.rowTagline}
+          style={{ "--i": 4 } as React.CSSProperties}
+        >
+          {row.project.tagline}
+        </p>
+        <div className={styles.rowStack}>
+          {row.project.stack.map((s, j) => (
+            <span
+              key={s}
+              className={styles.chip}
+              style={{ "--i": 5 + j * 0.4 } as React.CSSProperties}
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div
+        className={styles.rowMeta}
+        style={{ "--i": 3 } as React.CSSProperties}
+      >
+        <span className={styles.rowYear}>{row.year}</span>
+        <span className={styles.rowArrow}>↗</span>
+      </div>
+    </button>
   );
 }
