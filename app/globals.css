@@ -250,6 +250,46 @@ select {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Page transitions — View Transitions API                                    */
+/* Chrome/Edge/Safari 18+ animate a snapshot-based crossfade with a subtle    */
+/* depth push. Firefox + older browsers fall through to instant SSG nav —    */
+/* Next's <Link> prefetch keeps it feeling native.                            */
+/* -------------------------------------------------------------------------- */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 340ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  animation-name: page-exit;
+}
+
+::view-transition-new(root) {
+  animation-name: page-enter;
+  animation-delay: 80ms;
+  animation-fill-mode: backwards;
+}
+
+@keyframes page-exit {
+  to {
+    opacity: 0;
+    transform: scale(0.985);
+    filter: blur(4px);
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: scale(1.015);
+    filter: blur(4px);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
 /* Motion preferences                                                         */
 /* -------------------------------------------------------------------------- */
 

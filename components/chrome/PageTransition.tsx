@@ -1,92 +1,58 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
-import { gsapRegister, prefersReducedMotion } from "@/lib/gsap";
-import styles from "./PageTransition.module.css";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-/* Global page-transition overlay: six horizontal rows sweep in L→R, hold,
- * then sweep out L→R while the page content behind has already updated.
- * Fires on pathname change. First mount is a reveal-only (no enter). */
+/* Route transition controller. No overlay, no wordmark — the actual
+ * crossfade + depth push is performed by the browser via the View
+ * Transitions API (::view-transition-old/new(root) in globals.css).
+ *
+ * On first load, the Hero's blur-focus reveal is the intro. There is
+ * nothing to animate here.
+ *
+ * Browsers without startViewTransition (Firefox, older Safari) fall
+ * through to Next's instant SSG navigation — already snappy thanks to
+ * <Link> prefetching. No degradation; just fewer frames. */
 export default function PageTransition() {
-  const pathname = usePathname();
-  const overlay = useRef<HTMLDivElement>(null);
-  const label = useRef<HTMLDivElement>(null);
-  const firstMount = useRef(true);
+  const router = useRouter();
 
   useEffect(() => {
-    if (firstMount.current) {
-      firstMount.current = false;
-      /* Intro sweep-out only on first load so no flash of blank screen. */
-      playIntro();
-      return;
-    }
-    if (prefersReducedMotion()) return;
-    playTransition();
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [pathname]);
+    if (typeof document === "undefined") return;
+    if (!("startViewTransition" in document)) return;
 
-  function playIntro() {
-    const gsap = gsapRegister();
-    const rows = overlay.current?.querySelectorAll<HTMLElement>(`.${styles.row}`);
-    if (!rows) return;
-    gsap.set(rows, { scaleX: 1, transformOrigin: "right center" });
-    if (label.current) gsap.set(label.current, { opacity: 0 });
-    gsap.to(rows, {
-      scaleX: 0,
-      duration: 0.9,
-      ease: "power3.inOut",
-      stagger: { each: 0.05, from: "start" },
-      delay: 0.15,
-      onComplete: () => {
-        gsap.set(rows, { transformOrigin: "left center" });
-      },
-    });
-  }
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented) return;
+      if (e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-  function playTransition() {
-    const gsap = gsapRegister();
-    const rows = overlay.current?.querySelectorAll<HTMLElement>(`.${styles.row}`);
-    if (!rows) return;
-    const tl = gsap.timeline();
-    tl.set(rows, { scaleX: 0, transformOrigin: "left center" })
-      .to(rows, {
-        scaleX: 1,
-        duration: 0.55,
-        ease: "power3.in",
-        stagger: 0.04,
-      })
-      .fromTo(
-        label.current,
-        { opacity: 0, scale: 0.96 },
-        { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" },
-        "-=0.2"
-      )
-      .to(
-        label.current,
-        { opacity: 0, duration: 0.3, ease: "power2.in" },
-        "+=0.12"
-      )
-      .to(rows, {
-        scaleX: 0,
-        duration: 0.65,
-        ease: "power3.out",
-        stagger: { each: 0.04, from: "start" },
-        transformOrigin: "right center",
-      })
-      .set(rows, { transformOrigin: "left center" });
-  }
+      const anchor = (e.target as HTMLElement | null)?.closest("a");
+      if (!anchor) return;
+      if (anchor.target && anchor.target !== "_self") return;
+      if (anchor.hasAttribute("download")) return;
 
-  return (
-    <>
-      <div ref={overlay} className={styles.overlay} aria-hidden="true">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className={styles.row} />
-        ))}
-      </div>
-      <div ref={label} className={styles.label} aria-hidden="true">
-        <em>JS</em>
-      </div>
-    </>
-  );
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+      if (!href.startsWith("/") || href.startsWith("//")) return;
+
+      const url = new URL(anchor.href, window.location.origin);
+      if (url.origin !== window.location.origin) return;
+
+      /* Same-document hash / query navigations: let the browser handle
+       * them natively so in-page anchor scrolling still works. */
+      const samePath =
+        url.pathname === window.location.pathname &&
+        url.search === window.location.search;
+      if (samePath) return;
+
+      e.preventDefault();
+      document.startViewTransition!(() => {
+        router.push(url.pathname + url.search + url.hash);
+      });
+    };
+
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, [router]);
+
+  return null;
 }
